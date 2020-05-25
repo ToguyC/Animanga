@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Fusionne la page de garde avec le contenu du document final
-pdfunite ../compiled/cover.pdf \
+pdftk ../compiled/cover.pdf \
          ../compiled/final.pdf \
          ../compiled/annexes-cover.pdf \
          ../compiled/resume-cover.pdf \
@@ -10,4 +10,5 @@ pdfunite ../compiled/cover.pdf \
          ../compiled/journal-de-bord-cover.pdf \
          ../compiled/journal-de-bord.pdf \
          ../compiled/code-source-cover.pdf \
+         cat output \
          ../compiled/rapport-tpi-et-documentation-technique.pdf
