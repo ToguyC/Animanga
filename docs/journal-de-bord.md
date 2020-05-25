@@ -8,7 +8,7 @@ L'objectif de cette journée est de lire l'énoncé dans son intégralité afin 
 
 ### Déroulement
 
-Je commence ma journée à 8h00. M. Terrond m'a fait parvenir mon énoncé la veille, que j'ai lu avec attention ce dernier. Par ce biai, j'ai complété avec succès la première étape de la **méthodologie en 6 étapes**, méthodologie que je vais utiliser durant tout le déroulement de ce TPI : ***S'informer***.
+Je commence ma journée à 8h00. M. Terrond m'a fait parvenir mon énoncé la veille, que j'ai lu avec attention ce dernier. Par ce biai, j'ai complété avec succès la première étape de la **méthodologie en 6 étapes**, méthodologie que je vais utiliser durant tout le déroulement de ce TPI : *__S'informer__*.
 
 J'ai quelques points incertains concernant mon énoncé dont un quelque peu embêttant. Je poserai mes questions à mon formatteur durant la matinée. Je vais maintenant commencer à ***Planifier***, secondes étape de la méthodologie utilisée. Je separerai mes journée en tranche de 4 heures, soit par demi-journée, et remplirai des différentes tranches horaires avec les *user stories* extraites de mon cahier des charges.
 
@@ -35,11 +35,35 @@ J'ai quelques points incertains concernant mon énoncé dont un quelque peu emb�
 
 J'ai aussi décidé d'utiliser la syntaxe suivante afin de présenter mes *user stories* :
 
-| Nom                            | S<n° de la *story*> : <Nom de la *user story*>               |
+| Nom                            | S<n° de la *story*\> : <Nom de la *user story*\>             |
 | ------------------------------ | ------------------------------------------------------------ |
-| **Description (*user story*)** | <Description de la story pour connaître avec précision le but à atteindre> |
-| **Critère d'acceptation**      | <n° des tests à passé pour valider cette *story*>            |
-| **Priorité**                   | <Priorité de la *story*>                                     |
+| **Description (*user story*)** | <Description de la story pour connaître avec précision le but à atteindre\> |
+| **Critère d'acceptation**      | <n° des tests à passé pour valider cette *story*\>           |
+| **Priorité**                   | <Priorité de la *story*\>                                    |
+
+9h : J'ai fait un script bash me permettant un rassembler tout mes fichiers Markdown de ma documentation dans un seul et même fichier. Ceci est nécessaire car je prévois de publier ma documentation en ligne, à l'aide du site [readthedocs.org](readthedocs.org).
+
+10h : En plus de la documentation publique, il faut une version PDF. Pour ce faire j'utilise le logiciel [Typora](https://typora.io) pour exporter mon fichier réunissant toute ma documentation en PDF. Une fois cela fait, j'utilise un autre script bash que j'ai réalisé permettant de fusionner plusieurs fichiers PDF en un seul. Ce dernier se nomme : `Rapport du TPI et documentation technique`. Il contient le rapport, les annexes, le résumé, l'énoncé, le journal de bord, et le code source.
+
+10h30 : Descriptif de mes outils de bureautique : j'utilise [Typora](https://typora.io) (un éditeur Markdown compatible sous tout OS) pour rédiger l'entièreté de ma documentation. La création des fichiers PDF est faite grâce à l'export vers PDF de Typora ainsi qu'à un script écrit par moi-même.
+
+Convernant le style appliqué à ma documentation, j'ai utilisé la couleur <img src="https://i.loli.net/2020/05/25/pqzGhglItRj3fkJ.png" style="zoom:25%;" /> <span style="color: #C4C4C4">#</span>**006EDB** comme principale. La police est Poppins, aussi utilisée dans le projet en lui même.
+
+10h50 : J'ai eu un rendez-vous GMeet avec mon formateur pour vérifier que tout allait bien. J'ai poser la question suivante et voici la réponse donnée :
+
+> Est-ce que le planning que vous m'avez donné est celui qu'il faudra utilisé ?
+
+➡ Le planning que j'ai donné est un modèle permettant de suivre de façon basique l'avancée du projet. Si vous avez un planning plus précis, vous pouvez sans autre l'utiliser et comparer ensuite le vôtre avec celui que j'ai donné.
+
+11h25 : J'ai terminé la rédaction de mon *product backlog* temporaire. Des modifications peuvent encore être apportés si j'en trouve le besoin.
+
+11h45 : J'ai compilé une versoin de test de ma documentation pour vérifier qu'il ni aie pas d'erreur. Je prend ma pause de midi.
+
+---
+
+12h50 : Reprise de la journée. Je m'attaque maintenant au diagramme de Gantt. J'ai choisi de le réalisé avec un tableau HTML car je ne suis pas à l'aise avec les outils spécialisé comme Gantter.
+
+14h15 : J'ai remarqué un soucis lors de la fusion des fichiers Markdown. Une partie d'un fichier se dédouble mais je ne sais pas encore pourquoi.
 
 ### Bilan
 

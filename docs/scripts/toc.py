@@ -10,11 +10,15 @@ toc = output.decode('utf-8') # Decode la sortie
 # Ajoute le titre "Table des matières" juste avant la table des matières
 toc = '## Table des matière\n\n' + toc + "\n<div style='page-break-after: always; break-after: page; text-align:right;'></div>"
 
-# Ajoute la table des matière dans le document final
+updated_lines = []
+# Ajoute la table des matière dans les lignes du fichier
 with open('../compiled/final.md', 'r+') as f:
     lines = f.readlines()
     del lines[0]
     del lines[1]
     f.seek(0)
     lines.insert(0, toc)
-    f.writelines(lines)
+    updated_lines = lines
+    f.truncate(0) # Suppression de l'ancien contenu
+    f.writelines(updated_lines) # Ajout du nouveau contenu
+    f.close()

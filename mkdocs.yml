@@ -1,0 +1,25 @@
+site_name: Animanga
+site_author: Tanguy Cavagna
+site_description: >-
+  Travail Pratique Individuel (TPI) de fin de formation CFC-Informaticien Développement d'Application.
+repo_url: https://github.com/TanguyCavagna/Animanga
+
+nav:
+  - Accueil: index.md
+  - Résumé de l'énoncé: resume-enonce.md
+  - Méthodologie: methodologie.md
+  - Planification: planning.md
+  - Journal de bord: journal-de-bord.md
+
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.critic
+  - pymdownx.emoji
+  - pymdownx.details
+  - pymdownx.tabbed
+  - attr_list

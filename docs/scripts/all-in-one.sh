@@ -10,16 +10,11 @@ echo "" > $final
 for f in ../index.md \
          ../resume-enonce.md \
          ../methodologie.md \
-         ../user-stories.md
+         ../planning.md \
+         ../implementation.md
 do
-    # Si le fichier courant est l'index, écraser tout le fichier pour éviter d'avoir une ligne vide au début
-    if [ $f == '../index' ] ; then
-        cat $f > $final
-    # Sinon ajouter le contenu de chaque fichier à la fin
-    else
-        echo "" >> $final
-        cat $f >> $final
-    fi
+    echo $'\r' >> $final
+    cat $f >> $final
 done
 
 # Éxecuter le script python pour générer la table des matières
