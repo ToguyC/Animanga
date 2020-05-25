@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Fusionne la page de garde avec le contenu du document final
+pdfunite ../compiled/cover.pdf \
+         ../compiled/final.pdf \
+         ../compiled/annexes-cover.pdf \
+         ../compiled/resume-cover.pdf \
+         ../compiled/resume.pdf \
+         ../compiled/enonce-cover.pdf \
+         ../compiled/journal-de-bord-cover.pdf \
+         ../compiled/journal-de-bord.pdf \
+         ../compiled/code-source-cover.pdf \
+         ../compiled/rapport-tpi-et-documentation-technique.pdf
