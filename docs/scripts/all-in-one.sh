@@ -10,7 +10,7 @@ echo "" > $final
 for f in ../index.md \
          ../resume-enonce.md \
          ../methodologie.md \
-         ../user-stories.md \
+         ../user-stories.md
 do
     # Si le fichier courant est l'index, écraser tout le fichier pour éviter d'avoir une ligne vide au début
     if [ $f == '../index' ] ; then

@@ -1,6 +1,6 @@
 ## Résumé de l'énoncé
 
-*Les information suivantes sont éxtraites du cahier des charges du TPI.*
+*Les informations suivantes sont éxtraites du cahier des charges du TPI.*
 
 ## Organisation
 
