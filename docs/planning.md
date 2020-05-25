@@ -1234,3 +1234,13 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         </tr>
     </tbody>
 </table>
+<div style="display: flex;">
+    <div style="display: flex; align-items: center; width: 40%">
+        <img src="https://i.loli.net/2020/05/25/GLgXIau45ERibwO.png" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 20px">
+        Planification prévisionnelle
+    </div>
+    <div style="display: flex; align-items: center; width: 40%">
+        <img src="https://i.loli.net/2020/05/25/kscEVbJ4Wh9xuSv.png" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 20px">
+        Planification réelle
+    </div>
+</div>

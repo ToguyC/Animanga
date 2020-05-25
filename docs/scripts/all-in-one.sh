@@ -11,9 +11,10 @@ for f in ../index.md \
          ../resume-enonce.md \
          ../methodologie.md \
          ../planning.md \
-         ../implementation.md
+         ../implementation.md \
+         ../scenarios-tests.md
 do
-    echo $'\r' >> $final
+    echo >> $final
     cat $f >> $final
 done
 
