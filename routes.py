@@ -23,3 +23,26 @@ def home():
     """Affiche la page d'accueil
     """
     return render_template('index.html')
+
+@main_bp.route('/endpoints', methods=['GET'])
+def endpoints():
+    """Affiche les points de sorties de l'api. Comprend uniquement les urls documentées avec de la docstring swagger
+    """
+    return render_template('endpoints.html')
+
+@main_bp.route("/specs", methods=['GET']) 
+def spec():
+    """
+    Retourne un JSON comportant toutes les informations contenues dans les docstring des fonctions
+    ---
+    tags:
+      - API
+    response:
+      200:
+        description: objet JSON comportant toutes les informations nécessaire à l'affichage des points de sortie de l'API
+        
+    """
+    swag = swagger(app)
+    swag['info']['version'] = "0.1"
+    swag['info']['title'] = "Animanga"
+    return jsonify(swag)

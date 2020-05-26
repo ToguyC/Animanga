@@ -77,7 +77,7 @@ La journées c'est plutôt bien passée. J'ai cependant pris un peu de retard su
 
 ### Objectifs
 
-L'objectif de cette journée est premièrement de rattraper le peu de retard que j'ai eu hier sur les scénarios de tests. Ensuite, je ferai le modèle de base de données et je ferai le code permettant d'importer les données.
+L'objectif de cette journée est premièrement de rattraper le peu de retard que j'ai eu hier sur les scénarios de tests. Ensuite, je ferai le modèle de base de données, je configurerai l'application Flask, et je ferai le code permettant d'importer les données.
 
 ### Déroulement
 
@@ -98,6 +98,35 @@ L'objectif de cette journée est premièrement de rattraper le peu de retard que
 J'ai inscrit une `secret_key` à l'application Flask. Cette clef est utilisé dans les systèmes d'encryptions. Flask lui-même n'a pas besoin de cette clef mais d'autre librairies externes, tel que `flask-login`, que j'utiliserai afin de pouvoir connecter un utilisateur, doit avoir cette clef. La valeur de cette clef est `Super` en Sha256.
 
 9h55 : J'ai une application Flask basique fonctionnelle. Je peux rendre des vues depuis une route sans problèmes.
+
+10h : J'ai mis en place le système de documentation automatique d'API : [Swagger](https://swagger.io).
+
+Pour que ce système puisse être mis en place, il faut une librairie externe nommé `flask_swagger`. De plus, certains fichiers sont indispensable au bon fonctionnement de Swagger. Le plus primordiale est la page HTML. J'ai décidé de la nommé ==endpoints.html== et de la placé dans le dossier ==templates==. Cette page est disponible [ici](https://github.com/swagger-api/swagger-ui/blob/master/dist/index.html). Cependant, je l'ai adapté pour qu'elle soit correctement implémentée dans l'application FLask.
+
+En plus de la page HTML, il nous faut rajouter 2 fichiers `javascript` qui iront dans le dossier ==static/js==, 2 images qui iront dans le dossier ==static/img== et enfin 1 fichier `css` qui ira dans le dossier ==static/css==. Voici le lien pour télécharger les fichiers :
+
+- [swagger-ui-bundle.js](https://github.com/swagger-api/swagger-ui/blob/master/dist/swagger-ui-bundle.js)
+- [swagger-ui-standalone-preset.js](https://github.com/swagger-api/swagger-ui/blob/master/dist/swagger-ui-standalone-preset.js.map)
+- [favicon-16x16.png](https://github.com/swagger-api/swagger-ui/blob/master/dist/favicon-16x16.png)
+- [favicon-32x32.png](https://github.com/swagger-api/swagger-ui/blob/master/dist/favicon-32x32.png)
+- [swagger-ui.css](https://github.com/swagger-api/swagger-ui/blob/master/dist/swagger-ui.css)
+
+La structure du dossier ==static== ressemble désormais à ceci :
+
+```
+Animanga
+└── static
+	├── css
+	│   └── swagger-ui.css
+    ├── js
+    │   ├── swagger-ui-bundle.js
+    │   └── swagger-ui-standalone-preset.js
+    └── img
+        ├── favicon-16x16.png
+        └── favicon-32x32.png
+```
+
+
 
 ### Bilan
 
