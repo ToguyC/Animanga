@@ -126,6 +126,13 @@ Animanga
         └── favicon-32x32.png
 ```
 
+10h25 : J'ai installer la police Poppins en local. De ce fait, je n'aurai pas de soucis si le site perd la connexion à internet et que les polices sont chargées depuis Google Fonts.
+
+10h30 : Je commence maintenant l'importation des données en base.
+
+11h40 : J'ai terminé l'importation des types et statuts des animes depuis le fichier JSON. Il me reste à faire l'importation des animes eux même. Je prend ma pause de midi.
+
+---
 
 
 ### Bilan

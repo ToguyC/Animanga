@@ -9,7 +9,9 @@
 
     <title>{% block title %}{% endblock title %}</title>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     {% block extra %}{% endblock extra %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
 </head>
 <body style="overflow-x: hidden">
 

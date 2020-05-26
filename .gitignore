@@ -2,3 +2,4 @@ __pycache__/
 docs/compiled/final*
 docs/compiled/journal-de-bord.pdf
 docs/compiled/resume.pdf
+static/database/tpi.db
