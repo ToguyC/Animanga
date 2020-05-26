@@ -78,11 +78,23 @@
 | **Critère d'acceptation**      | Le dépôt git local est configurer correctement et le lien sur le dépôt distant à été bien fait. |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
+| Nom                            | S13 : Configuration de la base de données                    |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant que développeur, je dois pouvoir utilisé une base de données Sqlite3 et MySQL ayant un modèle identique à celui donné dans l'énoncé. Pour ce faire, j'ai une classe Python me permettant de faire des requêtes sur la base Sqlite3 et une autre classe me permettant de faire des requêtes sur la base MySQL. J'ai aussi un dump de la structure de la base MySQL dans les fichiers statiques de mon application. |
+| **Critère d'acceptation**      | Les tables `animes`, `status`, `type`, `url`, `list`, `user`, `list_has_anime`, `user_has_list` et `user_has_favorites` ont bien été crées et sont utilisable par les contrôleurs dédiés. |
+| **Priorité**                   | 🚫 Bloquant                                                   |
+
 | Nom                            | S13 : Synchronisation MySQL Sqlite3                          |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant que développeur, je dois pouvoir synchroniser les bases MySQL et Sqlite3 unidirectionellement pour créer un backup sur serveur distant. |
 | **Critère d'acceptation**      | ***Pas encore écris de tests***                              |
 | **Priorité**                   | ❓ Secondaire                                                 |
+
+| Nom                            | S15 : Configuration Flask                                    |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant que développeur, je dois configurer l'application Flask afin d'avoir un site hébergé en local et pouvoir communiquer avec la base de données Sqlite3. |
+| **Critère d'acceptation**      | ***Pas encore écris de tests\***                             |
+| **Priorité**                   | 🚫 Bloquant                                                   |
 
 ## Planning
 
@@ -234,7 +246,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -355,6 +367,55 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         </tr>
         <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 15px">S13 : Configuration de la base de données</td>
+            <td></td>
+            <td></td>
+            <td style="background: #f7dc79;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S15 : Configuration de Flask</td>
             <td></td>
             <td></td>
             <td style="background: #f7dc79;"></td>
@@ -940,7 +1001,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S13 : Synchronisation MySQL Sqlite3</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S14 : Synchronisation MySQL Sqlite3</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1244,3 +1305,5 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         Planification réelle
     </div>
 </div>
+
+

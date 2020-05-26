@@ -100,6 +100,76 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **Résultats obtenus** | La valeur du combo-box c'est bien mise à jour et l'anime n'est effectivement plus présent dans les autres statuts. |
 | **Statut**            | ❌ KO                                                         |
 
+| **Nom**               | 6.5 Suppression de l'anime d'une liste personnelle           |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S6 : Mise à jour de l'anime                                  |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur une check-box bleue d'une des listes personnelles.<br />**Alors**, l'état de la check-box ce met à jour et se colore en blanc. L'anime n'est plus présent dans la cette liste personnelle. |
+| **Résultats obtenus** | L'état de la check-box c'est bien mis à jour et est coloré en blanc. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 6.6 Suppression de l'anime des favoris                       |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S6 : Mise à jour de l'anime                                  |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur le cœur rose pour supprimer des favoris.<br />**Alors**, le cœur se colore en blanc et l'anime se supprime de la zone des favoris de la page d'accueil. |
+| **Résultats obtenus** | Le cœur c'est coloré en blanc et l'anime c'est correctement supprimé de la zone des favoris de la page d'accueil. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 7.1 Affichage du profile de l'utilisateur connecté           |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S7 : Affichage du profile                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur *Profile* dans la barre de navigation.<br />**Alors**, la page de profile de l'utilisateur connecté s'affiche avec ses statistiques et ses favoris. |
+| **Résultats obtenus** | La page de profile de l'utilisateur connecté s'affiche correctement et les statistiques ainsi que les favoris sont les siens. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 7.2 Affichage du profile d'un autre utilisateur              |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S7 : Affichage du profile                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je modifie l'url pour entré "/profile/Test".<br />**Alors**, la page de profile de "Test" s'affiche avec ses statistiques et ses favoris. |
+| **Résultats obtenus** | La page de profile de "Test" s'affiche correctement et les statistiques ainsi que les favoris sont les siens. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 8.1 Affichage des listes de l'utilisateur connecté           |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S8 : Affichage des listes                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur *Listes* dans la barre de navigation.<br />**Alors**, la page contenant toutes les listes de l'utilisateur connecté s'affiche ainsi que les animes contenu dans ces listes. |
+| **Résultats obtenus** | La page contenant les listes de l'utilisateur connecté c'est correctement affiché et les animes sont correctement affiché aussi. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 8.2 Affichage des listes d'un autre utilisateur              |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S8 : Affichage des listes                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je modifie l'url pour entré "/listes/Test".<br />**Alors**, la page contenant toutes les listes de l'utilisateur "Test" s'affiche ainsi que les animes contenu dans ces listes. |
+| **Résultats obtenus** | La page contenant les listes de l'utilisateur "Test" c'est correctement affiché et les animes sont correctement affiché aussi. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 9.1 Créer une liste                                          |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S9 : Gestion des listes                                      |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que j'écris "Ma nouvelle liste" dans le champs de texte *Nouvelle liste* et que j'appuie sur <kbd>Enter</kbd>.<br />**Alors**, la liste apparaîtra en bas des listes déjà présentes avec une 🗑️ à côté. |
+| **Résultats obtenus** | La liste à bien été ajoutée en base des listes déjà présente. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 9.2 Supprimer une liste                                      |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S9 : Gestion des listes                                      |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que je clique sur 🗑️ d'une liste présente.<br />**Alors**, la liste ne sera plus présente dans les listes présentes. |
+| **Résultats obtenus** | La liste à bien été supprimer et n'est plus présente dans les listes déjà existante. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 10.1 Organisation des favoris                                |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S10 : Organisation des favoris                               |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des favoris et je clique sur le bouton *Réorganiser les favoris*, je peux glisser déposer les animes dans l'ordre que je veux. Je clique sur le bouton *Sauvegarder* pour enregistrer l'ordre.<br />**Alors**, mes favoris sont enregistrer dans l'ordre voulu. |
+| **Résultats obtenus** | Mes favoris ont bien été réorganisé.                         |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 11.1 Affichage de la landing page                            |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S11 : Affichage de la landing page                           |
+| **Situation**         | **Étant donné que** je suis un utilisateur non connecté.<br />**Quand** je suis sur le site.<br />**Alors**, une page d'accueil s'affiche avec comme possibilité : la visite de la page *À propos*, se connecter et s'inscrire. |
+| **Résultats obtenus** | La page d'accueil ainsi que la barre de navigation sont affiché correctement pour un utilisateur non connecté. |
+| **Statut**            | ❌ KO                                                         |
+
 ### Évolution des tests
 
 | N° Test | J1<br /><span style="font-weight: normal">lu.25</span> | J2<br /><span style="font-weight: normal">ma.26</span> | J3<br /><span style="font-weight: normal">me.27</span> | J4<br /><span style="font-weight: normal">je.28</span> | J5<br /><span style="font-weight: normal">ve.29</span> | J6<br /><span style="font-weight: normal">ma.2</span> | J7<br /><span style="font-weight: normal">me.3</span> | J8<br /><span style="font-weight: normal">je.4</span> | J9<br /><span style="font-weight: normal">ve.5</span> | J10<br /><span style="font-weight: normal">lu.8</span> | J11<br /><span style="font-weight: normal">ma.9</span> |
@@ -116,3 +186,12 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 |   6.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   6.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   6.4   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.5   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   7.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   7.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   8.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   8.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   9.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   9.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  10.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  11.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
