@@ -1,3 +1,6 @@
+## Planification
+
+### Product backlog
 
 
 | Nom                            | S1 : Inscription à Animanga                                                                      |
@@ -96,7 +99,7 @@
 | **Critère d'acceptation**      | ***Pas encore écris de tests\***                             |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
-## Planning
+## Diagramme de Gantt
 
 Planning prévisionnel : <span style="color: #F7DC79; font-weight: bold">#F7DC79</span>
 
@@ -393,7 +396,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -442,7 +445,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -491,8 +494,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1077,7 +1080,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1125,8 +1128,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1272,8 +1275,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1305,5 +1308,6 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         Planification réelle
     </div>
 </div>
+
 
 
