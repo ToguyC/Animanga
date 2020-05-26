@@ -1,0 +1,26 @@
+/**
+ * @filesource _typography.scss
+ * @brief Fichier contenant toutes les polices utilisées dans mon application
+ * @author Tanguy Cavagna <tanguy.cvgn@eduge.ch>
+ * @date 2020-04-18
+ * @version 1.0.0
+ */
+
+@font-face {
+    font-family: 'Regular';
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Nav link';
+    src: url('../fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Section title';
+    src: url('../fonts/Poppins-ExtraBold.ttf');
+}
+
+$f-regular: 'Regular';
+$f-nav-link: 'Nav link';
+$f-section-title: 'Section title';
