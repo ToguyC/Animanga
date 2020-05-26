@@ -6,12 +6,13 @@
 @date: 2020-05-26
 """
 import sqlite3
-import sys
-from flask import g
-from os import path
+#import sys
+#from os import path
 from typing import Any
 from sqlite3 import Error as SqliteError
-from datetime import datetime as dt
+#from datetime import datetime as dt
+
+from flask import g
 
 class SqliteController:
     """Classe permettant d'accéder à ma base de données Sqlite

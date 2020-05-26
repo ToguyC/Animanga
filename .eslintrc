@@ -1,0 +1,19 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "indent": ["error", 4],
+        "prefer-destructuring": ["error", {
+            "array": false,
+            "object": true
+        }]
+    },
+    "env": {
+        "browser": true,
+        "jquery": true
+    },
+    "settings": {
+        "react": {
+            "version": "latest"
+        }
+    }
+}

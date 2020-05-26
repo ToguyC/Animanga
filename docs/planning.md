@@ -99,6 +99,12 @@
 | **Critère d'acceptation**      | ***Pas encore écris de tests\***                             |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
+| Nom                            | S16 : Vérifications syntaxique                               |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant que développeur, je peux lancé la commande `npm run lint` pour vérifier la syntaxe, basé sur le preset Airbnb, des fichiers JavaScript, et la commande `python3 -m pylint --output-format=colorized` pour vérifier la syntaxe des fichiers Python, basé sur les conventions PEP8. |
+| **Critère d'acceptation**      | Les test *12.1* et *12.2* passent.                           |
+| **Priorité**                   | 🚫 Bloquant                                                   |
+
 ## Diagramme de Gantt
 
 Planning prévisionnel : <span style="color: #F7DC79; font-weight: bold">#F7DC79</span>
@@ -642,7 +648,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1051,7 +1057,57 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-        </tr><tr>
+        </tr>
+        <tr>
+            <td rowspan="2" style="font-weight: bold;">S16 : Vérifications syntaxique</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 10px">Tests en profondeur et corrections des bugs</td>
             <td></td>
             <td></td>
@@ -1308,6 +1364,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         Planification réelle
     </div>
 </div>
+
 
 
 

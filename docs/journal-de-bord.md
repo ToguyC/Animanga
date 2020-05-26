@@ -138,12 +138,27 @@ Animanga
 
 14h : J'ai terminé l'import des données et tout semble parfaitement bien s'ajouter en base. Étant donné que j'ai un peu d'avance, je vais mettre ma documentation en ligne sur [readthedocs.org](https://readthedocs.org/). Le site hébergeant la documentation utilise [Mkdocs](https://www.mkdocs.org/) pour convertir la documentation de Markdown à HTML. C'est pourquoi j'ai installé mkdocs dans [WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-index) sur ma machine pour vérifier si ma documentation compilait correctement.
 
-14h15 : La documentation est en ligne à l'adresse : <https://animanga.readthedocs.io/fr/latest/>. Pour le moment, étant donné que je n'ai pas encore mis en place la connexion, je ne peux effectuer mes tests que manuellement. Cependant, dès lors que la connexion sera mise en place, j'utiliserai [Katalon Recorder](https://chrome.google.com/webstore/detail/katalon-recorder-selenium/ljdobmomdgdljniojadhoplhkpialdid) pour automatiser mes tests.
+14h15 : La documentation est en ligne à l'adresse : <https://animanga.readthedocs.io/fr/latest/>.
+
+Pour le moment, étant donné que je n'ai pas encore mis en place la connexion, je ne peux effectuer mes tests que manuellement. Cependant, dès lors que la connexion sera mise en place, j'utiliserai [Katalon Recorder](https://chrome.google.com/webstore/detail/katalon-recorder-selenium/ljdobmomdgdljniojadhoplhkpialdid) pour automatiser mes tests.
 
 14h25 : J'ai effectué le test *3.1* pour vérifier que mes données soient correctement importées. Comme j'ai de l'avance de vais faire l'affichage de la *landing page*.
 
 15h20 : J'ai terminé l'implémentation de la *landing page*.  Pour le moment je ne peux tester le basculement de l'état connecté à l'état déconnecté que via la variable `is_authenticated` de que je change dans le fichier `routes.py`. Demain je pourrai changé puisque je met en place la connexion et l'inscription. Je n'aurai donc plus besoin de cette variable. Le test *11.1* passe concernant l'affichage de la *landing page*.
 
+Je vais configurer deux vérificateurs de syntaxe différent pour mon projet. Le premier est [pylint](https://www.pylint.org/) pour Python, et le second est [eslint](https://eslint.org/) pour le JavaScript. Pour eslint, je vais utilisé un preset de vérification : airbnb. Cela me permet d'écrire mes script javaScript dans un cadre syntaxique strict et donc de ne pas sortir des conventions actuelles.
+
+15h30 : Eslint est installé et je lance la commande `npm run lint static/js` pour vérifier mes fichiers JavaScript.
+
+15h35 : J'ai corrigé les erreurs que eslint m'avait montré et je m'attaque maintenant à pylint.
+
+16h : Le vérification de syntaxe pylint fonctionne correctement. Je lance la commande `python3 -m pylint --output-format=colorized packages` pour vérifier la syntaxe des fichiers se trouvant dans le dossier `packages`.
+
+16h10 : J'ai corrigé les erreurs relevées par pylint. Je vais mettre à jour mon planning et mes scénarios de tests afin d'ajouter la vérification syntaxique.
+
+16h30 : J'ai ajouté la vérification syntaxique dans le planning comme *user story* et j'ai créer un test pour le Python et un pour le JavaScript afin de validé la *user story*.
+
 
 ### Bilan
 
+Je suis très content de l'avancement d'aujourd'hui. J'ai eu un peu de retard hier mais très vite rattrapé ce matin. J'ai réussi à prendre un peu d'avance dans le projet et donc je suis très confiant pour la suite. Cela m'a permis de rajouté la vérification syntaxique pour Python et pour JavaScript.

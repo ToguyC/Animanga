@@ -7,8 +7,8 @@
 """
 import json
 import pathlib
-import sys
-import os
+#import sys
+#import os
 from sqlite3 import Error as SqliteError
 from datetime import datetime as dt
 
