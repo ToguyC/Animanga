@@ -46,7 +46,7 @@ class AnimeController:
             # Requêtes pour les insertions de nouvelles données
             sql_query_type = "INSERT INTO type(nameType, modificationDate) VALUES(?, ?)"
             sql_query_status = "INSERT INTO status(nameStatus, modificationDate) VALUES(?, ?)"
-            sql_query_anime = "INSERT INTO anime(title, type, episodes, status, picture, thumbnail, synonyms, modificationDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
+            sql_query_anime = "INSERT INTO anime(idAnime, title, type, episodes, status, picture, thumbnail, synonyms, modificationDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
             sql_query_anime_ft = "INSERT INTO anime_ft(idAnime, title) VALUES(?, ?)"
             sql_query_url = "INSERT INTO url(urlName, idAnime, isRelation, modificationDate) VALUES(?, ?, ?, ?)"
 
@@ -90,9 +90,56 @@ class AnimeController:
             types = TypeController().get_all_as_dict()
             status = StatusController().get_all_as_dict()
 
-            print(len(types), len(status))
+            # Reparcourir le fichier json pour extraire cette fois si les animes et leurs relations
+            idAnime = 1
+            for anime in animes['data']:
+                # Suppression de tout les OVA car leur contenu est souvent innaproprié pour un TPI
+                if anime['type'] == 'OVA':
+                    continue
 
-            yield 'redirect'
+                values_anime.append((
+                    idAnime,
+                    anime['title'],
+                    types[anime['type']],
+                    anime['episodes'],
+                    status[anime['status']],
+                    anime['picture'],
+                    anime['thumbnail'],
+                    ','.join(anime['synonyms']) if len(anime['synonyms']) > 0 else None,
+                    current_time
+                ))
+
+                values_anime_ft.append((
+                    idAnime,
+                    anime['title']
+                ))
+
+                for source in anime['sources']:
+                    values_source.append((
+                        source,
+                        idAnime,
+                        False,
+                        current_time
+                    ))
+
+                for relation in anime['relations']:
+                    values_relation.append((
+                        relation,
+                        idAnime,
+                        True,
+                        current_time
+                    ))
+
+                idAnime += 1
+
+            yield "Insertion des animes et urls"
+            SqliteController().execute_many(sql_query_anime, values_anime)
+            SqliteController().execute_many(sql_query_anime_ft, values_anime_ft)
+            SqliteController().execute_many(sql_query_url, values_source)
+            SqliteController().execute_many(sql_query_url, values_relation)
+
+            yield "redirect"
+            return True
         except SqliteError as e:
             print(str(e))
             return False
