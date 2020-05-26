@@ -45,7 +45,8 @@ def stream_template(template_name, **context):
 def home():
     """Affiche la page d'accueil
     """
-    return render_template('index.html')
+    return render_template('index.html',
+                            current_user={'is_authenticated': True})
 
 @main_bp.route('/endpoints', methods=['GET'])
 def endpoints():

@@ -41,7 +41,7 @@ J'ai aussi décidé d'utiliser la syntaxe suivante afin de présenter mes *user 
 | **Critère d'acceptation**      | <n° des tests à passé pour valider cette *story*\>           |
 | **Priorité**                   | <Priorité de la *story*\>                                    |
 
-9h : J'ai fait un script bash me permettant un rassembler tout mes fichiers Markdown de ma documentation dans un seul et même fichier. Ceci est nécessaire car je prévois de publier ma documentation en ligne, à l'aide du site [readthedocs.org](readthedocs.org).
+9h : J'ai fait un script bash me permettant un rassembler tout mes fichiers Markdown de ma documentation dans un seul et même fichier. Ceci est nécessaire car je prévois de publier ma documentation en ligne, à l'aide du site [readthedocs.org](https://readthedocs.org).
 
 10h : En plus de la documentation publique, il faut une version PDF. Pour ce faire j'utilise le logiciel [Typora](https://typora.io) pour exporter mon fichier réunissant toute ma documentation en PDF. Une fois cela fait, j'utilise un autre script bash que j'ai réalisé permettant de fusionner plusieurs fichiers PDF en un seul. Ce dernier se nomme : `Rapport du TPI et documentation technique`. Il contient le rapport, les annexes, le résumé, l'énoncé, le journal de bord, et le code source.
 
@@ -101,9 +101,9 @@ J'ai inscrit une `secret_key` à l'application Flask. Cette clef est utilisé da
 
 10h : J'ai mis en place le système de documentation automatique d'API : [Swagger](https://swagger.io).
 
-Pour que ce système puisse être mis en place, il faut une librairie externe nommé `flask_swagger`. De plus, certains fichiers sont indispensable au bon fonctionnement de Swagger. Le plus primordiale est la page HTML. J'ai décidé de la nommé ==endpoints.html== et de la placé dans le dossier ==templates==. Cette page est disponible [ici](https://github.com/swagger-api/swagger-ui/blob/master/dist/index.html). Cependant, je l'ai adapté pour qu'elle soit correctement implémentée dans l'application FLask.
+Pour que ce système puisse être mis en place, il faut une librairie externe nommé `flask_swagger`. De plus, certains fichiers sont indispensable au bon fonctionnement de Swagger. Le plus primordiale est la page HTML. J'ai décidé de la nommé `endpoints.html` et de la placé dans le dossier `templates`. Cette page est disponible [ici](https://github.com/swagger-api/swagger-ui/blob/master/dist/index.html). Cependant, je l'ai adapté pour qu'elle soit correctement implémentée dans l'application FLask.
 
-En plus de la page HTML, il nous faut rajouter 2 fichiers `javascript` qui iront dans le dossier ==static/js==, 2 images qui iront dans le dossier ==static/img== et enfin 1 fichier `css` qui ira dans le dossier ==static/css==. Voici le lien pour télécharger les fichiers :
+En plus de la page HTML, il nous faut rajouter 2 fichiers `javascript` qui iront dans le dossier `static/js`, 2 images qui iront dans le `static/img` et enfin 1 fichier `css` qui ira dans le `static/css`. Voici le lien pour télécharger les fichiers :
 
 - [swagger-ui-bundle.js](https://github.com/swagger-api/swagger-ui/blob/master/dist/swagger-ui-bundle.js)
 - [swagger-ui-standalone-preset.js](https://github.com/swagger-api/swagger-ui/blob/master/dist/swagger-ui-standalone-preset.js.map)
@@ -111,7 +111,7 @@ En plus de la page HTML, il nous faut rajouter 2 fichiers `javascript` qui iront
 - [favicon-32x32.png](https://github.com/swagger-api/swagger-ui/blob/master/dist/favicon-32x32.png)
 - [swagger-ui.css](https://github.com/swagger-api/swagger-ui/blob/master/dist/swagger-ui.css)
 
-La structure du dossier ==static== ressemble désormais à ceci :
+La structure du dossier `static` ressemble désormais à ceci :
 
 ```
 Animanga
@@ -133,6 +133,16 @@ Animanga
 11h40 : J'ai terminé l'importation des types et statuts des animes depuis le fichier JSON. Il me reste à faire l'importation des animes eux même. Je prend ma pause de midi.
 
 ---
+
+13h : Reprise de la journée et continuation de l'importation des données dans la base de données.
+
+14h : J'ai terminé l'import des données et tout semble parfaitement bien s'ajouter en base. Étant donné que j'ai un peu d'avance, je vais mettre ma documentation en ligne sur [readthedocs.org](https://readthedocs.org/). Le site hébergeant la documentation utilise [Mkdocs](https://www.mkdocs.org/) pour convertir la documentation de Markdown à HTML. C'est pourquoi j'ai installé mkdocs dans [WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-index) sur ma machine pour vérifier si ma documentation compilait correctement.
+
+14h15 : La documentation est en ligne à l'adresse : <https://animanga.readthedocs.io/fr/latest/>. Pour le moment, étant donné que je n'ai pas encore mis en place la connexion, je ne peux effectuer mes tests que manuellement. Cependant, dès lors que la connexion sera mise en place, j'utiliserai [Katalon Recorder](https://chrome.google.com/webstore/detail/katalon-recorder-selenium/ljdobmomdgdljniojadhoplhkpialdid) pour automatiser mes tests.
+
+14h25 : J'ai effectué le test *3.1* pour vérifier que mes données soient correctement importées. Comme j'ai de l'avance de vais faire l'affichage de la *landing page*.
+
+15h20 : J'ai terminé l'implémentation de la *landing page*.  Pour le moment je ne peux tester le basculement de l'état connecté à l'état déconnecté que via la variable `is_authenticated` de que je change dans le fichier `routes.py`. Demain je pourrai changé puisque je met en place la connexion et l'inscription. Je n'aurai donc plus besoin de cette variable. Le test *11.1* passe concernant l'affichage de la *landing page*.
 
 
 ### Bilan

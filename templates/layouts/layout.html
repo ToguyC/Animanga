@@ -15,6 +15,82 @@
 </head>
 <body style="overflow-x: hidden">
 
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='img/logo_small.svg') }}" width="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><img src="{{ url_for('static', filename='img/burger.svg') }}"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Accueil</a>
+                    </li>
+
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile/{{ current_user.nickname }}">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/lists/{{ current_user.nickname }}">Listes</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/about">À propos</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item" style="display: flex">
+                            <!-- Button trigger modal -->
+                            <button type="button" id="search-modal-trigger" class="btn mr-5" data-toggle="modal" data-target="#exampleModal">
+                                <img src="{{ url_for('static', filename='img/search.svg') }}" width="25">
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade search-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content search-form">
+                                        <div><img src="{{ url_for('static', filename='img/search.svg') }}"></div>
+                                        <input class="search-string" type="text" name="search-string" placeholder="Rechercher sur AniHome">
+                                        <div class="search-clear">
+                                            <svg width="21" height="21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.393 1.834h-14a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-14a2 2 0 00-2-2zM7.393 7.834l6 6M13.393 7.834l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{{ url_for('static', filename='img/profil-icon.svg') }}">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/logout">Déconnexion</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/override" style="padding: 0 1rem">
+                                    <span class="danger">Écraser tous les animes</span>
+                                </a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">Inscription</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
     <div>
         {% block content %}{% endblock content %}
     </div>

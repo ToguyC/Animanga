@@ -1,41 +1,52 @@
 {% extends 'layouts/layout.html' %}
 
+{% block title %}
+    Accueil
+{% endblock title %}
+
 {% block content %}
-<div id="override-info"></div>
+    <div id="override-info"></div>
+
+    {% if not current_user.is_authenticated %}
+        <div class="background">
+            <img src="{{ url_for('static', filename='img/home-background.png') }}">
+        </div>
+    {% endif %}
 {% endblock content %}
 
 {% block script %}
-<script>
-    // Déclaration obligatoire pour que les message du stream puissent être mis dans un élément DOM
-    let override_info = document.getElementById('override-info');
-</script>
-<!-- Affiche les messages envoyé par la fonction stream_template -->
-{% for message in override_messages: %}
+    <script src="{{ url_for('static', filename='js/landing-page-handler.js') }}"></script>
     <script>
-        // Prise en compte du message special 'redirect' pour rediriger l'utilisateur et de ce fait, arréter le stream courant
-        if ("{{ message }}" == "redirect") {
-            override_info.style.padding = '0';
-            window.location.replace("/");
-        }
-
-        // Condition obligatoire à cause du script ci-dessus ayant déjà cette variable de déclaré
-        if (typeof override_info !== 'undefined') {
-            override_info = document.querySelector('#override-info');
-        } else {
-            let override_info = document.querySelector('#override-info');
-        }
-
-        // Utilisation de 'var' pour ne pas avoir de soucis avec des variables déjà déclarlé lors de message précédents
-        var msg = document.createElement('span');
-        var loader = document.createElement('img');
-
-        override_info.innerHTML = '';
-        override_info.style.padding = '.75rem 0';
-        msg.innerHTML = '{{ message }}';
-        loader.src = '/static/img/loader.svg';
-        loader.classList.add('ml-5');
-        override_info.appendChild(msg);
-        override_info.appendChild(loader);
+        // Déclaration obligatoire pour que les message du stream puissent être mis dans un élément DOM
+        let override_info = document.getElementById('override-info');
     </script>
-{% endfor %}
+    <!-- Affiche les messages envoyé par la fonction stream_template -->
+    {% for message in override_messages: %}
+        <script>
+            // Prise en compte du message special 'redirect' pour rediriger l'utilisateur et de ce fait, arréter le stream courant
+            if ("{{ message }}" == "redirect") {
+                override_info.style.padding = '0';
+                window.location.replace("/");
+            }
+
+            // Condition obligatoire à cause du script ci-dessus ayant déjà cette variable de déclaré
+            if (typeof override_info !== 'undefined') {
+                override_info = document.querySelector('#override-info');
+            } else {
+                let override_info = document.querySelector('#override-info');
+            }
+
+            // Utilisation de 'var' pour ne pas avoir de soucis avec des variables déjà déclarlé lors de message précédents
+            var msg = document.createElement('span');
+            var loader = document.createElement('img');
+
+            override_info.innerHTML = '';
+            override_info.style.padding = '.75rem 0';
+            msg.innerHTML = '{{ message }}';
+            loader.src = '/static/img/loader.svg';
+            loader.classList.add('ml-5');
+            override_info.appendChild(msg);
+            override_info.appendChild(loader);
+        </script>
+    {% endfor %}
 {% endblock script %}
