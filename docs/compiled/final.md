@@ -16,9 +16,12 @@
     - [4. Réaliser](#4-réaliser)
     - [5. Contrôler](#5-contrôler)
     - [6. Évaluer](#6-évaluer)
-  - [Planning](#planning)
+  - [Planification](#planification)
+    - [Product backlog](#product-backlog)
+  - [Diagramme de Gantt](#diagramme-de-gantt)
   - [Implémentation](#implémentation)
     - [Base de données](#base-de-données)
+    - [Dictionnaire de données](#dictionnaire-de-données)
   - [Plans de test et tests](#plans-de-test-et-tests)
     - [Périmètre des tests](#périmètre-des-tests)
     - [Environnement](#environnement)
@@ -29,9 +32,10 @@
 
 ## Table des versions
 
-| N° de version | Date       | Auteur                                    | Modifications                           |
-| ------------- | ---------- | ----------------------------------------- | --------------------------------------- |
-| 0.1           | 2020-25-05 | Tanguy Cavagna \<<tanguy.cvgn@eduge.ch>\> | Création de la base de la documentation |
+| N° de version | Date       | Auteur                                   | Modifications                                                |
+| ------------- | ---------- | ---------------------------------------- | ------------------------------------------------------------ |
+| 0.1           | 2020-05-25 | Tanguy Cavagna \<<tanguy.cvgn@eduge.ch>> | Création de la base de la documentation                      |
+| 0.2           | 2020-05-26 | Tanguy Cavagna \<<tanguy.cvgn@eduge.ch>> | Ajout de la partie *implémentation* et modification des *user stories* et *tests*. |
 
 
 ## Résumé de l'énoncé
@@ -137,6 +141,9 @@ Une fois toutes les étapes précédentes achevées, nous avons pu nous lancer d
 
 
 
+## Planification
+
+### Product backlog
 
 
 | Nom                            | S1 : Inscription à Animanga                                                                      |
@@ -217,13 +224,31 @@ Une fois toutes les étapes précédentes achevées, nous avons pu nous lancer d
 | **Critère d'acceptation**      | Le dépôt git local est configurer correctement et le lien sur le dépôt distant à été bien fait. |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
+| Nom                            | S13 : Configuration de la base de données                    |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant que développeur, je dois pouvoir utilisé une base de données Sqlite3 et MySQL ayant un modèle identique à celui donné dans l'énoncé. Pour ce faire, j'ai une classe Python me permettant de faire des requêtes sur la base Sqlite3 et une autre classe me permettant de faire des requêtes sur la base MySQL. J'ai aussi un dump de la structure de la base MySQL dans les fichiers statiques de mon application. |
+| **Critère d'acceptation**      | Les tables `animes`, `status`, `type`, `url`, `list`, `user`, `list_has_anime`, `user_has_list` et `user_has_favorites` ont bien été crées et sont utilisable par les contrôleurs dédiés. |
+| **Priorité**                   | 🚫 Bloquant                                                   |
+
 | Nom                            | S13 : Synchronisation MySQL Sqlite3                          |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant que développeur, je dois pouvoir synchroniser les bases MySQL et Sqlite3 unidirectionellement pour créer un backup sur serveur distant. |
 | **Critère d'acceptation**      | ***Pas encore écris de tests***                              |
 | **Priorité**                   | ❓ Secondaire                                                 |
 
-## Planning
+| Nom                            | S15 : Configuration Flask                                    |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant que développeur, je dois configurer l'application Flask afin d'avoir un site hébergé en local et pouvoir communiquer avec la base de données Sqlite3. |
+| **Critère d'acceptation**      | ***Pas encore écris de tests\***                             |
+| **Priorité**                   | 🚫 Bloquant                                                   |
+
+| Nom                            | S16 : Vérifications syntaxique                               |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant que développeur, je peux lancé la commande `npm run lint` pour vérifier la syntaxe, basé sur le preset Airbnb, des fichiers JavaScript, et la commande `python3 -m pylint --output-format=colorized` pour vérifier la syntaxe des fichiers Python, basé sur les conventions PEP8. |
+| **Critère d'acceptation**      | Les test *12.1* et *12.2* passent.                           |
+| **Priorité**                   | 🚫 Bloquant                                                   |
+
+## Diagramme de Gantt
 
 Planning prévisionnel : <span style="color: #F7DC79; font-weight: bold">#F7DC79</span>
 
@@ -373,7 +398,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -520,7 +545,56 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S15 : Configuration de Flask</td>
+            <td></td>
+            <td></td>
+            <td style="background: #f7dc79;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -569,8 +643,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -591,7 +665,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S1 : Inscription à AniHome</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S1 : Inscription à Animanga</td>
             <td></td>
             <td></td>
             <td></td>
@@ -640,7 +714,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S2 : Connexion à AniHome</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S2 : Connexion à Animanga</td>
             <td></td>
             <td></td>
             <td></td>
@@ -717,7 +791,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1079,7 +1153,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S13 : Synchronisation MySQL Sqlite3</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S14 : Synchronisation MySQL Sqlite3</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1126,7 +1200,57 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-        </tr><tr>
+        </tr>
+        <tr>
+            <td rowspan="2" style="font-weight: bold;">S16 : Vérifications syntaxique</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 10px">Tests en profondeur et corrections des bugs</td>
             <td></td>
             <td></td>
@@ -1155,7 +1279,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1203,8 +1327,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1350,8 +1474,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1384,9 +1508,107 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
     </div>
 </div>
 
+
+
+
+
 ## Implémentation
 
 ### Base de données
+
+Le projet de TPI contient 2 types de base de données différents. La base principale est en Sqlite3 et la base de backup distante est en MySQL. Ces deux bases doivent pouvoir stocker les utilisateurs, les animes, les listes personnelles des utilisateurs, ainsi que les favoris des utilisateurs.
+
+Voici le modèle réalisé :
+
+![](https://i.loli.net/2020/05/26/CiqWlPVISstmKn2.png)
+
+### Dictionnaire de données
+
+<span style="font-weight: bold; font-size: 1.2rem">anime</span>
+
+| Colonne          | Type         | Null |
+| ---------------- | ------------ | ---- |
+| **idAnime**      | int(11)      | Non  |
+| title            | varchar(200) | Non  |
+| *#type*          | int(11)      | Non  |
+| episodes         | int(3)       | Non  |
+| *#status*        | int(11)      | Non  |
+| picture          | varchar(200) | Non  |
+| thumbnail        | varchar(200) | Non  |
+| synonyms         | text         | Oui  |
+| modificationDate | timestamp    | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">status</span>
+
+| Colonne          | Type        | Null |
+| ---------------- | ----------- | ---- |
+| **idStatus**     | int(11)     | Non  |
+| nameStatus       | varchar(20) | Non  |
+| modificationDate | timestamp   | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">type</span>
+
+| Colonne          | Type        | Null |
+| ---------------- | ----------- | ---- |
+| **idType**       | int(11)     | Non  |
+| nameType         | varchar(10) | Non  |
+| modificationDate | timestamp   | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">url</span>
+
+| Colonne          | Type        | Null |
+| ---------------- | ----------- | ---- |
+| **idUrl**        | int(11)     | Non  |
+| urlName          | varchar(45) | Non  |
+| *#idAnime*       | int(11)     | Non  |
+| isRelation       | tinyint(1)  | Non  |
+| modificationDate | timestamp   | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">list</span>
+
+| Colonne          | Type        | Null |
+| ---------------- | ----------- | ---- |
+| **idList**       | int(11)     | Non  |
+| nameList         | varchar(45) | Non  |
+| modificationDate | timestamp   | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">list_has_anime</span>
+
+| Colonne            | Type      | Null |
+| ------------------ | --------- | ---- |
+| **idListHasAnime** | int(11)   | Non  |
+| ***#idList***      | int(11)   | Non  |
+| ***#idAnime***     | int(11)   | Non  |
+| modificationDate   | timestamp | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">user</span>
+
+| Colonne          | Type        | Null |
+| ---------------- | ----------- | ---- |
+| **idUser**       | int(11)     | Non  |
+| emailUser        | varchar(45) | Non  |
+| password         | varchar(45) | Non  |
+| nicknameUser     | varchar(45) | Non  |
+| modificationDate | timestamp   | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">user_has_list</span>
+
+| Colonne           | Type      | Null |
+| ----------------- | --------- | ---- |
+| **idUserHasList** | int(11)   | Non  |
+| ***#idUser***     | int(11)   | Non  |
+| ***#idList***     | int(11)   | Non  |
+| modificationDate  | timestamp | Non  |
+
+<span style="font-weight: bold; font-size: 1.2rem">user_has_favorite</span>
+
+| Colonne               | Type      | Null |
+| --------------------- | --------- | ---- |
+| **idUserHasFavorite** | int(11)   | Non  |
+| ***#idUser***         | int(11)   | Non  |
+| ***#idAnime***        | int(11)   | Non  |
+| orderId               | int(11)   | Non  |
+| modificationDate      | timestamp | Non  |
 ## Plans de test et tests
 
 ### Périmètre des tests
@@ -1438,7 +1660,7 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **User Story**        | S3 : Importation des animes                                  |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je clique sur le bouton *Écraser tous les animes* placé dans le dropdown du menu *Utilisateur*.<br />**Alors**, j'écrase toutes les données du site relatives aux animes. Cela comprend les animes en eux même, les favoris ainsi que les animes contenu dans les listes. |
 | **Résultats obtenus** | Je clique sur *Utilisateur* et *Écraser tous les animes*. Je suis redirigé vers la page d'accueil et des alertes s'affiche en haut au centre de l'écran indiquant l'état de la mise à jours des animes. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 4.1 Recherche des animes                                     |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1489,6 +1711,90 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **Résultats obtenus** | La valeur du combo-box c'est bien mise à jour et l'anime n'est effectivement plus présent dans les autres statuts. |
 | **Statut**            | ❌ KO                                                         |
 
+| **Nom**               | 6.5 Suppression de l'anime d'une liste personnelle           |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S6 : Mise à jour de l'anime                                  |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur une check-box bleue d'une des listes personnelles.<br />**Alors**, l'état de la check-box ce met à jour et se colore en blanc. L'anime n'est plus présent dans la cette liste personnelle. |
+| **Résultats obtenus** | L'état de la check-box c'est bien mis à jour et est coloré en blanc. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 6.6 Suppression de l'anime des favoris                       |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S6 : Mise à jour de l'anime                                  |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur le cœur rose pour supprimer des favoris.<br />**Alors**, le cœur se colore en blanc et l'anime se supprime de la zone des favoris de la page d'accueil. |
+| **Résultats obtenus** | Le cœur c'est coloré en blanc et l'anime c'est correctement supprimé de la zone des favoris de la page d'accueil. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 7.1 Affichage du profile de l'utilisateur connecté           |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S7 : Affichage du profile                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur *Profile* dans la barre de navigation.<br />**Alors**, la page de profile de l'utilisateur connecté s'affiche avec ses statistiques et ses favoris. |
+| **Résultats obtenus** | La page de profile de l'utilisateur connecté s'affiche correctement et les statistiques ainsi que les favoris sont les siens. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 7.2 Affichage du profile d'un autre utilisateur              |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S7 : Affichage du profile                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je modifie l'url pour entré "/profile/Test".<br />**Alors**, la page de profile de "Test" s'affiche avec ses statistiques et ses favoris. |
+| **Résultats obtenus** | La page de profile de "Test" s'affiche correctement et les statistiques ainsi que les favoris sont les siens. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 8.1 Affichage des listes de l'utilisateur connecté           |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S8 : Affichage des listes                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur *Listes* dans la barre de navigation.<br />**Alors**, la page contenant toutes les listes de l'utilisateur connecté s'affiche ainsi que les animes contenu dans ces listes. |
+| **Résultats obtenus** | La page contenant les listes de l'utilisateur connecté c'est correctement affiché et les animes sont correctement affiché aussi. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 8.2 Affichage des listes d'un autre utilisateur              |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S8 : Affichage des listes                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je modifie l'url pour entré "/listes/Test".<br />**Alors**, la page contenant toutes les listes de l'utilisateur "Test" s'affiche ainsi que les animes contenu dans ces listes. |
+| **Résultats obtenus** | La page contenant les listes de l'utilisateur "Test" c'est correctement affiché et les animes sont correctement affiché aussi. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 9.1 Créer une liste                                          |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S9 : Gestion des listes                                      |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que j'écris "Ma nouvelle liste" dans le champs de texte *Nouvelle liste* et que j'appuie sur <kbd>Enter</kbd>.<br />**Alors**, la liste apparaîtra en bas des listes déjà présentes avec une 🗑️ à côté. |
+| **Résultats obtenus** | La liste à bien été ajoutée en base des listes déjà présente. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 9.2 Supprimer une liste                                      |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S9 : Gestion des listes                                      |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que je clique sur 🗑️ d'une liste présente.<br />**Alors**, la liste ne sera plus présente dans les listes présentes. |
+| **Résultats obtenus** | La liste à bien été supprimer et n'est plus présente dans les listes déjà existante. |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 10.1 Organisation des favoris                                |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S10 : Organisation des favoris                               |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des favoris et je clique sur le bouton *Réorganiser les favoris*, je peux glisser déposer les animes dans l'ordre que je veux. Je clique sur le bouton *Sauvegarder* pour enregistrer l'ordre.<br />**Alors**, mes favoris sont enregistrer dans l'ordre voulu. |
+| **Résultats obtenus** | Mes favoris ont bien été réorganisé.                         |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 11.1 Affichage de la landing page                            |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S11 : Affichage de la landing page                           |
+| **Situation**         | **Étant donné que** je suis un utilisateur non connecté.<br />**Quand** je suis sur le site.<br />**Alors**, une page d'accueil s'affiche avec comme possibilité : la visite de la page *À propos*, se connecter et s'inscrire. |
+| **Résultats obtenus** | La page d'accueil ainsi que la barre de navigation sont affiché correctement pour un utilisateur non connecté. |
+| **Statut**            | ✔ OK                                                         |
+
+| **Nom**               | 12.1 Respect du preset Airbnb                                |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S16 : Vérification syntaxique                                |
+| **Situation**         | **Étant donné que** je suis un développeur. <br />**Quand** j'exécute la commande `npm run lint` dans le dossier de mon projet. <br />**Alors**, aucune erreur de syntaxe sur la base du preset Airbnb n'est relevée. |
+| **Résultats obtenus** | <span style="font-size: 0.8rem">\> Animanga@1.0.0 lint /home/cavagnat/Documents/programmation/python/Animanga<br/>\> eslint '**/*.js' --ignore-pattern node_modules/</span> |
+| **Statut**            | ✔ OK                                                         |
+
+| **Nom**               | 12.2 Respect des conventions PEP8                            |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S16 : Vérification syntaxique                                |
+| **Situation**         | **Étant donné que** je suis un développeur. <br />**Quand** j'exécute la commande `python3 -m pylint --output-format=colorized packages` à la racine de mon projet.<br /> **Alors**, les erreurs *Too many return statements* n'ont pas besoin d'être prises en compte, tout comme *Method could be a function* du fichier `SqliteController.py`. |
+| **Résultats obtenus** | La note attribuée au code et supérieur à 9.5/10.             |
+| **Statut**            | ✔ OK                                                         |
+
 ### Évolution des tests
 
 | N° Test | J1<br /><span style="font-weight: normal">lu.25</span> | J2<br /><span style="font-weight: normal">ma.26</span> | J3<br /><span style="font-weight: normal">me.27</span> | J4<br /><span style="font-weight: normal">je.28</span> | J5<br /><span style="font-weight: normal">ve.29</span> | J6<br /><span style="font-weight: normal">ma.2</span> | J7<br /><span style="font-weight: normal">me.3</span> | J8<br /><span style="font-weight: normal">je.4</span> | J9<br /><span style="font-weight: normal">ve.5</span> | J10<br /><span style="font-weight: normal">lu.8</span> | J11<br /><span style="font-weight: normal">ma.9</span> |
@@ -1497,7 +1803,7 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 |   1.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   2.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   2.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   3.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   3.1   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   4.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   4.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   5.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
@@ -1505,3 +1811,14 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 |   6.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   6.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
 |   6.4   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.5   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   7.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   7.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   8.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   8.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   9.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   9.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  10.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  11.1   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  12.1   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  12.2   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |

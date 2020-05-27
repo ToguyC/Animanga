@@ -162,3 +162,32 @@ Je vais configurer deux vérificateurs de syntaxe différent pour mon projet. Le
 ### Bilan
 
 Je suis très content de l'avancement d'aujourd'hui. J'ai eu un peu de retard hier mais très vite rattrapé ce matin. J'ai réussi à prendre un peu d'avance dans le projet et donc je suis très confiant pour la suite. Cela m'a permis de rajouté la vérification syntaxique pour Python et pour JavaScript.
+
+## J3 : mercredi 27 mai 2020
+
+### Objectifs
+
+L'objectif de cette journée est de faire le système de connexion et d'inscription. Comme j'ai déjà fait l'affichage de la landing page hier, je pense peut être avancer sur une autre tâche.
+
+### Déroulement
+
+8h : Je commence à faire la partie *inscription*. Je vais créer un contrôleur pour les utilisateur pour mieux pouvoir gérer ces derniers.
+
+8h30 : J'ai fait le formulaire HTML et je commence à faire la partie prise en charges de ce dernier.
+
+9h : J'ai eu la visite de M. Terrond. M. Bouille étant pris à la Protection Civile, il n'a pas pu être présent. Le but de cette visite était de voir si tout ce passe bien et de répondre au possible questions. Étant donné que tout ce passe bien pour moi, la visite n'a duré que très peu de temps.
+
+9h40 : J'ai des soucis avec mon système d'export de documentation vers PDF. L'export ne s'effectue pas mais aucun moyen de savoir quelle est la cause. Je cherche activement ce qui pourrait poser problème.
+
+10h20 : J'ai réussis à régler le problème d'export pour le moment mais rien ne me dit que cela ne réarrivera pas. Si cela doit être le cas, j'ai un moyen auxiliaire d'exporter ma documentation. Je me remet à travailler sur la partie *inscription*.
+
+11h45 : J'ai terminé l'*inscription*. L'insère de nouvel utilisateur semble fonctionner. Avec les quelques minutes qu'il me reste avant la pause de midi, je met en place des automations Katalon Recorder pour les futurs tests.
+
+12h : J'ai terminé l'automation du test fonctionnel d'inscription avec valeurs correctes. Je ferai les autres dès que j'aurai du temps aujourd'hui. Je prend ma pause de midi.
+
+---
+
+13h : Je me remet au travail en commençant la partie *connexion*.
+
+### Bilan
+

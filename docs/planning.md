@@ -522,7 +522,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S1 : Inscription à AniHome</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S1 : Inscription à Animanga</td>
             <td></td>
             <td></td>
             <td></td>
@@ -571,7 +571,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S2 : Connexion à AniHome</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S2 : Connexion à Animanga</td>
             <td></td>
             <td></td>
             <td></td>
