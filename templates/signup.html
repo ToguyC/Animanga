@@ -1,0 +1,52 @@
+{% extends 'layouts/layout.html' %}
+
+{% block content %}
+    <div class="container-center">
+        <div class="signup-form">
+            <h3>Inscris toi <br> sur Animanga</h3>
+
+            <form action="/signup" method="post">
+                <fieldset>
+                    <input type="email" name="email" id="email" placeholder="Email">
+                    {% if form.email %}
+                        <ul>
+                            {% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}
+                        </ul>
+                    {% endif %}
+                </fieldset>
+
+                <fieldset>
+                    <input type="text" name="nickname" id="nickname" placeholder="Pseudo">
+                    {% if form.nickname %}
+                        <ul>
+                            {% for error in form.nickname.errors %}<li>{{ error }}</li>{% endfor %}
+                        </ul>
+                    {% endif %}
+                </fieldset>
+
+                <fieldset>
+                    <input type="password" name="password" id="password" placeholder="Mot de passe">
+                    {% if form.password %}
+                        <ul>
+                            {% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}
+                        </ul>
+                    {% endif %}
+                </fieldset>
+
+                <fieldset>
+                    <input type="password" name="confirm" id="confirm" placeholder="Confirmer le mot de passe">
+                    {% if form.confirm %}
+                        <ul>
+                            {% for error in form.confirm.errors %}<li>{{ error }}</li>{% endfor %}
+                        </ul>
+                    {% endif %}
+                </fieldset>
+
+                <div class="submit">
+                    <button type="submit">Inscription</button>
+                    <span>Déjà un compte ? <a href="{{ url_for('auth_bp.signup') }}">Connecte toi</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

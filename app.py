@@ -10,7 +10,9 @@ Toutes les routes de l'appplication sont décrites dans ce fichier.
 from flask import Flask, url_for, redirect, flash, g
 from flask_login import LoginManager
 from dotenv import load_dotenv
+
 from .config import DevConfig, ProdConfig
+from .packages.controllers.UserController import UserController
 
 app = Flask(__name__)
 app.config.from_object(DevConfig())
@@ -21,10 +23,11 @@ login_manager.init_app(app)
 
 # Chargement des routes
 with app.app_context():
-    from . import routes
+    from . import routes, auth
 
     # Enregistre les routes
     app.register_blueprint(routes.main_bp)
+    app.register_blueprint(auth.auth_bp)
 
 # ================
 #      OTHER

@@ -46,7 +46,7 @@ def home():
     """Affiche la page d'accueil
     """
     return render_template('index.html',
-                            current_user={'is_authenticated': True})
+                            current_user=current_user)
 
 @main_bp.route('/endpoints', methods=['GET'])
 def endpoints():
