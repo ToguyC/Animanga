@@ -108,3 +108,10 @@ def signup():
     return render_template('signup.html',
                             current_user=current_user,
                             form=form)
+
+@auth_bp.route('/logout', methods=['GET'])
+@login_required
+def logout():
+    """Déconnecte l'utilisateur"""
+    logout_user()
+    return redirect(url_for('auth_bp.login'))
