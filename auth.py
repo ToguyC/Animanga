@@ -13,6 +13,9 @@ from flask import redirect, render_template, flash, Blueprint, request, url_for
 from flask_login import login_required, current_user, login_user, logout_user
 
 from .packages.controllers.UserController import UserController
+from .packages.forms.Field import Field
+from .packages.forms.Form import Form
+from .packages.forms.validators import Length, Required, Email, EqualTo
 
 # Configuration du Blueprint
 auth_bp = Blueprint('auth_bp', __name__,
@@ -74,10 +77,8 @@ def validate_signup_inputs(form: dict) -> Any:
 
 def validate_login_inputs(form: dict) -> Any:
     """Valide les différents inputs du formulaire de connexion
-
         Arguments:
             form {dict} -- Dictionnaire contenant les valeurs des inputs du formulaire
-
         Returns:
             bool -- Est-ce que tout les inputs sont valide
             [] -- Liste des erreurs
@@ -109,11 +110,31 @@ def signup():
         \nGET: Affiche la page
         \nPOST: Si les informations de connexion sont valides, redirection sur l'accueil
     """
-    validation = {}
-    if request.method == 'POST':
-        validation = validate_signup_inputs(request.form)
+    signup_form = Form(request.form, [
+        Field('email', validators=[
+            Email(message='Entrez un email valide'),
+            Length(min=6, message='Choisissez un email plus long'),
+            Required()
+        ]),
+        Field('nickname', validators=[
+            Required()
+        ]),
+        Field('password', validators=[
+            Length(min=6, message='Choisissez un mot de passe plus long'),
+            Required()
+        ]),
+        Field('confirm', validators=[
+            EqualTo('password', message='Les mots de passes doivent correspondre'),
+            Required()
+        ])
+    ])
 
-        if validation == True:
+    # validation = {}
+    if request.method == 'POST':
+        #validation = validate_signup_inputs(request.form)
+
+        #if validation == True:
+        if signup_form.validate():
             email = request.form.get('email')
             nickname = request.form.get('nickname')
             password = request.form.get('password')
@@ -131,7 +152,7 @@ def signup():
 
     return render_template('signup.html',
                             current_user=current_user,
-                            validation=validation)
+                            form=signup_form) #validation=validation ------ mettre validation.errors.<champ> dans le html
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -139,11 +160,23 @@ def login():
         \nGET: Affiche la page
         \nPOST: Si les informations de connexion sont valides, redirection sur l'accueil
     """
-    validation = {}
-    if request.method == 'POST':
-        validation = validate_login_inputs(request.form)
+    login_form = Form(request.form, [
+        Field('email', validators=[
+            Email(message='Entrez un email valide'),
+            Length(min=6, message='Choisissez un email plus long'),
+            Required()
+        ]),
+        Field('password', validators=[
+            Required()
+        ])
+    ])
 
-        if validation == True:
+    # validation = {}
+    if request.method == 'POST':
+        #validation = validate_signup_inputs(request.form)
+
+        #if validation == True:
+        if login_form.validate():
             email = request.form.get('email')
             password = request.form.get('password')
             hashed_password = hashlib.sha256(password.encode('utf8')).hexdigest()
@@ -158,7 +191,7 @@ def login():
 
     return render_template('login.html',
                             current_user=current_user,
-                            validation=validation)
+                            form=login_form) #validation=validation ------ mettre validation.errors.<champ> dans le html
 
 @auth_bp.route('/logout', methods=['GET'])
 @login_required

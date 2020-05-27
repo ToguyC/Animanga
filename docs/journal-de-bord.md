@@ -171,7 +171,7 @@ L'objectif de cette journée est de faire le système de connexion et d'inscript
 
 ### Déroulement
 
-8h : Je commence à faire la partie *inscription*. Je vais créer un contrôleur pour les utilisateur pour mieux pouvoir gérer ces derniers.
+8h : Je commence à faire la partie inscription Je vais créer un contrôleur pour les utilisateur pour mieux pouvoir gérer ces derniers.
 
 8h30 : J'ai fait le formulaire HTML et je commence à faire la partie prise en charges de ce dernier.
 
@@ -179,15 +179,24 @@ L'objectif de cette journée est de faire le système de connexion et d'inscript
 
 9h40 : J'ai des soucis avec mon système d'export de documentation vers PDF. L'export ne s'effectue pas mais aucun moyen de savoir quelle est la cause. Je cherche activement ce qui pourrait poser problème.
 
-10h20 : J'ai réussis à régler le problème d'export pour le moment mais rien ne me dit que cela ne réarrivera pas. Si cela doit être le cas, j'ai un moyen auxiliaire d'exporter ma documentation. Je me remet à travailler sur la partie *inscription*.
+10h20 : J'ai réussis à régler le problème d'export pour le moment mais rien ne me dit que cela ne réarrivera pas. Si cela doit être le cas, j'ai un moyen auxiliaire d'exporter ma documentation. Je me remet à travailler sur la partie inscription.
 
-11h45 : J'ai terminé l'*inscription*. L'insère de nouvel utilisateur semble fonctionner. Avec les quelques minutes qu'il me reste avant la pause de midi, je met en place des automations Katalon Recorder pour les futurs tests.
+11h45 : J'ai terminé l'inscription. L'insère de nouvel utilisateur semble fonctionner. Avec les quelques minutes qu'il me reste avant la pause de midi, je met en place des automations Katalon Recorder pour les futurs tests.
 
 12h : J'ai terminé l'automation du test fonctionnel d'inscription avec valeurs correctes. Je ferai les autres dès que j'aurai du temps aujourd'hui. Je prend ma pause de midi.
 
 ---
 
-13h : Je me remet au travail en commençant la partie *connexion*.
+13h : Je me remet au travail en commençant la partie connexion. Étant donné le retard pris à cause du problème d'exportation vers PDF, je ne commence la connexion que maintenant. Ceci ne va causer d'autre retards car j'avais pris de l'avance hier concernant la *landing page* que j'aurais du réaliser aujourd'hui.
+
+13h40 : La *connexion* est terminée et fonctionne à merveille. Je créer maintenant des tests d'automations pour éviter de retapé tout le temps la même chose lors des futurs tests. J'utilise Katalon Recorder pour cela.
+
+14h20 : Je vais maintenant pouvoir optimiser un peu le code pour l'inscription et la connexion étant donné que je n'ai pas pu le faire ce matin à cause de mon soucis d'erreur d'export de la documentation.
+
+15h20 : J'ai eu un rendez-vous avec mon référent TPI pour faire un point. Comme tout ce passe bien le rendez-vous n'a duré que très peu de temps et je suis tout de suite retourné travailler.
+
+17h : Je n'ai pas encore fini l'optimisation de la validation des champs mais c'est sur le bon chemin. Je me suis basé sur la libraire [wtforms](https://github.com/Khan/wtforms/tree/master/wtforms). Cette librairie est utilisé pour générer et valider automatiquement des formulaires. Comme cela est trop imposant pour un TPI, j'ai décidé de m'inspirer de cette librairie uniquement pour la partie validation de formulaire. Je demanderai demain matin à mon référent s'il est d'accord que je garde cette manière de valider mes champs de formulaire ou si c'est toujours trop imposant. En plus de cela, j'ai configurer Katalon Recorder pour prendre en compte la connexion aussi. J'ai maintenant un dossier à la racine de mon projet nommé `tests` qui contient le fichier HTML contenant tout les *tests cases* pour Katalon Recorder.
 
 ### Bilan
 
+Je suis plutôt content de ma journée. J'ai pu correctement faire le code de l'inscription ainsi que la connexion. De plus, comme j'avais du temps restant avant la fin de la journée, j'ai décidé de mettre en place Katalon Recorder afin d'automatiser mes tests fonctionnels et j'ai aussi décidé d'optimiser le code de validation des champs de mes formulaires. Je n'ai cependant toujours pas fait validé cette idée d'optimisation donc je le ferai demain matin.

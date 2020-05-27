@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>Animanga</title>
+	<title>Animanga - automations</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -14,28 +14,6 @@
 <tr><td>open</td><td>http://localhost:5000/override<datalist><option>http://localhost:5000/override</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:5000/<datalist><option>http://localhost:5000/</option></datalist></td><td></td>
-</tr>
-</tbody></table>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Inscription OK</td></tr>
-</thead>
-<tbody>
-<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
-</tr>
-<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
-</tr>
-<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
-</tr>
-<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
-</tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
-</tr>
-<tr><td>assertLocation</td><td>http://localhost:5000/<datalist><option>http://localhost:5000</option><option>http://localhost:5000/</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -200,6 +178,138 @@
 <tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
 </tr>
 <tr><td>assertText</td><td>//ul[@id='confirm-errors']/li<datalist><option>//ul[@id='confirm-errors']/li</option><option>//fieldset[4]/ul/li</option><option>css=#confirm-errors &gt; li</option></datalist></td><td>Les mots de passes doivent correspondre</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription OK</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:5000/<datalist><option>http://localhost:5000</option><option>http://localhost:5000/</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Email déjà utilisé</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>id=flash<datalist><option>id=flash</option><option>//div[@id='flash']</option><option>//div[2]/div/div</option><option>css=#flash</option></datalist></td><td>Un utilisateur utilise déjà cet email</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Connexion KO - Email non présent</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/login<datalist><option>http://localhost:5000/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[2]/input</option><option>css=#password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[2]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='email-error']/li<datalist><option>//ul[@id='email-error']/li</option><option>//fieldset/ul/li</option><option>css=#email-error &gt; li</option></datalist></td><td>Ce champ est obligatoire</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Connexion KO - Email invalide</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/login<datalist><option>http://localhost:5000/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>invalide/@recorder.ch</td>
+</tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[2]/input</option><option>css=#password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[2]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='email-error']/li<datalist><option>//ul[@id='email-error']/li</option><option>//fieldset/ul/li</option><option>css=#email-error &gt; li</option></datalist></td><td>Entrez un email valide</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Connexion KO - Mot de passe non présent</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/login<datalist><option>http://localhost:5000/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='password-error']/li<datalist><option>//ul[@id='password-error']/li</option><option>//fieldset[2]/ul/li</option><option>css=#password-error &gt; li</option></datalist></td><td>Ce champ est obligatoire</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Connexion KO - Combinaison email - mot de passe invalide</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/login<datalist><option>http://localhost:5000/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[2]/input</option><option>css=#password</option></datalist></td><td>MotDePasseInexistant</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>id=flash<datalist><option>id=flash</option><option>//div[@id='flash']</option><option>//div[2]/div/div</option><option>css=#flash</option></datalist></td><td>Combinaison email - mot de passe invalide</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Connexion OK</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/login<datalist><option>http://localhost:5000/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[2]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:5000/<datalist><option>http://localhost:5000/</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 </body>
