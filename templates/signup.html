@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container-center">
         {% for message in get_flashed_messages() %}
-            <div class="alert alert-warning">
+            <div class="alert alert-warning" id="flash">
                 <button type="button" class="close" data-dismiss="alert"><img src="{{ url_for('static', filename='img/close.svg') }}"></button>
                 {{ message }}
             </div>
@@ -16,7 +16,7 @@
                 <fieldset>
                     <input type="email" name="email" id="email" placeholder="Email">
                     {% if validation.email %}
-                        <ul>
+                        <ul id="email-errors">
                             {% for error in validation.email.errors %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
@@ -25,7 +25,7 @@
                 <fieldset>
                     <input type="text" name="nickname" id="nickname" placeholder="Pseudo">
                     {% if validation.nickname %}
-                        <ul>
+                        <ul id="nickname-errors">
                             {% for error in validation.nickname.errors %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
@@ -34,7 +34,7 @@
                 <fieldset>
                     <input type="password" name="password" id="password" placeholder="Mot de passe">
                     {% if validation.password %}
-                        <ul>
+                        <ul id="password-errors">
                             {% for error in validation.password.errors %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
@@ -43,7 +43,7 @@
                 <fieldset>
                     <input type="password" name="confirm" id="confirm" placeholder="Confirmer le mot de passe">
                     {% if validation.confirm %}
-                        <ul>
+                        <ul id="confirm-errors">
                             {% for error in validation.confirm.errors %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}

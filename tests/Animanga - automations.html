@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Animanga</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Override</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/override<datalist><option>http://localhost:5000/override</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:5000/<datalist><option>http://localhost:5000/</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription OK</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:5000/<datalist><option>http://localhost:5000</option><option>http://localhost:5000/</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Email non présent</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Toguy</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='email-errors']/li<datalist><option>//ul[@id='email-errors']/li</option><option>//fieldset/ul/li</option><option>css=#email-errors &gt; li</option></datalist></td><td>Ce champ est obligatoire</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Email trop court</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>a@b.c</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='email-errors']/li<datalist><option>id=email-errors</option><option>//ul[@id='email-errors']</option><option>//fieldset/ul</option><option>css=#email-errors</option><option>//ul[@id='email-errors']/li</option></datalist></td><td>Choisissez un email plus long</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Email invalide</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>invalide/@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='email-errors']/li<datalist><option>//ul[@id='email-errors']/li</option><option>//fieldset/ul/li</option><option>css=#email-errors &gt; li</option></datalist></td><td>Entrez un email valide</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Pseudo non présent</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='nickname-errors']/li<datalist><option>//ul[@id='nickname-errors']/li</option><option>//fieldset[2]/ul/li</option><option>css=#nickname-errors &gt; li</option></datalist></td><td>Ce champ est obligatoire</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Mot de passe non présent</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='password-errors']/li<datalist><option>//ul[@id='password-errors']/li</option><option>//fieldset[3]/ul/li</option><option>css=#password-errors &gt; li</option></datalist></td><td>Ce champ est obligatoire</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Mot de passe trop court</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>Court</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>Court</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='password-errors']/li<datalist><option>//ul[@id='password-errors']/li</option><option>//fieldset[3]/ul/li</option><option>css=#password-errors &gt; li</option></datalist></td><td>Choisissez un mot de passe plus long</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Mot de passe de confirmation non présent</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recoder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='password-errors']/li<datalist><option>//ul[@id='password-errors']/li</option><option>//fieldset[3]/ul/li</option><option>css=#password-errors &gt; li</option></datalist></td><td>Ce champ est obligatoire</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscription KO - Mots de passes différents</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:5000/signup<datalist><option>http://localhost:5000/signup</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>katalon@recorder.ch</td>
+</tr>
+<tr><td>type</td><td>id=nickname<datalist><option>id=nickname</option><option>name=nickname</option><option>//input[@id='nickname']</option><option>//fieldset[2]/input</option><option>css=#nickname</option></datalist></td><td>Katalon</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//fieldset[3]/input</option><option>css=#password</option></datalist></td><td>MotDePasse</td>
+</tr>
+<tr><td>type</td><td>id=confirm<datalist><option>id=confirm</option><option>name=confirm</option><option>//input[@id='confirm']</option><option>//fieldset[4]/input</option><option>css=#confirm</option></datalist></td><td>MotDePasseDifferent</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form/div/button</option><option>css=button[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//ul[@id='confirm-errors']/li<datalist><option>//ul[@id='confirm-errors']/li</option><option>//fieldset[4]/ul/li</option><option>css=#confirm-errors &gt; li</option></datalist></td><td>Les mots de passes doivent correspondre</td>
+</tr>
+</tbody></table>
+</body>
+</html>

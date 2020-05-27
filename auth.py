@@ -55,7 +55,7 @@ def validate_signup_inputs(form: dict) -> Any:
     if form.get('password') == '':
         password_errors['errors'].append('Ce champ est obligatoire')
     else:
-        if len(form.get('email')) < 6:
+        if len(form.get('password')) < 6:
             password_errors['errors'].append('Choisissez un mot de passe plus long')
 
     if form.get('confirm') == '':
@@ -90,8 +90,6 @@ def validate_login_inputs(form: dict) -> Any:
     if form.get('email') == '':
         email_errors['errors'].append('Ce champ est obligatoire')
     else:
-        if len(form.get('email')) < 6:
-            email_errors['errors'].append('Choisissez un email plus long')
         if not re.search('^[a-zA-z0-9._-]+@[^\.]+\..+$', form.get('email')):
             email_errors['errors'].append('Entrez un email valide')
 
