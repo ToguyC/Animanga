@@ -1,5 +1,9 @@
 {% extends 'layouts/layout.html' %}
 
+{% block title %}
+    Connexion
+{% endblock title %}
+
 {% block content %}
     <div class="container-center">
         {% for message in get_flashed_messages() %}
@@ -8,25 +12,16 @@
                 {{ message }}
             </div>
         {% endfor %}
-        
-        <div class="signup-form">
-            <h3>Inscris toi <br> sur Animanga</h3>
 
-            <form action="/signup" method="post">
+        <div class="login-form">
+            <h3>Connexion</h3>
+            
+            <form action="/login" method="post">
                 <fieldset>
                     <input type="email" name="email" id="email" placeholder="Email">
                     {% if validation.email %}
                         <ul>
                             {% for error in validation.email.errors %}<li>{{ error }}</li>{% endfor %}
-                        </ul>
-                    {% endif %}
-                </fieldset>
-
-                <fieldset>
-                    <input type="text" name="nickname" id="nickname" placeholder="Pseudo">
-                    {% if validation.nickname %}
-                        <ul>
-                            {% for error in validation.nickname.errors %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
                 </fieldset>
@@ -39,19 +34,10 @@
                         </ul>
                     {% endif %}
                 </fieldset>
-
-                <fieldset>
-                    <input type="password" name="confirm" id="confirm" placeholder="Confirmer le mot de passe">
-                    {% if validation.confirm %}
-                        <ul>
-                            {% for error in validation.confirm.errors %}<li>{{ error }}</li>{% endfor %}
-                        </ul>
-                    {% endif %}
-                </fieldset>
-
+                
                 <div class="submit">
-                    <button type="submit">Inscription</button>
-                    <span>Déjà un compte ? <a href="{{ url_for('auth_bp.login') }}">Connecte toi</a></span>
+                    <button type="submit">Connexion</button>
+                    <span>Pas encore inscris ? <a href="/signup">Créer un compte</a></span>
                 </div>
             </form>
         </div>

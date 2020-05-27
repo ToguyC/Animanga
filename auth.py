@@ -22,14 +22,11 @@ auth_bp = Blueprint('auth_bp', __name__,
 # ================
 #    Utilities
 # ================
-def validate_register_inputs(form) -> Any:
+def validate_signup_inputs(form: dict) -> Any:
     """Valide les différents inputs du formulaire d'inscription
 
         Arguments:
-            email {str} -- Adresse email
-            nickname {str} -- Nom d'utilisateur
-            password {str} -- Mot de passe
-            confirm {str} -- Mot de passe de confirmation
+            form {dict} -- Dictionnaire contenant les valeurs des inputs du formulaire
 
         Returns:
             bool -- Est-ce que tout les inputs sont valide
@@ -75,15 +72,48 @@ def validate_register_inputs(form) -> Any:
 
     return True if len(errors.keys()) == 0 else errors
 
+def validate_login_inputs(form: dict) -> Any:
+    """Valide les différents inputs du formulaire de connexion
+
+        Arguments:
+            form {dict} -- Dictionnaire contenant les valeurs des inputs du formulaire
+
+        Returns:
+            bool -- Est-ce que tout les inputs sont valide
+            [] -- Liste des erreurs
+    """
+    errors = {}
+    email_errors = { 'errors': [] }
+    password_errors = { 'errors': [] }
+
+    # Email
+    if form.get('email') == '':
+        email_errors['errors'].append('Ce champ est obligatoire')
+    else:
+        if len(form.get('email')) < 6:
+            email_errors['errors'].append('Choisissez un email plus long')
+        if not re.search('^[a-zA-z0-9._-]+@[^\.]+\..+$', form.get('email')):
+            email_errors['errors'].append('Entrez un email valide')
+
+    # Mot de passe
+    if form.get('password') == '':
+        password_errors['errors'].append('Ce champ est obligatoire')
+
+    # Ajout des erreur dans la réponse
+    if len(email_errors['errors']) > 0: errors['email'] = email_errors
+    if len(password_errors['errors']) > 0: errors['password'] = password_errors
+
+    return True if len(errors.keys()) == 0 else errors
+
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     """Affiche la page d'inscription
         \nGET: Affiche la page
         \nPOST: Si les informations de connexion sont valides, redirection sur l'accueil
     """
-    form = {}
+    validation = {}
     if request.method == 'POST':
-        validation = validate_register_inputs(request.form)
+        validation = validate_signup_inputs(request.form)
 
         if validation == True:
             email = request.form.get('email')
@@ -101,13 +131,36 @@ def signup():
             flash('Un utilisateur utilise déjà cet email')
             return redirect(url_for('auth_bp.signup'))
 
-        return render_template('signup.html',
-                                current_user=current_user,
-                                form=validation)
-
     return render_template('signup.html',
                             current_user=current_user,
-                            form=form)
+                            validation=validation)
+
+@auth_bp.route('/login', methods=['GET', 'POST'])
+def login():
+    """Affiche la page de connexion
+        \nGET: Affiche la page
+        \nPOST: Si les informations de connexion sont valides, redirection sur l'accueil
+    """
+    validation = {}
+    if request.method == 'POST':
+        validation = validate_login_inputs(request.form)
+
+        if validation == True:
+            email = request.form.get('email')
+            password = request.form.get('password')
+            hashed_password = hashlib.sha256(password.encode('utf8')).hexdigest()
+
+            if UserController().check_password(email, hashed_password):
+                user = UserController().get_by_email(email)
+                login_user(user)
+                return redirect(url_for('main_bp.home'))
+
+            flash('Combinaison email - mot de passe invalide')
+            return redirect(url_for('auth_bp.login'))
+
+    return render_template('login.html',
+                            current_user=current_user,
+                            validation=validation)
 
 @auth_bp.route('/logout', methods=['GET'])
 @login_required
