@@ -10,6 +10,7 @@ from sqlite3 import Error as SqliteError
 
 from .SqliteController import SqliteController
 from ..models.Type import Type
+from .logger import log
 
 class TypeController:
     """Controlleur des types

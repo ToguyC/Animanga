@@ -13,6 +13,7 @@ from sqlite3 import Error as SqliteError
 #from datetime import datetime as dt
 
 from flask import g
+from .logger import log
 
 class SqliteController:
     """Classe permettant d'accéder à ma base de données Sqlite
@@ -199,7 +200,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            plog(e)
+            log(e)
             return False
 
     def setup_url_table(self) -> None:

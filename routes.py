@@ -11,7 +11,6 @@ from flask_swagger import swagger
 from flask_login import current_user, login_required
 
 from .packages.controllers.AnimeController import AnimeController
-from .logger import log
 
 # Configuration du Blueprint
 main_bp = Blueprint('main_bp', __name__,

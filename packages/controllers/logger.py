@@ -29,5 +29,6 @@ def log(e, in_terminal: bool = True, in_file: bool = True) -> None:
             with open(log_file_path, append_write) as log_file:
                 log_file.write(str(e) + '\n')
                 log_file.close()
-    except AssertionError:
+    except AssertionError as assert_error:
+        log(assert_error)
         raise 

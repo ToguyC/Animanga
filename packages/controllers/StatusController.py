@@ -9,6 +9,7 @@ Les status sont : FINISHED, CURRENTLY, UPCOMING, UNKNOWN
 from sqlite3 import Error as SqliteError
 from .SqliteController import SqliteController
 from ..models.Status import Status
+from .logger import log
 
 class StatusController:
     """Controlleur des status

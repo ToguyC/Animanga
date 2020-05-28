@@ -10,6 +10,7 @@ from datetime import datetime as dt
 from sqlite3 import Error as SqliteError
 from .SqliteController import SqliteController
 from ..models.User import User
+from .logger import log
 
 class UserController:
     """Contrôleur d'un utilisateur

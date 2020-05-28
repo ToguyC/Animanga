@@ -17,7 +17,7 @@ from .SqliteController import SqliteController
 from .TypeController import TypeController
 from .StatusController import StatusController
 from ..models.Anime import Anime
-from ...logger import log
+from .logger import log
 
 class AnimeController:
     """Controlleur d'un anime

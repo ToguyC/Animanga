@@ -225,5 +225,11 @@ Comme j'ai encore un peu de temps avant la pause de midi, je décide de commenc�
 
 12h : J'ai terminé l'affichage des résultats de la recherche et je prend ma pause de midi.
 
+---
+
+13h : Je reprend le travail en faisant la prise en charge de la barre de recherche.
+
+13h20 : J'ai terminé la prise en charge de la barre de recherche et je commende maintenant à faire l'affichage de la carte pour les animes.
+
 ### Bilant
 
