@@ -22,7 +22,8 @@ def log(e, in_terminal: bool = True, in_file: bool = True) -> None:
             print(str(e))
         
         if in_file:
-            log_file_path = os.path.dirname(os.path.realpath(__file__)) + '/log.txt'
+            # Écrit dans un fichier à la racine du projet
+            log_file_path = os.path.dirname(os.path.realpath(__file__)) + '/../../log.txt'
 
             append_write = 'a+' if os.path.exists(log_file_path) else 'w+'
 
