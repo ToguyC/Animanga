@@ -9,7 +9,6 @@ from datetime import datetime as dt
 
 from sqlite3 import Error as SqliteError
 from .SqliteController import SqliteController
-from .TypeController import TypeController
 from ..models.User import User
 
 class UserController:

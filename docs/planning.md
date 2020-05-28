@@ -3,22 +3,22 @@
 ### Product backlog
 
 
-| Nom                            | S1 : Inscription à Animanga                                                                      |
-| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Nom                            | S1 : Inscription à Animanga                                  |
+| ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur non connecté, je peux me créer un compte afin de pouvoir accéder au site. |
-| **Critère d'acceptation**      | ***Pas encore écris de tests***                                                                  |
-| **Priorité**                   | 🚫 Bloquant                                                                                      |
+| **Critère d'acceptation**      | Les tests *1.1* et *1.2* passent.                            |
+| **Priorité**                   | 🚫 Bloquant                                                   |
 
 | Nom                            | S2 : Connexion à Animanga                                    |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur non connecté, je peux me connecter afin de pouvoir accéder au site. |
-| **Critère d'acceptation**      | ***Pas encore écris de tests***                              |
+| **Critère d'acceptation**      | Les tests *2.1* et *2.2* passent.                            |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
 | Nom                            | S3 : Importation des animes                                  |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur connecté, je peux écraser les animes avec un nouveau set de données. |
-| **Critère d'acceptation**      | ***Pas encore écris de tests***                              |
+| **Critère d'acceptation**      | Le test *3.1* passe.                                         |
 | **Priorité**                   | 💥 Critique                                                   |
 
 | Nom                            | S4 : Rechercher des animes                                   |
@@ -99,7 +99,7 @@
 | **Critère d'acceptation**      | ***Pas encore écris de tests\***                             |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
-| Nom                            | S16 : Vérifications syntaxique                               |
+| Nom                            | S17: Vérifications syntaxique                                |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant que développeur, je peux lancé la commande `npm run lint` pour vérifier la syntaxe, basé sur le preset Airbnb, des fichiers JavaScript, et la commande `python3 -m pylint --output-format=colorized` pour vérifier la syntaxe des fichiers Python, basé sur les conventions PEP8. |
 | **Critère d'acceptation**      | Les test *12.1* et *12.2* passent.                           |
@@ -326,7 +326,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
 		<tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S12 : Utilisation d'un git</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S13 : Utilisation d'un git</td>
             <td></td>
             <td style="background: #f7dc79;"></td>
             <td></td>
@@ -375,7 +375,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S13 : Configuration de la base de données</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S14 : Configuration de la base de données</td>
             <td></td>
             <td></td>
             <td style="background: #f7dc79;"></td>
@@ -424,7 +424,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S15 : Configuration de Flask</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S16 : Configuration de Flask</td>
             <td></td>
             <td></td>
             <td style="background: #f7dc79;"></td>
@@ -551,7 +551,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -601,7 +601,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -620,7 +620,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
 		<tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S11 : Affichage de la landing page</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S12 : Affichage de la landing page</td>
             <td></td>
             <td></td>
             <td></td>
@@ -865,6 +865,55 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S10 : Affichage des favoris</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #f7dc79;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 15px">S8 : Affichage des listes</td>
             <td></td>
             <td></td>
@@ -961,7 +1010,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S10 : Organisation des favoris</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S11 : Organisation des favoris</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1010,7 +1059,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S14 : Synchronisation MySQL Sqlite3</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S15 : Synchronisation MySQL Sqlite3</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1059,7 +1108,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold;">S16 : Vérifications syntaxique</td>
+            <td rowspan="2" style="font-weight: bold;">S17 : Vérifications syntaxique</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1088,8 +1137,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1137,8 +1186,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1186,8 +1235,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1333,8 +1382,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>

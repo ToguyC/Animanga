@@ -20,6 +20,7 @@ class AnimeController:
     """Controlleur d'un anime
     """
 
+    #pylint: disable=too-many-return-statements
     @classmethod
     def override_local_with_json(cls, path: str) -> None:
         """Écrase toutes les données en base

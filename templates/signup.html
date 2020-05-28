@@ -15,36 +15,36 @@
             <form action="/signup" method="post">
                 <fieldset>
                     <input type="email" name="email" id="email" placeholder="Email">
-                    {% if form.errors.email %}
+                    {% if auth_errors.email %}
                         <ul id="email-errors">
-                            {% for error in form.errors.email %}<li>{{ error }}</li>{% endfor %}
+                            {% for error in auth_errors.email %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
                 </fieldset>
 
                 <fieldset>
                     <input type="text" name="nickname" id="nickname" placeholder="Pseudo">
-                    {% if form.errors.nickname %}
+                    {% if auth_errors.nickname %}
                         <ul id="nickname-errors">
-                            {% for error in form.errors.nickname %}<li>{{ error }}</li>{% endfor %}
+                            {% for error in auth_errors.nickname %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
                 </fieldset>
 
                 <fieldset>
                     <input type="password" name="password" id="password" placeholder="Mot de passe">
-                    {% if form.errors.password %}
+                    {% if auth_errors.password %}
                         <ul id="password-errors">
-                            {% for error in form.errors.password %}<li>{{ error }}</li>{% endfor %}
+                            {% for error in auth_errors.password %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
                 </fieldset>
 
                 <fieldset>
                     <input type="password" name="confirm" id="confirm" placeholder="Confirmer le mot de passe">
-                    {% if form.errors.confirm %}
+                    {% if auth_errors.confirm %}
                         <ul id="confirm-errors">
-                            {% for error in form.errors.confirm %}<li>{{ error }}</li>{% endfor %}
+                            {% for error in auth_errors.confirm %}<li>{{ error }}</li>{% endfor %}
                         </ul>
                     {% endif %}
                 </fieldset>

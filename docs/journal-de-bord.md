@@ -195,8 +195,25 @@ L'objectif de cette journée est de faire le système de connexion et d'inscript
 
 15h20 : J'ai eu un rendez-vous avec mon référent TPI pour faire un point. Comme tout ce passe bien le rendez-vous n'a duré que très peu de temps et je suis tout de suite retourné travailler.
 
-17h : Je n'ai pas encore fini l'optimisation de la validation des champs mais c'est sur le bon chemin. Je me suis basé sur la libraire [wtforms](https://github.com/Khan/wtforms/tree/master/wtforms). Cette librairie est utilisé pour générer et valider automatiquement des formulaires. Comme cela est trop imposant pour un TPI, j'ai décidé de m'inspirer de cette librairie uniquement pour la partie validation de formulaire. Je demanderai demain matin à mon référent s'il est d'accord que je garde cette manière de valider mes champs de formulaire ou si c'est toujours trop imposant. En plus de cela, j'ai configurer Katalon Recorder pour prendre en compte la connexion aussi. J'ai maintenant un dossier à la racine de mon projet nommé `tests` qui contient le fichier HTML contenant tout les *tests cases* pour Katalon Recorder.
+17h : J'ai terminé l'optimisation de la validation des champs. Je me suis basé sur la libraire [wtforms](https://github.com/Khan/wtforms/tree/master/wtforms). Cette librairie est utilisé pour générer et valider automatiquement des formulaires. Comme cette libraire est trop imposant pour un TPI, j'ai décidé de m'inspirer de cette dernière uniquement pour la partie validation de formulaire. Je demanderai demain matin à mon référent s'il est d'accord que je garde cette manière de valider mes champs de formulaire ou si c'est toujours trop imposant. 
+
+En plus de cela, j'ai configurer Katalon Recorder pour prendre en compte la connexion aussi. J'ai maintenant un dossier à la racine de mon projet nommé `tests` qui contient le fichier HTML contenant tout les *tests cases* pour Katalon Recorder.
 
 ### Bilan
 
 Je suis plutôt content de ma journée. J'ai pu correctement faire le code de l'inscription ainsi que la connexion. De plus, comme j'avais du temps restant avant la fin de la journée, j'ai décidé de mettre en place Katalon Recorder afin d'automatiser mes tests fonctionnels et j'ai aussi décidé d'optimiser le code de validation des champs de mes formulaires. Je n'ai cependant toujours pas fait validé cette idée d'optimisation donc je le ferai demain matin.
+
+## J4 : jeudi 28 mai 2020
+
+### Objectifs
+
+### Déroulement
+
+8h : J'ai réfléchi hier soir et j'ai réalisé que ce que j'avais entrepris la veille sur l'optimisation de la validation des champs était beaucoup trop imposant. Je me décide à le refaire de manière bien plus légère.
+
+9h20 : J'ai terminé ma nouvelle version de l'optimisation des champs. Bien plus simple à lire et à maintenir. Très content du résultat. Je commence maintenant la partie recherche d'anime. Une des parties les plus importantes du projet.
+
+Pour les recherche en base, j'ai une table virtuelle Sqlite3 pour pouvoir faire de la recherche Fulltext. Sqlite3 ne supporte pas le Fulltexte sur une table standard, il faut créer une table virtuelle avec un template supportant Fulltext. Tout le procédé est expliqué [ici](https://www.sqlitetutorial.net/sqlite-full-text-search/).
+
+### Bilant
+

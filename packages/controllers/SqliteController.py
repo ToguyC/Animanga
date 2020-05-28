@@ -33,6 +33,7 @@ class SqliteController:
         """
         return self.get_instance().cursor()
 
+    #pylint: disable=no-self-use
     def __dict_factory(self, cursor: object, row: object) -> dict:
         """Retourne les valeurs du fetch comme dictionnaire
             see: https://stackoverflow.com/questions/3300464/how-can-i-get-dict-from-sqlite-query
@@ -59,6 +60,7 @@ class SqliteController:
 
         return SqliteController.connection
 
+    #pylint: disable=no-self-use
     def close(self) -> None:
         """Ferme la connexion courante
         """
