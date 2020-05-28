@@ -32,7 +32,7 @@ class UserController:
 
             return bool(count > 0)
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return True
 
     @classmethod
@@ -53,7 +53,7 @@ class UserController:
 
             return bool(count == 1)
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     @classmethod
@@ -82,7 +82,7 @@ class UserController:
 
             return User(last_row_id, email, nickname)
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return None
 
     @classmethod
@@ -105,7 +105,7 @@ class UserController:
 
             return None
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return None
 
     @classmethod
@@ -128,5 +128,5 @@ class UserController:
 
             return None
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return None

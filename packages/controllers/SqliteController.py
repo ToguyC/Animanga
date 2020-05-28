@@ -132,7 +132,7 @@ class SqliteController:
 
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_anime_table(self) -> None:
@@ -161,7 +161,7 @@ class SqliteController:
             self.execute("CREATE VIRTUAL TABLE IF NOT EXISTS `anime_ft` USING FTS5(`idAnime`, `title`)")
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_type_table(self) -> None:
@@ -180,7 +180,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_status_table(self) -> None:
@@ -199,7 +199,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            plog(e)
             return False
 
     def setup_url_table(self) -> None:
@@ -220,7 +220,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_user_table(self) -> None:
@@ -241,7 +241,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_list_table(self) -> None:
@@ -260,7 +260,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_user_has_list_table(self) -> None:
@@ -280,7 +280,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_list_has_anime_table(self) -> None:
@@ -300,7 +300,7 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
 
     def setup_user_has_favorite_table(self) -> None:
@@ -321,5 +321,5 @@ class SqliteController:
             )
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False

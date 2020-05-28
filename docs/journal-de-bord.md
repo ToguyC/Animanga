@@ -215,5 +215,15 @@ Je suis plutôt content de ma journée. J'ai pu correctement faire le code de l'
 
 Pour les recherche en base, j'ai une table virtuelle Sqlite3 pour pouvoir faire de la recherche Fulltext. Sqlite3 ne supporte pas le Fulltexte sur une table standard, il faut créer une table virtuelle avec un template supportant Fulltext. Tout le procédé est expliqué [ici](https://www.sqlitetutorial.net/sqlite-full-text-search/).
 
+10h10 : La recherche par chaine de caractères est terminé. Il me reste à faire l'affichage mais ceci ne sera pas long. Je le ferai cet après-midi car maintenant je vais faire la récupération d'un anime aléatoire.
+
+10h40 : La récupération d'un anime aléatoirement est terminé. J'ai remarqué en programmant que j'ai des **try/except** dans pratiquement toutes les méthodes de classes. Le **except** est toujours le même mais rien n'est centralisé. J'ai alors décidé de commencer à faire une fonction centralisant tout les logs.
+
+11h35 : La fonction de log est terminé et j'ai placé dans tout les **except** un appel à cette méthode.
+
+Comme j'ai encore un peu de temps avant la pause de midi, je décide de commencé à affiché les résultats de la recherche.
+
+12h : J'ai terminé l'affichage des résultats de la recherche et je prend ma pause de midi.
+
 ### Bilant
 

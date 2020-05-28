@@ -31,7 +31,7 @@ class TypeController:
 
             return types
         except SqliteError as e:
-            print(str(e))
+            log(e)
             raise e
 
     @classmethod

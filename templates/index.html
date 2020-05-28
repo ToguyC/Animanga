@@ -11,6 +11,52 @@
         <div class="background">
             <img src="{{ url_for('static', filename='img/home-background.png') }}">
         </div>
+    {% else %}
+        <main class="mt-5 main-home row">
+            <section class="col-md-12 col-xl-8">
+                {% if search_results|length <= 0 %}
+                    <div class="no-search">
+                        <h4>Aucune recherche effectuée</h4>
+                        <span class="separator"></span>
+                        <span>  
+                            Faites une recherche pour obtenir des informations sur l’anime souhaité
+                        </span>
+                        <span>(´。＿。｀)</span>
+                    </div>
+
+                    <!-- Future affichage des activités -->
+                {% else %}
+                    <h4>Résultats pour "{{ search_string }}" :</h4>
+
+                    <div class="search-results row">
+                        {% for anime in search_results %}
+                            <div class="result-item col-lg-4 col-md-6 col-sm-12">
+                                <div class="left">
+                                    <img class="picture" src="{{ anime.picture }}">
+                                    <span class="title">{{ anime.title }}</span>
+                                </div>
+                                <div class="right">
+                                    <div class="status">{{ anime.status }}</div>
+                                    <div class="type">{{ anime.type }}</div>
+                                    <div class="relations row">
+                                        {% for relation in anime.relations %}
+                                            <img class="relation col-5" src="{{ relation.picture }}" title="{{ relation.title }}" alt="404">
+                                        {% endfor %}
+                                    </div>
+                                    <div class="episodes">{{ anime.episodes }}</div>
+                                </div>
+                            </div>
+
+                            <!-- Future modale pour la carte de l'anime -->
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </section>
+
+            <aside class="col-md-12 col-xl-4">
+                <!-- Future affichage des favoris -->
+            </aside>
+        </main>
     {% endif %}
 {% endblock content %}
 

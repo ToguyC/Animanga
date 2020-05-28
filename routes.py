@@ -11,6 +11,7 @@ from flask_swagger import swagger
 from flask_login import current_user, login_required
 
 from .packages.controllers.AnimeController import AnimeController
+from .logger import log
 
 # Configuration du Blueprint
 main_bp = Blueprint('main_bp', __name__,
@@ -47,6 +48,34 @@ def home():
     """
     return render_template('index.html',
                             current_user=current_user)
+
+@main_bp.route('/search/<string:search_string>', methods=['GET'])
+@login_required
+def search(search_string: str = None):
+    """Recherche un anime
+    """
+    # Parse la chaine de recherche pour tansformer la chaine comme suit (facilite la recherche fulltext) :
+    # Chaine de base : Ma chaine de recherche
+    # Chaine parsée : "Ma" "chaine" "de" "recherche"
+    search_string_parsed = ' '.join(['"' + escaped + '"' for escaped in search_string.split(' ')])
+    searched_animes = AnimeController().get_from_search_string(search_string_parsed)
+    
+    # Ajout des relations
+    for anime in searched_animes:
+        anime['relations'] = AnimeController().get_relations_by_anime_id(anime['id'])
+
+    return jsonify({'anime': searched_animes})
+
+@main_bp.route('/random', methods=['GET'])
+@login_required
+def random_anime():
+    """Récupère une anime aléatoire dans la base
+    """
+    random_anime = AnimeController().get_random_anime()
+
+    random_anime['relations'] = AnimeController().get_relations_by_anime_id(random_anime['id'])
+
+    return jsonify({'anime': random_anime})
 
 @main_bp.route('/endpoints', methods=['GET'])
 def endpoints():

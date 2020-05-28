@@ -11,10 +11,13 @@ import pathlib
 #import os
 from sqlite3 import Error as SqliteError
 from datetime import datetime as dt
+from random import randint
 
 from .SqliteController import SqliteController
 from .TypeController import TypeController
 from .StatusController import StatusController
+from ..models.Anime import Anime
+from ...logger import log
 
 class AnimeController:
     """Controlleur d'un anime
@@ -142,5 +145,149 @@ class AnimeController:
             yield "redirect"
             return True
         except SqliteError as e:
-            print(str(e))
+            log(e)
             return False
+
+    @classmethod
+    def __encapsulate_animes(cls, raw_results: dict) -> [Anime]:
+        """Encapsule les résultats d0une requete
+
+            Arguments:
+                raw_resutls {dict} -- Résultats provenant de `SqliteController.execute`
+            
+            Returns:
+                [Anime] -- Liste d'anime encapsuler
+        """
+        return [
+            Anime(result['idAnime'],
+                  result['title'],
+                  result['nameType'],
+                  result['episodes'],
+                  result['nameStatus'],
+                  result['picture'],
+                  result['thumbnail'],
+                  result['synonyms']
+            ) for result in raw_results
+        ]
+
+    @classmethod
+    def __serialize_encapsulated_animes(cls, encapsulated_animes: list) -> [dict]:
+        """Sérialize tout les animes contenu dans une liste d'anime encapsulé
+
+            Arguments:
+                encapsulated_animes {list} -- Liste des animes encapsulé
+
+            Returns:
+                [dict] -- Liste de tout les animes sérialisé
+        """
+        return [anime.serialize() for anime in encapsulated_animes]
+
+    @classmethod
+    def get_from_search_string(cls, search_string: str) -> [Anime]:
+        """Retourne les animes concordant avec la chaine de recherche
+
+            Arguments:
+                search_string {str} -- Chaine de recherche
+            
+            Returns:
+                [Anime] -- Liste des animes concordant
+        """
+        try:
+            # Le join sur la table virtuelle est obligatoire pour réalisé des recherches fulltext
+            sql_search = """SELECT anime.idAnime, anime.title, nameType, episodes, nameStatus, picture, thumbnail, synonyms
+                            FROM anime
+                            JOIN anime_ft ON anime.idAnime = anime_ft.idAnime
+                            JOIN status ON anime.status = status.idStatus
+                            JOIN type ON anime.type = type.idType
+                            WHERE anime_ft.title MATCH ?
+                            LIMIT 9"""
+
+            results = SqliteController().execute(sql_search, values=(search_string,), fetch_mode=SqliteController.FETCH_ALL)
+
+            encapsulated = cls.__encapsulate_animes(results)
+            
+            return cls.__serialize_encapsulated_animes(encapsulated)
+        except SqliteError as e:
+            log(e)
+            return []
+
+    @classmethod
+    def get_relations_by_anime_id(cls, anime_id: int) -> [Anime]:
+        """Retourne toutes les relations d'un anime
+
+            Arguments:
+                anime_id {int} -- Id de l'anime du quel nous voulons les relations
+            
+            Returns:
+                [Anime] -- Liste de toutes les relations
+        """
+        try:
+            # Cette requete est relativement complexe. Pour avoir toutes les relations d'un anime, voila comment elle procède :
+            #   Récupérer toutes les url liée à un anime, récupérer tout les ids des animes ayant des urls référencé comme relation à l'anime principal
+            #   et ne pas reprendre une seconde  fois l'anime principale. Ne reste plus qu'à récupérer les informations de ces animes
+            sql_relations = """SELECT anime.idAnime, anime.title, nameType, episodes, nameStatus, picture, thumbnail, synonyms
+                               FROM anime
+                               JOIN status ON anime.status = status.idStatus
+                               JOIN type ON anime.type = type.idType
+                               WHERE idAnime IN (
+                                   SELECT idAnime
+                                   FROM url
+                                   WHERE urlName IN (
+                                       SELECT urlName
+                                       FROM url
+                                       WHERE idAnime = ?
+                                   )
+                                   AND isRelation = 1
+                                   AND idAnime != ?
+                               )"""
+
+            results = SqliteController().execute(sql_relations, values=(anime_id, anime_id,), fetch_mode=SqliteController.FETCH_ALL)
+
+            encapsulated = cls.__encapsulate_animes(results)
+            
+            return cls.__serialize_encapsulated_animes(encapsulated)
+        except SqliteError as e:
+            log(e)
+            return []
+
+    @classmethod
+    def get_count(cls) -> int:
+        """Retourne le nombre d'anime présent en base
+
+            Returns:
+                int -- Nombre d'anime en base
+        """
+        try:
+            sql_count = """SELECT COUNT(*) AS `Count` FROM anime"""
+
+            count = SqliteController().execute(sql_count, fetch_mode=SqliteController.FETCH_ONE)['Count']
+
+            return count
+        except SqliteError as e:
+            log(e)
+            return None
+
+    @classmethod
+    def get_random_anime(cls) -> Anime:
+        """Récupère un anime aléatoire
+
+            Returns:
+                Anime -- Anime tiré aléatoirement
+        """
+        try:
+            sql_select = """SELECT anime.idAnime, anime.title, nameType, episodes, nameStatus, picture, thumbnail, synonyms
+                            FROM anime
+                            JOIN status ON anime.status = status.idStatus
+                            JOIN type ON anime.type = type.idType
+                            WHERE idAnime = ?"""
+
+            random_anime_id = randint(1, cls.get_count())
+            
+            results = SqliteController().execute(sql_select, values=(random_anime_id,), fetch_mode=SqliteController.FETCH_ONE)
+
+            encapsulated = cls.__encapsulate_animes([results])
+            
+            return cls.__serialize_encapsulated_animes(encapsulated)[0]
+        except SqliteError as e:
+            log(e)
+            return None
