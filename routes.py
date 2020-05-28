@@ -64,7 +64,10 @@ def search(search_string: str = None):
     for anime in searched_animes:
         anime['relations'] = AnimeController().get_relations_by_anime_id(anime['id'])
 
-    return jsonify({'anime': searched_animes})
+    return render_template('index.html',
+                            current_user=current_user,
+                            search_string=search_string,
+                            search_results=searched_animes)
 
 @main_bp.route('/random', methods=['GET'])
 @login_required
