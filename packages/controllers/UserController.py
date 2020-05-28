@@ -22,7 +22,7 @@ class UserController:
 
             Arguments:
                 email {str} -- Email à tester
-            
+
             Returns:
                 bool -- Est-ce que l'email existe
         """
@@ -131,3 +131,34 @@ class UserController:
         except SqliteError as e:
             log(e)
             return None
+
+    @classmethod
+    def setup_default_lists(cls, user_id: int) -> bool:
+        """Créer les listes par défaut si inexistantes
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur
+            
+            Returns:
+                bool -- `True` si tout c'est bien passé
+        """
+        try:
+            sql_default_list = "INSERT INTO list(nameList, modificationDate) VALUES(?, ?)"
+            sql_link_list_user = "INSERT INTO user_has_list(idUser, idList, modificationDate) VALUES(?, ?, ?)"
+
+            values_list = [
+                'Complétés',
+                'En cours',
+                'Abandonés',
+                'Planifiés'
+            ]
+
+            current_time = dt.now()
+            for list_name in values_list:
+                list_id = SqliteController().execute(sql_default_list, values=(list_name,current_time,), fetch_mode=SqliteController.NO_FETCH)
+                SqliteController().execute(sql_link_list_user, values=(user_id,list_id,current_time,), fetch_mode=SqliteController.NO_FETCH)
+
+            return True
+        except SqliteError as e:
+            log(e)
+            return False

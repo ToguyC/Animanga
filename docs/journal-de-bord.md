@@ -229,7 +229,9 @@ Comme j'ai encore un peu de temps avant la pause de midi, je décide de commenc�
 
 13h : Je reprend le travail en faisant la prise en charge de la barre de recherche.
 
-13h20 : J'ai terminé la prise en charge de la barre de recherche et je commende maintenant à faire l'affichage de la carte pour les animes.
+13h20 : J'ai terminé la prise en charge de la barre de recherche et je commende maintenant à faire l'affichage de la carte pour les animes. Pour la barre de recherche je suis parti sur deux manières différentes de l'affiché. La première, classique, est de cliquer sur la 🔍. Une modale s'affichage alors avec un champ de type de texte pour y entré notre recherche, ainsi qu'une crois sur la droite pour effacé le contenu du champ. La seconde manière est par le raccourci <kbd>Ctrl</kbd> + <kbd>S</kbd>.
+
+14h30 : J'ai terminé d'affiché la carte (modal) de l'anime. Je vais commencé la mise à jour de l'anime pour l'utilisateur connecté.
 
 ### Bilant
 

@@ -33,7 +33,7 @@
                             <div class="result-item col-lg-4 col-md-6 col-sm-12">
                                 <div class="left">
                                     <img class="picture" src="{{ anime.picture }}">
-                                    <span class="title">{{ anime.title }}</span>
+                                    <span class="title" data-toggle="modal" data-target="#result-item-{{ anime.id }}">{{ anime.title }}</span>
                                 </div>
                                 <div class="right">
                                     <div class="status">{{ anime.status }}</div>
@@ -45,9 +45,55 @@
                                     </div>
                                     <div class="episodes">{{ anime.episodes }}</div>
                                 </div>
-                            </div>
 
-                            <!-- Future modale pour la carte de l'anime -->
+                                <!-- Modal -->
+                                <div class="modal fade" id="result-item-{{ anime.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="header">
+                                                <div class="header-background">
+                                                    <img src="{{ url_for('static', filename='img/home-background.png') }}">
+                                                    <div class="dark-layer"></div>
+                                                </div>
+                                                <img class="thumbnail" src="{{ anime.picture }}">
+                                                <div class="title">{{ anime.title }}</div>
+                                                <div class="favorite-toggler {{ 'is-favorite' if anime.is_favorite else '' }}" data-id="{{ anime.id }}">
+                                                    <svg width="21" height="19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M19.291 1.612a5.5 5.5 0 00-7.78 0l-1.06 1.06-1.06-1.06a5.501 5.501 0 10-7.78 7.78l1.06 1.06 7.78 7.78 7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" fill="#fff"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            <div class="content">
+                                                <fieldset class="status">
+                                                    <span>Status</span>
+                                                    <select name="status" class="status_combo">
+                                                        <option value="{{ anime.id }}-none">---</option>
+                                                        {% for list in user_list[:4] %}
+                                                            <option value="{{ anime.id }}-{{ list.id }}" {{ 'selected' if list.id in anime.in_list else '' }}>{{ list.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </fieldset>
+
+                                                <fieldset class="custom">
+                                                    <span>Listes personnelles</span>
+
+                                                    <div class="lists">
+                                                        {% for list in user_list[4:] %}
+                                                            <div class="list-item">
+                                                                <div class="custom-check {{ 'checked' if list.id in anime.in_list else '' }}">
+                                                                    <input type="checkbox" value="{{ anime.id }}-{{ list.id }}">
+                                                                </div>
+                                                                <span class="list-title">{{ list.name }}</span>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                     </div>
                 {% endif %}

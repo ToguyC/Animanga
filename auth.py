@@ -37,6 +37,7 @@ def signup():
             if not UserController().exists(email):
                 hashed_password = hashlib.sha256(password.encode('utf8')).hexdigest()
                 user = UserController().insert(email, nickname, hashed_password)
+                UserController().setup_default_lists(user.id)
 
                 if user is not None:
                     login_user(user)

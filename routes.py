@@ -11,6 +11,7 @@ from flask_swagger import swagger
 from flask_login import current_user, login_required
 
 from .packages.controllers.AnimeController import AnimeController
+from .packages.controllers.ListController import ListControlleur
 
 # Configuration du Blueprint
 main_bp = Blueprint('main_bp', __name__,
@@ -66,7 +67,8 @@ def search(search_string: str = None):
     return render_template('index.html',
                             current_user=current_user,
                             search_string=search_string,
-                            search_results=searched_animes)
+                            search_results=searched_animes,
+                            user_list=ListControlleur().get_defaults_for_user(current_user.id))
 
 @main_bp.route('/random', methods=['GET'])
 @login_required
