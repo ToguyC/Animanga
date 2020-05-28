@@ -1140,7 +1140,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1189,7 +1189,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1238,7 +1238,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1385,7 +1385,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1413,6 +1413,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         Planification réelle
     </div>
 </div>
+
 
 
 

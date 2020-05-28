@@ -217,6 +217,8 @@ Pour les recherche en base, j'ai une table virtuelle Sqlite3 pour pouvoir faire 
 
 10h10 : La recherche par chaine de caractères est terminé. Il me reste à faire l'affichage mais ceci ne sera pas long. Je le ferai cet après-midi car maintenant je vais faire la récupération d'un anime aléatoire.
 
+10h20 : J'ai eu un rendez-vous GMeet avec mon référent pour voir mon avancement et pour lui poser une question concernant la validation des champs. J'ai demandé si ce que j'avais fais était  bien et si je pouvais le garder. Sa réponse à été positive et j'ai pu continuer mon projet.
+
 10h40 : La récupération d'un anime aléatoirement est terminé. J'ai remarqué en programmant que j'ai des **try/except** dans pratiquement toutes les méthodes de classes. Le **except** est toujours le même mais rien n'est centralisé. J'ai alors décidé de commencer à faire une fonction centralisant tout les logs.
 
 11h35 : La fonction de log est terminé et j'ai placé dans tout les **except** un appel à cette méthode.
@@ -233,5 +235,8 @@ Comme j'ai encore un peu de temps avant la pause de midi, je décide de commenc�
 
 14h30 : J'ai terminé d'affiché la carte (modal) de l'anime. Je vais commencé la mise à jour de l'anime pour l'utilisateur connecté.
 
-### Bilant
+17h : Je n'ai pas terminé la mise à jour de l'anime mais comme je doit le faire demain normalement ce n'est pas un soucis.
 
+### Bilan
+
+Cette journée était très sympa. Je n'ai pas eu de problèmes et j'ai pris un peu d'avance. Le journal n'est pas très rempli pour cet après-midi mais tout ce qu'il y a a savoir sur ma journée y est. Rien de spéciale ne c'est passé. Je suis très content d'avoir mis en place les automations Katalon car dès que je change quelque chose, je peux lancé les tests pour voir si rien n'a régressé.

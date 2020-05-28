@@ -291,3 +291,20 @@ class AnimeController:
         except SqliteError as e:
             log(e)
             return None
+
+    @classmethod
+    def is_anime_is_user_favorite(cls, user_id: int, anime_id: int) -> bool:
+        """Retourne si l'anime est dans la liste des favoris de l'utilisateur
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur en question
+                anime_id {int} -- Id de l'anime sur lequel tester si il est favoris
+
+            Returns:
+                bool -- Est-ce que l'anime est dans les favoris de l'utilisateur
+        """
+        try:
+            return None
+        except SqliteError as e:
+            log(e)
+            return False

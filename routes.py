@@ -63,6 +63,7 @@ def search(search_string: str = None):
     # Ajout des relations
     for anime in searched_animes:
         anime['relations'] = AnimeController().get_relations_by_anime_id(anime['id'])
+        anime['is_favorite'] = AnimeController().is_anime_is_user_favorite(current_user.id, anime['id'])
 
     return render_template('index.html',
                             current_user=current_user,
