@@ -1,0 +1,1 @@
+npm run lint static/js && python3 -m pylint --output-format=colorized packages/controllers
