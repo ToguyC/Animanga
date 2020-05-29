@@ -85,7 +85,8 @@ def profile(nickname: str = None):
 
     if searched_user is not None:
         return render_template('profile.html',
-                                searched_user=searched_user)
+                                searched_user=searched_user,
+                                stats=UserController().get_stats_by_id(searched_user.id))
     
     return redirect(url_for('main_bp.home'))
 

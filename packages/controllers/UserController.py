@@ -9,6 +9,7 @@ from datetime import datetime as dt
 
 from sqlite3 import Error as SqliteError
 from .SqliteController import SqliteController
+from .TypeController import TypeController
 from ..models.User import User
 from .logger import log
 
@@ -185,3 +186,46 @@ class UserController:
         except SqliteError as e:
             log(e)
             return False
+
+    @classmethod
+    def get_stats_by_id(cls, user_id: int) -> []:
+        """Récupère les statistiques pour un utilisateur
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur
+            
+            Returns:
+                [] -- Liste des statistiques
+        """
+        try:
+            sql_stats = """SELECT COUNT(*) AS `Count`
+                           FROM anime
+                           WHERE idAnime IN (
+                               SELECT list_has_anime.idAnime
+                               FROM user_has_list
+                               JOIN list_has_anime ON user_has_list.idList = list_has_anime.idList
+                               WHERE user_has_list.idUser = ?
+                               AND user_has_list.idList = (
+                                   SELECT list.idList
+                                   FROM list
+                                   JOIN user_has_list ON list.idList = user_has_list.idList
+                                   WHERE user_has_list.idUser = ?
+                                   AND list.nameList LIKE "Complétés"
+                               )
+                           )
+                           AND type = (
+                               SELECT idType
+                               FROM type
+                               WHERE nameType LIKE ?
+                           )"""
+            
+            types = TypeController().get_all()
+
+            stats = {}
+            for t in types:
+                stats[t.name] = SqliteController().execute(sql_stats, values=(user_id,user_id,t.name,), fetch_mode=SqliteController.FETCH_ONE)['Count']
+
+            return stats
+        except SqliteError as e:
+            log(e)
+            return []
