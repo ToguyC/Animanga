@@ -100,7 +100,9 @@
             </section>
 
             <aside class="col-md-12 col-xl-4">
-                <!-- Future affichage des favoris -->
+                <h4>Favoris</h4>
+
+                <div class="favorites row"></div>
             </aside>
         </main>
     {% endif %}
@@ -108,9 +110,12 @@
 
 {% block script %}
     <script src="{{ url_for('static', filename='js/landing-page-handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/fetch-favorites.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ratio-keeper.js') }}"></script>
     <script src="{{ url_for('static', filename='js/anime-handler.js') }}"></script>
     <script>
+        document.addEventListener('load', fetchFavorites(false, null));
+
         // Déclaration obligatoire pour que les message du stream puissent être mis dans un élément DOM
         let override_info = document.getElementById('override-info');
     </script>

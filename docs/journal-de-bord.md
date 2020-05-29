@@ -253,5 +253,7 @@ Le but de cette journée est de faire la mise à jour de l'anime pour un utilisa
 
 9h30 : J'ai terminé la partie mise à jour de l'état de favoris pour les animes. Je vais maintenant les afficher pour pourvoir avoir un retour visuel et aussi pour avoir un éléments à tester en case de réussite lors des tests d'automations.
 
+9h55 : J'ai terminé l'affichage des favoris sur la page d'accueil. L'affichage spécifique des favoris est sur la page de profile donc pour le moment il n'y a que la page d'accueil pour voir ses propre favoris. La gestion de ces dernier ne viendra que plus tard. Je vais maintenant commencé la mise à jour du statut de visionnement de l'anime.
+
 ### Bilan
 

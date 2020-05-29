@@ -1,3 +1,5 @@
+/* global: fetchFavorites */
+
 /**
  * Script pour la prise en charge du chargement des favoris, ajout de favoris,
  * ajout d'anime dans les listes
@@ -29,6 +31,8 @@ favoriteTogglers.forEach((favoriteToggler) => {
             } else {
                 toggler.classList.remove('is-favorite');
             }
+
+            fetchFavorites();
         });
     });
 });

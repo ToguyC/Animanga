@@ -71,6 +71,25 @@ def search(search_string: str = None):
                             search_results=searched_animes,
                             user_list=ListControlleur().get_defaults_for_user(current_user.id))
 
+@main_bp.route('/get/favorites', methods=['GET'])
+@login_required
+def get_favorites_for_loged_user():
+    """Récupère tous les favoris de l'utilisateur connecté
+    """
+    return jsonify({'animes': AnimeController().get_favorite_by_user_id(current_user.id)})
+
+@main_bp.route('/get/favorites/<string:nickname>', methods=['GET'])
+@login_required
+def get_favorites_for_user(nickname = None):
+    """Récupère tous les favoris d'un 'utilisateur
+    """
+    searched_user = UserController().get_by_nickname(nickname)
+    if searched_user is not None:
+        user_id = searched_user.id
+        return jsonify({'animes': AnimeController().get_favorite_by_user_id(user_id)})
+
+    return jsonify({'animes': []})
+
 @main_bp.route('/random', methods=['GET'])
 @login_required
 def random_anime():

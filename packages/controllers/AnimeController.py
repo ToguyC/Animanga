@@ -355,3 +355,31 @@ class AnimeController:
         except SqliteError as e:
             log(e)
             return False
+
+    @classmethod
+    def get_favorite_by_user_id(cls, user_id: int) -> [Anime]:
+        """Récupère tout les favoris d'un utilisateur
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur
+
+            Returns:
+                [Anime] -- Liste de tout les favoris
+        """
+        try:
+            sql_favorites = """SELECT anime.idAnime, anime.title, nameType, episodes, nameStatus, picture, thumbnail, synonyms
+                               FROM anime
+                               JOIN status ON anime.status = status.idStatus
+                               JOIN type ON anime.type = type.idType
+                               JOIN user_has_favorite ON anime.idAnime = user_has_favorite.idAnime
+                               WHERE user_has_favorite.idUser = ?
+                               ORDER BY orderId ASC"""
+
+            results = SqliteController().execute(sql_favorites, values=(user_id,), fetch_mode=SqliteController.FETCH_ALL)
+
+            encapsulated = cls.__encapsulate_animes(results)
+
+            return cls.__serialize_encapsulated_animes(encapsulated)
+        except SqliteError as e:
+            log(e)
+            return []
