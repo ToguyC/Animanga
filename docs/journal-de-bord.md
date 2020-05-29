@@ -245,7 +245,7 @@ Cette journée était très sympa. Je n'ai pas eu de problèmes et j'ai pris un 
 
 ### Objectif
 
-Le but de cette journée est de faire la mise à jour de l'anime pour un utilisateur, afficher sa page de profile, et afficher ses favoris. Je pense que je vais faire l'affichage des favoris en même temps que la mise à jour de l'anime pour pouvoir avoir un retour visuel sur le bon fonctionnement ou pas du code.
+Le but de cette journée est de faire la mise à jour de l'anime pour un utilisateur, afficher sa page de profil, et afficher ses favoris. Je pense que je vais faire l'affichage des favoris en même temps que la mise à jour de l'anime pour pouvoir avoir un retour visuel sur le bon fonctionnement ou pas du code.
 
 ### Déroulement
 
@@ -253,15 +253,21 @@ Le but de cette journée est de faire la mise à jour de l'anime pour un utilisa
 
 9h30 : J'ai terminé la partie mise à jour de l'état de favoris pour les animes. Je vais maintenant les afficher pour pourvoir avoir un retour visuel et aussi pour avoir un éléments à tester en case de réussite lors des tests d'automations.
 
-9h55 : J'ai terminé l'affichage des favoris sur la page d'accueil. L'affichage spécifique des favoris est sur la page de profile donc pour le moment il n'y a que la page d'accueil pour voir ses propre favoris. La gestion de ces dernier ne viendra que plus tard. Je vais maintenant commencé la mise à jour du statut de visionnement de l'anime.
+9h55 : J'ai terminé l'affichage des favoris sur la page d'accueil. L'affichage spécifique des favoris est sur la page de profil donc pour le moment il n'y a que la page d'accueil pour voir ses propre favoris. La gestion de ces dernier ne viendra que plus tard. Je vais maintenant commencé la mise à jour du statut de visionnement de l'anime.
 
-10h15 : J'ai eu un rendez-vous GMeet avec mon référant pour vérifier mon avancement. Je lui ai montrer ce que j'ai fais les jours précédent et ce que je suis en train de faire. La seul remarque était sur le planning. Je dois réécrire les dates car les numéros des jours sont faux et je dois mettre les cases en rouge si elles n'étaient pas prévue dans le planning prévisionnel.
+10h15 : J'ai eu un rendez-vous GMeet avec mon référant pour vérifier mon avancement. Je lui ai montrer ce que j'ai fais les jours précédent et ce que je suis en train de faire. La seul remarque était sur le planning. Je dois réécrire les dates car les numéros des jours sont faux et je dois mettre les cases en <img src="https://i.imgur.com/LUikyEA.png" style="zoom:25%;" /> <span style="color: #C4C4C4">#</span>**F34C56** si elles n'étaient pas prévue dans le planning prévisionnel. 
 
 11h40 : J'ai terminé la mise à jour du statut de visionnement des animes pour l'utilisateur connecté. Je dois encore affiché quel statut l'anime a quand on clique sur son nom pour affiché sa carte. Je pense le faire maintenant comme cela je ne prend pas de retard.
 
 12h : J'ai terminé l'affichage du statut correct dans le combo box de la carte de l'anime. Il me reste seulement à affiché les listes personnelles à l'utilisateur mais je ne ferai cela que lorsque la tâche arrivera. Je prend ma pause de midi.
 
 ---
+
+13h : Suite au rendez-vous GMeet, je me suis souvenu que mon référent m'avait dit de mettre des captures d'écrans de Katalon dans mon journal de bord. Voici donc une capture d'écran montrant tout les tests créer depuis le début et leur état :
+
+![](C:\Users\blakk\AppData\Roaming\Typora\typora-user-images\image-20200529131324501.png)
+
+Comme vous pouvez le constaté, tout les tests passent. Je n'ai pas encore mis les tests concernant la mise à jour d'un anime mais ça ne saurait tarder. Pour continuer mon travail, je vais faire l'affichage de la page de profil. Les images utilisées comme bannière de fond ainsi que l'image de profil sont arbitraire. Il serait préférable de faire un système d'upload pour chacune des images lors d'une amélioration du projet.
 
 
 

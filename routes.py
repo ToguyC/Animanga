@@ -5,13 +5,14 @@
 @version: 1.0.0
 @date: 2020-05-26
 """
-from flask import render_template, Response, stream_with_context, jsonify, request, Blueprint
+from flask import render_template, Response, stream_with_context, jsonify, request, Blueprint, redirect, url_for
 from flask import current_app as app
 from flask_swagger import swagger
 from flask_login import current_user, login_required
 
 from .packages.controllers.AnimeController import AnimeController
 from .packages.controllers.ListController import ListController
+from .packages.controllers.UserController import UserController
 
 # Configuration du Blueprint
 main_bp = Blueprint('main_bp', __name__,
@@ -71,6 +72,30 @@ def search(search_string: str = None):
                             search_string=search_string,
                             search_results=searched_animes,
                             user_list=ListController().get_defaults_for_user(current_user.id))
+
+@main_bp.route('/profile/<string:nickname>', methods=['GET'])
+@login_required
+def profile(nickname: str = None):
+    """Affiche la page de profile de l'utilisateur mentionner dans l'url
+    """
+    if nickname is None:
+        nickname = current_user.nickname
+
+    searched_user = UserController().get_by_nickname(nickname)
+
+    if searched_user is not None:
+        return render_template('profile.html',
+                                searched_user=searched_user)
+    
+    return redirect(url_for('main_bp.home'))
+
+@main_bp.route('/profile', methods=['GET'])
+@main_bp.route('/profile/', methods=['GET'])
+@login_required
+def profile_redirect():
+    """Redirige l'utilisateur sur sa page de profile si aucun pseudo indiqué dans l'url
+    """
+    return redirect(url_for('main_bp.profile', nickname=current_user.nickname))
 
 @main_bp.route('/get/favorites', methods=['GET'])
 @login_required

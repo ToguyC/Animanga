@@ -1,0 +1,16 @@
+<div class="profile-header">
+    <div class="header">
+        <img class="banner" src="{{ url_for('static', filename='img/banner.jpg') }}" alt="">
+        <div class="overlay"></div>
+        <img class="profile-picture" src="{{ url_for('static', filename='img/pp.png') }}" alt="">
+        <span class="profile-nickname">{{ searched_user.nickname }}</span>
+    </div>
+
+    <div class="links">
+        <span><a href="/profile/{{ searched_user.nickname }}">Overview</a></span>
+        <span><a href="/lists/{{ searched_user.nickname }}">Listes</a></span>
+        {% if current_user.nickname == searched_user.nickname %}
+            <span><a href="/favorites/{{ searched_user.nickname }}">Favoris</a></span>
+        {% endif %}
+    </div>
+</div>

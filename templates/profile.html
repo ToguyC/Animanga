@@ -1,0 +1,9 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}
+    {{ current_user.nickname }} - Profil
+{% endblock title %}
+
+{% block content %}
+    {% include 'layouts/profile-header.html' %}
+{% endblock content %}

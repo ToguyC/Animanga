@@ -133,6 +133,29 @@ class UserController:
             return None
 
     @classmethod
+    def get_by_nickname(cls, nickname: str) -> User:
+        """Récupère un utilisateur via son pseudo
+
+            Arguments:
+                nickname {str} -- Pseudo de l'utilisateur cherché
+            
+            Returns:
+                User -- Utilisateur trouvé
+        """
+        try:
+            sql_select = "SELECT * FROM user WHERE nicknameUser = ?"
+
+            user_dict = SqliteController().execute(sql_select, values=(nickname,), fetch_mode=SqliteController.FETCH_ONE)
+
+            if user_dict is not None:
+                return User(user_dict['idUser'], user_dict['emailUser'], user_dict['nicknameUser'])
+
+            return None
+        except SqliteError as e:
+            log(e)
+            return None
+
+    @classmethod
     def setup_default_lists(cls, user_id: int) -> bool:
         """Créer les listes par défaut si inexistantes
 
