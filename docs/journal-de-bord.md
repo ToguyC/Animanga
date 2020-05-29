@@ -240,3 +240,18 @@ Comme j'ai encore un peu de temps avant la pause de midi, je décide de commenc�
 ### Bilan
 
 Cette journée était très sympa. Je n'ai pas eu de problèmes et j'ai pris un peu d'avance. Le journal n'est pas très rempli pour cet après-midi mais tout ce qu'il y a a savoir sur ma journée y est. Rien de spéciale ne c'est passé. Je suis très content d'avoir mis en place les automations Katalon car dès que je change quelque chose, je peux lancé les tests pour voir si rien n'a régressé.
+
+## J5 : vendredi 29 mai 2020
+
+### Objectif
+
+Le but de cette journée est de faire la mise à jour de l'anime pour un utilisateur, afficher sa page de profile, et afficher ses favoris. Je pense que je vais faire l'affichage des favoris en même temps que la mise à jour de l'anime pour pouvoir avoir un retour visuel sur le bon fonctionnement ou pas du code.
+
+### Déroulement
+
+8h : Je commence ma journée par la mise à jour de l'anime. Je ne pense pas que cela va me prendre toute la matinée comme prévue et c'est donc aussi pour ceci que je vais faire la partie affichage des favoris en même temps.
+
+9h30 : J'ai terminé la partie mise à jour de l'état de favoris pour les animes. Je vais maintenant les afficher pour pourvoir avoir un retour visuel et aussi pour avoir un éléments à tester en case de réussite lors des tests d'automations.
+
+### Bilan
+

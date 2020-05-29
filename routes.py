@@ -121,3 +121,18 @@ def override_datas():
     current_directory = '/'.join(__file__.split('/')[:-1])
     return Response(stream_with_context(stream_template('index.html',
                                                          override_messages=AnimeController().override_local_with_json(current_directory + '/static/json/anime.json'))))
+
+# ================
+#      POST, PATCH, PUT, DELETE
+# ================
+@main_bp.route('/set/favorite', methods=['PATCH'])
+def set_favorite():
+    """
+    Met à jour le statut de favoris d'un anime pour un utilisateur connecté
+    """
+    anime_id = request.get_json()['idAnime']
+
+    if anime_id is not None:
+        return jsonify({'Status': AnimeController().set_anime_in_user_favorite(current_user.id, anime_id)})
+    
+    return jsonify({'Status': False})

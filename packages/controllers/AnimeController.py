@@ -304,7 +304,54 @@ class AnimeController:
                 bool -- Est-ce que l'anime est dans les favoris de l'utilisateur
         """
         try:
-            return None
+            sql_is_favorite = """SELECT COUNT(*) AS `Count`
+                                 FROM user_has_favorite
+                                 WHERE idUser = ?
+                                 AND idAnime = ?"""
+
+            results = SqliteController().execute(sql_is_favorite, values=(user_id,anime_id,), fetch_mode=SqliteController.FETCH_ONE)['Count']
+
+            return bool(results == 1)
+        except SqliteError as e:
+            log(e)
+            return False
+
+    @classmethod
+    def set_anime_in_user_favorite(cls, user_id: int, anime_id: int) -> bool:
+        """Met à jour l'état de favoris d'un anime pour un utiliateur
+
+            Arguments:
+                user_isd {int} -- Id de l'utilisateur
+                anime_id {int} -- Id de l'anime
+            
+            Returns:
+                bool -- État de favoris de l'anime
+        """
+        try:
+            sql_delete_favorite = """DELETE FROM user_has_favorite
+                                     WHERE idAnime = ?
+                                     AND idUser = ?"""
+            sql_get_last_order_id = """SELECT orderId
+                                       FROM user_has_favorite
+                                       WHERE idUser = ?
+                                       ORDER BY orderId DESC
+                                       LIMIT 1"""
+            sql_add_favorite = "INSERT INTO user_has_favorite(idAnime, idUser, orderId, modificationDate) VALUES(?, ?, ?, ?)"
+
+            if cls.is_anime_is_user_favorite(user_id, anime_id):
+                SqliteController().execute(sql_delete_favorite, values=(anime_id,user_id,), fetch_mode=SqliteController.NO_FETCH)
+
+                # Réattribué les orderId
+
+                is_favorite = False
+            else:
+                last_order_id = SqliteController().execute(sql_get_last_order_id, values=(user_id,), fetch_mode=SqliteController.FETCH_ONE)
+                last_order_id = int(last_order_id['orderId']) + 1 if last_order_id is not None else 1
+                SqliteController().execute(sql_add_favorite, values=(anime_id,user_id,last_order_id,dt.now(),), fetch_mode=SqliteController.NO_FETCH)
+
+                is_favorite = True
+            
+            return is_favorite
         except SqliteError as e:
             log(e)
             return False
