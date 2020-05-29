@@ -9,7 +9,7 @@ from .SqliteController import SqliteError, SqliteController
 from .logger import log
 from ..models.List import List
 
-class ListControlleur:
+class ListController:
     """Controlleur d'une list
     """
 
@@ -59,6 +59,31 @@ class ListControlleur:
                                AND nameList IN ('Complétés', 'En cours', 'Abandonés', 'Planifiés')"""
 
             results = SqliteController().execute(sql_user_list, values=(user_id,), fetch_mode=SqliteController.FETCH_ALL)
+
+            encapsulated = cls.__encapsulate_lists(results)
+
+            return cls.__serialize_encapsulated_lists(encapsulated)
+        except SqliteError as e:
+            log(e)
+            return []
+
+    @classmethod
+    def get_list_of_an_anime(cls, anime_id: int) -> [List]:
+        """Récupère toutes les listes d'un anime
+
+            Arguments:
+                anime_id {int} -- Id de l'anime
+
+            Returns:
+                [List] -- Liste de toutes les listes de l'anime
+        """
+        try:
+            sqli_lists = """SELECT list.idList, nameList
+                            FROM list
+                            JOIN list_has_anime ON list.idList = list_has_anime.idList
+                            WHERE list_has_anime.idAnime = ?"""
+
+            results = SqliteController().execute(sqli_lists, values=(anime_id,), fetch_mode=SqliteController.FETCH_ALL)
 
             encapsulated = cls.__encapsulate_lists(results)
 

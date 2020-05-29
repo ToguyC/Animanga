@@ -1,8 +1,9 @@
 /**
  * Récupère les animes favoris de l'utilisateur
- * 
+ *
  * @param {boolean} col Est-ce l'affichage avec colonne de Bootstrap doit être utilisé
- * @param {string} searchedUser Pseudo de l'utilisateur cherché si sur la page d'un autre utilisateur que celui connecté
+ * @param {string} searchedUser Pseudo de l'utilisateur cherché si sur la page d'un autre
+ *                              utilisateur que celui connecté
  */
 /* eslint-disable-next-line no-unused-vars */
 function fetchFavorites(col = false, searchedUser = null) {
@@ -31,7 +32,7 @@ function fetchFavorites(col = false, searchedUser = null) {
                 json.animes.forEach((anime) => {
                     const favoriteItem = document.createElement('div');
                     const favoritePicture = document.createElement('img');
-                    
+
                     favoriteItem.classList.add('favorite-item');
                     favoriteItem.dataset.id = anime.id;
 

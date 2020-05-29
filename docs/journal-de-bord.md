@@ -255,5 +255,15 @@ Le but de cette journée est de faire la mise à jour de l'anime pour un utilisa
 
 9h55 : J'ai terminé l'affichage des favoris sur la page d'accueil. L'affichage spécifique des favoris est sur la page de profile donc pour le moment il n'y a que la page d'accueil pour voir ses propre favoris. La gestion de ces dernier ne viendra que plus tard. Je vais maintenant commencé la mise à jour du statut de visionnement de l'anime.
 
+10h15 : J'ai eu un rendez-vous GMeet avec mon référant pour vérifier mon avancement. Je lui ai montrer ce que j'ai fais les jours précédent et ce que je suis en train de faire. La seul remarque était sur le planning. Je dois réécrire les dates car les numéros des jours sont faux et je dois mettre les cases en rouge si elles n'étaient pas prévue dans le planning prévisionnel.
+
+11h40 : J'ai terminé la mise à jour du statut de visionnement des animes pour l'utilisateur connecté. Je dois encore affiché quel statut l'anime a quand on clique sur son nom pour affiché sa carte. Je pense le faire maintenant comme cela je ne prend pas de retard.
+
+12h : J'ai terminé l'affichage du statut correct dans le combo box de la carte de l'anime. Il me reste seulement à affiché les listes personnelles à l'utilisateur mais je ne ferai cela que lorsque la tâche arrivera. Je prend ma pause de midi.
+
+---
+
+
+
 ### Bilan
 

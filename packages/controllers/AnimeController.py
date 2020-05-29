@@ -16,6 +16,7 @@ from random import randint
 from .SqliteController import SqliteController
 from .TypeController import TypeController
 from .StatusController import StatusController
+from .ListController import ListController
 from ..models.Anime import Anime
 from .logger import log
 
@@ -317,6 +318,30 @@ class AnimeController:
             return False
 
     @classmethod
+    def is_anime_in_list(cls, anime_id: int, list_id: int) -> bool:
+        """Est-ce que l'anime est dans la liste
+
+            Arguments:
+                anime_id {int} -- Id de l'anime
+                list_id {int} -- Id de la liste
+            
+            Returns:
+                bool -- Est-ce que l'anime est dans la liste
+        """
+        try:
+            sql_is_in_list = """SELECT COUNT(*) AS `Count`
+                                FROM list_has_anime
+                                WHERE idAnime = ?
+                                AND idList = ?"""
+
+            results = SqliteController().execute(sql_is_in_list, values=(anime_id,list_id,), fetch_mode=SqliteController.FETCH_ONE)['Count']
+
+            return bool(results == 1)
+        except SqliteError as e:
+            log(e)
+            return False
+
+    @classmethod
     def set_anime_in_user_favorite(cls, user_id: int, anime_id: int) -> bool:
         """Met à jour l'état de favoris d'un anime pour un utiliateur
 
@@ -383,3 +408,58 @@ class AnimeController:
         except SqliteError as e:
             log(e)
             return []
+
+    @classmethod
+    def set_anime_in_list(cls, anime_id: int, list_id: int) -> bool:
+        """Met à jour l'appartenance d'un anime à une liste
+
+            Arguments:
+                anime_id {int} -- Id de l'anime
+                list_id {int} -- Id de la liste
+        """
+        try:
+            sql_delete_from_list = """DELETE FROM list_has_anime
+                                      WHERE idAnime = ?
+                                      AND idList = ?"""
+            sql_add_to_list = """INSERT INTO list_has_anime(idAnime, idList, modificationDate)
+                                 VALUES(?, ?, ?)"""
+            
+            if cls.is_anime_in_list(anime_id, list_id):
+                SqliteController().execute(sql_delete_from_list, values=(anime_id,list_id,), fetch_mode=SqliteController.NO_FETCH)
+                is_in_list = False
+            else:
+                SqliteController().execute(sql_add_to_list, values=(anime_id,list_id,dt.now(),), fetch_mode=SqliteController.NO_FETCH)
+                is_in_list = True
+
+            return is_in_list
+        except SqliteError as e:
+            log(e)
+            return False
+
+    @classmethod
+    def delete_anime_status(cls, user_id: int, anime_id: int) -> bool:
+        """Supprime le stats actuel d'un anime pour un utilisateur
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur
+                anime_id {int} -- Id de l'anime
+
+            Returns:
+                bool -- État de la requete
+        """
+        try:
+            sql_delete = """DELETE FROM list_has_anime
+                            WHERE idList IN (?, ?, ?, ?)
+                            AND idAnime = ?"""
+
+            default_lists = ListController().get_defaults_for_user(user_id)
+            in_clause = [l['id'] for l in default_lists] # Créer un tableau regroupant les ids des listes par défaut
+            values = [] + in_clause # Fusionne les deux listes
+            values.append(anime_id)
+
+            SqliteController().execute(sql_delete, values=tuple(values), fetch_mode=SqliteController.NO_FETCH)
+
+            return True
+        except SqliteError as e:
+            log(e)
+            return False

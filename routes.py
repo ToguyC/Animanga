@@ -11,7 +11,7 @@ from flask_swagger import swagger
 from flask_login import current_user, login_required
 
 from .packages.controllers.AnimeController import AnimeController
-from .packages.controllers.ListController import ListControlleur
+from .packages.controllers.ListController import ListController
 
 # Configuration du Blueprint
 main_bp = Blueprint('main_bp', __name__,
@@ -64,12 +64,13 @@ def search(search_string: str = None):
     for anime in searched_animes:
         anime['relations'] = AnimeController().get_relations_by_anime_id(anime['id'])
         anime['is_favorite'] = AnimeController().is_anime_is_user_favorite(current_user.id, anime['id'])
+        anime['in_list'] = [l['id'] for l in ListController().get_list_of_an_anime(anime['id'])]
 
     return render_template('index.html',
                             current_user=current_user,
                             search_string=search_string,
                             search_results=searched_animes,
-                            user_list=ListControlleur().get_defaults_for_user(current_user.id))
+                            user_list=ListController().get_defaults_for_user(current_user.id))
 
 @main_bp.route('/get/favorites', methods=['GET'])
 @login_required
@@ -145,6 +146,7 @@ def override_datas():
 #      POST, PATCH, PUT, DELETE
 # ================
 @main_bp.route('/set/favorite', methods=['PATCH'])
+@login_required
 def set_favorite():
     """
     Met à jour le statut de favoris d'un anime pour un utilisateur connecté
@@ -153,5 +155,30 @@ def set_favorite():
 
     if anime_id is not None:
         return jsonify({'Status': AnimeController().set_anime_in_user_favorite(current_user.id, anime_id)})
+    
+    return jsonify({'Status': False})
+
+@main_bp.route('/set/list', methods=['PUT'])
+@login_required
+def set_list():
+    """Met à jour le status de favoris d'un anime pour l'utilisateur connecté
+    """
+    id_anime = request.get_json()['idAnime']
+    id_list = request.get_json()['idList']
+
+    if id_anime is not None:
+        return jsonify({'Status': AnimeController().set_anime_in_list(id_anime, id_list)})
+
+    return jsonify({'Status': False})
+
+@main_bp.route('/delete/defaults', methods=['DELETE'])
+@login_required
+def delete_status():
+    """Supprime l'anime des listes par défaut de l'utilisateur connecté
+    """
+    anime_id = request.get_json()['idAnime']
+
+    if anime_id is not None:
+        return jsonify({'Status': AnimeController().delete_anime_status(current_user.id, anime_id)})
     
     return jsonify({'Status': False})

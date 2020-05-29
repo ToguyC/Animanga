@@ -1,4 +1,4 @@
-/* global: fetchFavorites */
+/* global fetchFavorites */
 
 /**
  * Script pour la prise en charge du chargement des favoris, ajout de favoris,
@@ -11,6 +11,46 @@
  */
 
 const favoriteTogglers = document.querySelectorAll('.favorite-toggler');
+const statusCombo = document.querySelectorAll('.status_combo');
+
+/**
+ * Supprime un anim des listes par défaut
+ *
+ * @param {int} idAnime Id de l'anime à supprimer des listes par défaut
+ * @param {function} callback Function à éxecuter en tant que callback du fetch
+ */
+function deleteAnimeFromDefaultLists(idAnime, callback = () => {}) {
+    return fetch('/delete/defaults', {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ idAnime }),
+    }).then((response) => response.json()).then(() => {
+        callback();
+    });
+}
+
+/**
+ * Ajout un anime dans une liste
+ *
+ * @param {int} idAnime Id de l'anime
+ * @param {int} idList Id de la liste
+ * @param {function} callback Fonction à éxecuter en tant que callback du fetch
+ */
+function putAnimeInList(idAnime, idList, callback = () => {}) {
+    fetch('/set/list', {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ idAnime, idList }),
+    }).then((response) => response.json()).then(() => {
+        callback();
+    });
+}
 
 // Changement du status de favoris de l'anime
 favoriteTogglers.forEach((favoriteToggler) => {
@@ -34,5 +74,21 @@ favoriteTogglers.forEach((favoriteToggler) => {
 
             fetchFavorites();
         });
+    });
+});
+
+// Changement du statut de visionnement de l'anime. (Complété, En cous, Abondoné, Planifié)
+statusCombo.forEach((comboOption) => {
+    comboOption.addEventListener('change', async () => {
+        const idAnime = comboOption.value.split('-')[0];
+        const idList = comboOption.value.split('-')[1];
+
+
+        if (idList !== 'none') {
+            await deleteAnimeFromDefaultLists(idAnime);
+            putAnimeInList(idAnime, idList);
+        } else {
+            deleteAnimeFromDefaultLists(idAnime);
+        }
     });
 });
