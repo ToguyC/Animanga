@@ -9,10 +9,17 @@
 
 const searchClear = document.querySelector('.search-clear');
 const searchString = document.querySelector('.search-form .search-string');
+const pickRandom = document.querySelector('#pick-random');
 
 if (searchClear != null) {
     searchClear.addEventListener('click', () => {
         searchString.value = '';
+    });
+}
+
+if (pickRandom != null) {
+    pickRandom.addEventListener('click', () => {
+        window.location.replace('/random');
     });
 }
 

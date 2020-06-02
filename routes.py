@@ -74,6 +74,23 @@ def search(search_string: str = None):
                             search_results=searched_animes,
                             user_list=ListController().get_user_lists(current_user.id))
 
+@main_bp.route('/random', methods=['GET'])
+@login_required
+def random():
+    """Affiche un anime random
+    """
+    random_anime = AnimeController().get_random_anime()
+
+    random_anime['relations'] = AnimeController().get_relations_by_anime_id(random_anime['id'])
+    random_anime['is_favorite'] = AnimeController().is_anime_in_user_favorite(current_user.id, random_anime['id'])
+    random_anime['in_list'] = [l['id'] for l in ListController().get_list_of_an_anime(random_anime['id'])]
+
+    return render_template('index.html',
+                            current_user=current_user,
+                            search_string='aléatoire',
+                            search_results=[random_anime],
+                            user_list=ListController().get_user_lists(current_user.id))
+
 @main_bp.route('/profile/<string:nickname>', methods=['GET'])
 @login_required
 def profile(nickname: str = None):
@@ -170,17 +187,6 @@ def get_favorites_for_user(nickname = None):
         return jsonify({'animes': AnimeController().get_favorite_by_user_id(user_id)})
 
     return jsonify({'animes': []})
-
-@main_bp.route('/random', methods=['GET'])
-@login_required
-def random_anime():
-    """Récupère une anime aléatoire dans la base
-    """
-    random_anime = AnimeController().get_random_anime()
-
-    random_anime['relations'] = AnimeController().get_relations_by_anime_id(random_anime['id'])
-
-    return jsonify({'anime': random_anime})
 
 @main_bp.route('/endpoints', methods=['GET'])
 def endpoints():

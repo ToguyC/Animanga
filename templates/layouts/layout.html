@@ -47,6 +47,11 @@
                 <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}
                         <li class="nav-item" style="display: flex">
+                            <button type="button" id="pick-random" class="btn mr-5">
+                                <img src="{{ url_for('static', filename='img/random.svg') }}" width="25">
+                            </button>
+                        </li>
+                        <li class="nav-item" style="display: flex">
                             <!-- Button trigger modal -->
                             <button type="button" id="search-modal-trigger" class="btn mr-5" data-toggle="modal" data-target="#exampleModal">
                                 <img src="{{ url_for('static', filename='img/search.svg') }}" width="25">
