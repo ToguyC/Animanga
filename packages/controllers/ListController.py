@@ -91,3 +91,28 @@ class ListController:
         except SqliteError as e:
             log(e)
             return []
+
+    @classmethod
+    def get_user_lists(cls, user_id: int) -> [List]:
+        """Récupère toutes les listes d'un utilisateur
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur
+
+            Returns:
+                [List] -- Toutes les listes de l'utilisateur
+        """
+        try:
+            sql_user_lists = """SELECT list.idList, nameList
+                                FROM list
+                                JOIN user_has_list ON list.idList = user_has_list.idList
+                                WHERE user_has_list.idUser = ?"""
+
+            results = SqliteController().execute(sql_user_lists, values=(user_id,), fetch_mode=SqliteController.FETCH_ALL)
+
+            encapsulated = cls.__encapsulate_lists(results)
+
+            return cls.__serialize_encapsulated_lists(encapsulated)
+        except SqliteError as e:
+            log(e)
+            return []

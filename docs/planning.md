@@ -105,6 +105,12 @@
 | **Critère d'acceptation**      | Les test *12.1* et *12.2* passent.                           |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
+| Nom                            | S18: Affichage des activités                                 |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant qu'utilisateur connecté, je vois mon fil d'actualité contenant le temps écoulé depuis l'ajout d'un favoris et l'ajout d'un anime dans une liste. |
+| **Critère d'acceptation**      | **Pas encore de tests**                                      |
+| **Priorité**                   | ❓ Secondaire                                                 |
+
 ## Diagramme de Gantt
 
 Planning prévisionnel : <span style="color: #F7DC79; font-weight: bold">#F7DC79</span>
@@ -1008,9 +1014,60 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 15px">S11 : Organisation des favoris</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #f7dc79;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S18 : Affichage des activités</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1417,6 +1474,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         Planification imprévue
     </div>
 </div>
+
 
 
 

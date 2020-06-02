@@ -1,0 +1,47 @@
+{% extends 'layouts/layout.html' %}
+
+{% block metas %}
+<meta id="searched_user" data-nickname="{{ searched_user.nickname }}">
+{% endblock metas %}
+
+{% block title %}
+    Listes - {{ searched_user.nickname }}
+{% endblock title %}
+
+{% block content %}
+    {% include 'layouts/profile-header.html' %}
+
+    <div class="row mt-4">
+        <div class="col-xl-2 col-md-12 mb-5" id="lists">
+            <div class="lists-container">
+                <div id="search-list">
+                    <img src="{{ url_for('static', filename='img/search.svg') }}" width="20">
+                    <input type="text" class="search-string" placeholder="Rechercher">
+                </div>
+
+                <h4>Listes</h4>
+
+                <ul>
+                    <li class="selected"><span class="list__name">Tous</span></li>
+                    {% for list in user_lists %}
+                        {% if loop.index > 4 and current_user.nickname == searched_user.nickname %}
+                            <li data-list="{{ list.id }}"><span class="list__name">{{ list.name }}</span> <span class="remove__list">🗑️</span></li>
+                        {% else %}  
+                            <li data-list="{{ list.id }}"><span class="list__name">{{ list.name }}</span></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if current_user.nickname == searched_user.nickname %}
+                        <li class="new-list">
+                            <input type="text" name="new-list__name" id="new-list__name" placeholder="Nouvelle liste">
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-xl-10 col-md-12 p-md-5 p-xl-0" id="animes-container"></div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/user-lists-handler.js') }}"></script>
+{% endblock script %}

@@ -98,6 +98,33 @@ def profile_redirect():
     """
     return redirect(url_for('main_bp.profile', nickname=current_user.nickname))
 
+@main_bp.route('/lists/<string:nickname>')
+@login_required
+def lists(nickname: str = None):
+    """Affiche toutes les liste et leur contenu de l'utilisateur mentionné dans l'url
+    """
+    if nickname is None:
+        nickname = current_user.nickname
+
+    searched_user = UserController().get_by_nickname(nickname)
+
+    if searched_user is not None:
+        user_lists = ListController().get_user_lists(searched_user.id)
+        return render_template('lists.html',
+                                current_user=current_user,
+                                user_lists=user_lists,
+                                searched_user=searched_user)
+
+    return redirect(url_for('main_bp.home'))
+
+@main_bp.route('/lists')
+@main_bp.route('/lists/')
+@login_required
+def lists_redirect():
+    """Redirige l'utilisateur si aucuns pseudo n'est inscrit dans l'url
+    """
+    return redirect(url_for('main_bp.lists', nickname=current_user.nickname))
+
 @main_bp.route('/get/favorites', methods=['GET'])
 @login_required
 def get_favorites_for_loged_user():
@@ -208,3 +235,15 @@ def delete_status():
         return jsonify({'Status': AnimeController().delete_anime_status(current_user.id, anime_id)})
     
     return jsonify({'Status': False})
+
+@main_bp.route('/get/animes', methods=['POST'])
+@login_required
+def get_animes_from_list():
+    """Récupère les animes d'une liste
+    """
+    if request.json.get('nicknameUser') is not None and request.json.get('nicknameUser') != current_user.nickname:
+        user_id = UserController().get_by_nickname(request.json.get('nicknameUser')).id
+    else:
+        user_id = current_user.id
+
+    return jsonify({ 'animes': AnimeController().get_animes_in_list_for_user(user_id, request.json.get('idList'), request.json.get('search-term')) })

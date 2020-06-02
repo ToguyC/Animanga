@@ -463,3 +463,55 @@ class AnimeController:
         except SqliteError as e:
             log(e)
             return False
+
+    @classmethod
+    def get_animes_in_list_for_user(cls, user_id: int, list_id: int, search_terms: str = None) -> [Anime]:
+        """Récupère la liste de tout les animes d'une liste
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur
+                list_id {int} -- Id de la liste
+                search_terms {str} -- Chaine de caractères pour la recherche d'anime dans une liste
+            Returns:
+                [Anime] -- Liste de tous les animes trouvés
+        """
+        try:
+            animes = {}
+
+            sql_select = """SELECT list.idList, list.nameList, anime.idAnime, anime.title, nameType, list_has_anime.idList, anime.episodes, nameStatus, anime.picture, anime.thumbnail, anime.synonyms
+                            FROM anime
+                            JOIN anime_ft ON anime.idAnime = anime_ft.idAnime
+                            JOIN list_has_anime ON list_has_anime.idAnime = anime.idAnime
+                            JOIN user_has_list ON user_has_list.idList = list_has_anime.idList
+                            JOIN list ON list.idList = list_has_anime.idList
+                            JOIN type ON type.idType = anime.type
+                            JOIN status ON status.idStatus = anime.status
+                            WHERE user_has_list.idUser = ?"""
+            
+            if search_terms is not None and search_terms != "":
+                sql_select += " AND anime_ft.title MATCH ?"
+
+                if list_id is not None:
+                    sql_select += " AND list_has_anime.idList = ?"
+                    values = (user_id, search_terms, list_id,)
+                else:
+                    values = (user_id, search_terms,)
+            elif list_id is not None:
+                sql_select += " AND list_has_anime.idList = ?"
+                values = (user_id, list_id,)
+            else:
+                values = (user_id,)
+            
+            rows = SqliteController().execute(sql_select, values=values, fetch_mode=SqliteController.FETCH_ALL)
+
+            for row in rows:
+                # Obliger de mettre l'id en plus car sinon le javascript va trier automatiquement par ordre alphabétique
+                new_name = (str(row['idList']) + '-' + row['nameList'])
+                if new_name not in animes:
+                    animes[new_name] = []
+                animes[new_name].append(Anime(row['idAnime'], row['title'], row['nameType'], row['episodes'], row['nameStatus'], row['picture'], row['thumbnail'], row['synonyms']).serialize())
+        
+            return animes
+        except SqliteError as e:
+            log(e)
+            return {}
