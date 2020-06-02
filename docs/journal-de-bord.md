@@ -340,6 +340,8 @@ Je commence maintenant la suppression des listes et de leur contenu.
 
 13h10 : J'ai terminé la mise à jour du nom d'une liste et je passe maintenant à la mise à jour de l'ordre des favoris.
 
-14h : La mise à jour de l'ordre des favoris est terminé et je vais maintenant faire l'affichage des activités de l'utilisateur connecté.
+14h : La mise à jour de l'ordre des favoris est terminé et je vais maintenant faire l'affichage des activités de l'utilisateur connecté. L'ordre des favoris est modifié grâce à la librairie [JQueryUI](https://jqueryui.com/), qui permet rendre une `div` capable de prendre en charge du drag&drop. J'a utilisé le drag&drop pour déplacé les animes dans l'ordre que l'utilisateur veut sur la page des favoris.
 
 Cette tâche n'est pas présente dans le planning prévisionnel car je l'avais oublié lors de la rédaction du planning. Je l'ai cependant rajouté dans le product backlog. C'est pourquoi il n'y a pas de case orange dans la planning prévisionnel et seulement une case rouge.
+
+15h30 : Les activité ont été implémentées. J'affiche toutes les activités des 24 dernières heures. Les animes mis en favoris et les animes mise dans des listes. Elles sont présentes sur la page d'accueil si l'utilisateur n'a fait aucune recherche.

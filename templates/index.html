@@ -24,7 +24,7 @@
                         <span>(´。＿。｀)</span>
                     </div>
 
-                    <!-- Future affichage des activités -->
+                    <div class="activities row"></div>
                 {% else %}
                     <h4>Résultats pour "{{ search_string }}" :</h4>
 
@@ -111,11 +111,12 @@
 {% block script %}
     <script src="{{ url_for('static', filename='js/landing-page-handler.js') }}"></script>
     <script src="{{ url_for('static', filename='js/fetch-favorites.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/fetch-activities.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ratio-keeper.js') }}"></script>
     <script src="{{ url_for('static', filename='js/anime-handler.js') }}"></script>
     <script>
-        document.addEventListener('load', fetchFavorites(false, null));
-
+        window.addEventListener('load', () => { fetchFavorites(true, null); fetchActivities(); });
+        
         // Déclaration obligatoire pour que les message du stream puissent être mis dans un élément DOM
         let override_info = document.getElementById('override-info');
     </script>

@@ -13,6 +13,7 @@ from flask_login import current_user, login_required
 from .packages.controllers.AnimeController import AnimeController
 from .packages.controllers.ListController import ListController
 from .packages.controllers.UserController import UserController
+from .packages.controllers.ActivitiesController import ActivitiesController
 
 # Configuration du Blueprint
 main_bp = Blueprint('main_bp', __name__,
@@ -304,3 +305,10 @@ def set_favorites_order():
     """Met à jour l'ordre des favoris
     """
     return jsonify({ 'Status': AnimeController().reorder_favorites(current_user.id, request.json.get('ids')) })
+
+@main_bp.route('/get/activities', methods=['GET'])
+@login_required
+def get_activities_for_logged_user():
+    """Récupère tous les activitées de l'utilisateur connecté
+    """
+    return jsonify({'activities': ActivitiesController().get_last_24h(current_user.id)})

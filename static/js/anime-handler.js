@@ -40,7 +40,7 @@ function deleteAnimeFromDefaultLists(idAnime, callback = () => {}) {
  * @param {int} idList Id de la liste
  * @param {function} callback Fonction à éxecuter en tant que callback du fetch
  */
-function putAnimeInList(idAnime, idList, callback = (json) => {}) {
+function putAnimeInList(idAnime, idList, callback = () => {}) {
     fetch('/set/list', {
         method: 'PUT',
         headers: {
@@ -112,4 +112,4 @@ customChecks.forEach((customCheck) => {
             }
         });
     });
-})
+});

@@ -34,21 +34,21 @@ function fetchListAnimes(searchTerms, idList) {
             'search-terms': searchTerms,
         }),
     }).then((response) => response.json()).then((json) => {
-        const animes = json.animes;
+        const { animes } = json.animes;
         const animesContainer = document.querySelector('#animes-container');
-        
+
         if (Object.keys(animes).length > 0) {
             const animeLists = Object.keys(animes);
-            
+
             animesContainer.innerHTML = '';
-            
+
             animeLists.forEach((list) => {
                 const listSection = document.createElement('div');
                 const listSectionTitle = document.createElement('h2');
 
                 listSection.classList = 'mb-5 list-section';
                 listSectionTitle.innerHTML = list;
-                
+
                 animes[list].forEach((anime) => {
                     const animeItem = document.createElement('div');
                     const animeItemTitle = document.createElement('h4');
@@ -98,13 +98,13 @@ function fetchListAnimes(searchTerms, idList) {
 function listNamesClickEventSetup() {
     listNames.forEach((listName) => {
         const currentListName = listName;
-        
+
         // Event clique pour le nom des listes afin d'afficher les animes de cette dite liste
         currentListName.addEventListener('click', () => {
             const list = currentListName.parentElement;
 
             if (!list.classList.contains('new-list')) {
-                // Parcour toutes les listes existantes dans la page et supprime la classe 
+                // Parcour toutes les listes existantes dans la page et supprime la classe
                 // `selected` pour l'ajouté sur la liste courante
                 lists.forEach((l) => l.classList.remove('selected'));
                 list.classList.add('selected');
@@ -113,13 +113,15 @@ function listNamesClickEventSetup() {
             }
         });
 
-        if (![
+        if (
+            ![
                 'Complétés',
                 'En cours',
                 'Planifiés',
-                'Abandonés'
-            ].includes(currentListName.innerHTML)) {
-            // Event double clique pour renommer la liste seulement si elle ne fait 
+                'Abandonés',
+            ].includes(currentListName.innerHTML)
+        ) {
+            // Event double clique pour renommer la liste seulement si elle ne fait
             // pas parti de celles par défaut
             currentListName.addEventListener('dblclick', () => {
                 const newNameInput = currentListName.parentNode.querySelector('input');
@@ -170,6 +172,28 @@ function removeListClickEventSetup() {
 }
 
 /**
+ * Annulle le renommage de la lsite
+ */
+function cancelListRenameClickEvent() {
+    // Event clique pour l'annullation du renommage d'une liste
+    listCancelRenames.forEach((cancelTrigger) => {
+        cancelTrigger.addEventListener('click', () => {
+            const list = cancelTrigger.parentNode;
+            const newNameInput = list.querySelector('input');
+            const cancelButton = list.querySelector('.cancel__rename');
+            const removeButton = list.querySelector('.remove__list');
+            const listName = list.querySelector('.list__name');
+
+            newNameInput.classList.add('d-none');
+            newNameInput.value = '';
+            cancelButton.classList.add('d-none');
+            listName.classList.remove('d-none');
+            removeButton.classList.remove('d-none');
+        });
+    });
+}
+
+/**
  * Ajoute une nouvelle liste personnelle à l'utilisateur
  *
  * @param {string} newListName Nom de la nouvelle liste
@@ -198,7 +222,7 @@ function addNewList(newListName) {
         listName.innerHTML = createdList.name;
         udpateNameInput.type = 'text';
         udpateNameInput.name = 'new_list_name';
-        udpateNameInput.style.width = "80%";
+        udpateNameInput.style.width = '80%';
         udpateNameInput.classList.add('d-none');
         udpateNameInput.id = `${createdList.id}_new_list_name`;
         removeButton.classList.add('remove__list');
@@ -208,7 +232,7 @@ function addNewList(newListName) {
         li.appendChild(udpateNameInput);
         li.appendChild(removeButton);
 
-        // Ajoute la nouvelle liste juste avant le champ text permettant d'ajouter 
+        // Ajoute la nouvelle liste juste avant le champ text permettant d'ajouter
         // une nouvelle liste
         document.querySelector('#lists .lists-container ul').insertBefore(li, lists[lists.length - 1]);
 
@@ -227,30 +251,8 @@ function addNewList(newListName) {
 }
 
 /**
- * Annulle le renommage de la lsite
- */
-function cancelListRenameClickEvent() {
-    // Event clique pour l'annullation du renommage d'une liste
-    listCancelRenames.forEach((cancelTrigger) => {
-        cancelTrigger.addEventListener('click', () => {
-            const list = cancelTrigger.parentNode;
-            const newNameInput = list.querySelector('input');
-            const cancelButton = list.querySelector('.cancel__rename');
-            const removeButton = list.querySelector('.remove__list');
-            const listName = list.querySelector('.list__name');
-
-            newNameInput.classList.add('d-none');
-            newNameInput.value = '';
-            cancelButton.classList.add('d-none');
-            listName.classList.remove('d-none');
-            removeButton.classList.remove('d-none');
-        });
-    });
-}
-
-/**
  * Renomme la liste
- * 
+ *
  * @param {int} listId Id de la liste à modifier
  * @param {string} newListName Nouveau nom de la liste
  */
@@ -265,7 +267,7 @@ function renameList(idList, newListName) {
             idList,
             newListName,
         }),
-    }).then((response) => response.json()).then((json) => {
+    }).then((response) => response.json()).then(() => {
         window.location.reload();
     });
 }
@@ -281,20 +283,21 @@ listSearchString.onkeydown = (e) => {
 // Créer une nouvelle liste pour l'utilisateur connecté lorsque la touche entrée et pressée
 if (newListString !== undefined) {
     newListString.onkeydown = (e) => {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             addNewList(newListString.value);
         }
-    }
+    };
 }
 
 // Renomme une liste
 if (listRenameInput !== undefined) {
     listRenameInput.forEach((renameInput) => {
-        renameInput.onkeydown = (e) => {
-            if (e.keyCode == 13) {
-                renameList(renameInput.parentNode.dataset.list, renameInput.value);
+        const curentRenameInput = renameInput;
+        curentRenameInput.onkeydown = (e) => {
+            if (e.keyCode === 13) {
+                renameList(curentRenameInput.parentNode.dataset.list, curentRenameInput.value);
             }
-        }
+        };
     });
 }
 
