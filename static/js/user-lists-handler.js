@@ -10,6 +10,8 @@
 let lists = document.querySelectorAll('#lists .lists-container ul li');
 let listNames = document.querySelectorAll('#lists .lists-container ul li .list__name');
 let listRemovables = document.querySelectorAll('#lists .lists-container ul li .remove__list');
+let listCancelRenames = document.querySelectorAll('#lists .lists-container ul li .cancel__rename');
+let listRenameInput = document.querySelectorAll('#lists .lists-container ul li input');
 const listSearchString = document.querySelector('#search-list .search-string');
 const newListString = document.querySelector('#new-list__name');
 
@@ -94,10 +96,10 @@ function fetchListAnimes(searchTerms, idList) {
  * Récupère les animes de la list cliquée
  */
 function listNamesClickEventSetup() {
-    // Event clique pour le nom des listes afin d'afficher les animes de cette dite liste
     listNames.forEach((listName) => {
         const currentListName = listName;
-
+        
+        // Event clique pour le nom des listes afin d'afficher les animes de cette dite liste
         currentListName.addEventListener('click', () => {
             const list = currentListName.parentElement;
 
@@ -110,6 +112,27 @@ function listNamesClickEventSetup() {
                 fetchListAnimes(listSearchString.value, list.dataset.list);
             }
         });
+
+        if (![
+                'Complétés',
+                'En cours',
+                'Planifiés',
+                'Abandonés'
+            ].includes(currentListName.innerHTML)) {
+            // Event double clique pour renommer la liste seulement si elle ne fait 
+            // pas parti de celles par défaut
+            currentListName.addEventListener('dblclick', () => {
+                const newNameInput = currentListName.parentNode.querySelector('input');
+                const cancelButton = currentListName.parentNode.querySelector('.cancel__rename');
+                const removeButton = currentListName.parentNode.querySelector('.remove__list');
+
+                newNameInput.classList.remove('d-none');
+                newNameInput.value = currentListName.innerHTML;
+                cancelButton.classList.remove('d-none');
+                currentListName.classList.add('d-none');
+                removeButton.classList.add('d-none');
+            });
+        }
     });
 }
 
@@ -167,15 +190,22 @@ function addNewList(newListName) {
 
         const li = document.createElement('li');
         const listName = document.createElement('span');
+        const udpateNameInput = document.createElement('input');
         const removeButton = document.createElement('span');
 
         li.dataset.list = createdList.id;
         listName.classList.add('list__name');
         listName.innerHTML = createdList.name;
+        udpateNameInput.type = 'text';
+        udpateNameInput.name = 'new_list_name';
+        udpateNameInput.style.width = "80%";
+        udpateNameInput.classList.add('d-none');
+        udpateNameInput.id = `${createdList.id}_new_list_name`;
         removeButton.classList.add('remove__list');
         removeButton.innerHTML = '🗑';
 
         li.appendChild(listName);
+        li.appendChild(udpateNameInput);
         li.appendChild(removeButton);
 
         // Ajoute la nouvelle liste juste avant le champ text permettant d'ajouter 
@@ -186,10 +216,57 @@ function addNewList(newListName) {
         lists = document.querySelectorAll('#lists .lists-container ul li');
         listNames = document.querySelectorAll('#lists .lists-container ul li .list__name');
         listRemovables = document.querySelectorAll('#lists .lists-container ul li .remove__list');
+        listCancelRenames = document.querySelectorAll('#lists .lists-container ul li .cancel__rename');
+        listRenameInput = document.querySelectorAll('#lists .lists-container ul li input');
 
         // Ajout des events pour la liste venant d'être créer
         listNamesClickEventSetup();
         removeListClickEventSetup();
+        cancelListRenameClickEvent();
+    });
+}
+
+/**
+ * Annulle le renommage de la lsite
+ */
+function cancelListRenameClickEvent() {
+    // Event clique pour l'annullation du renommage d'une liste
+    listCancelRenames.forEach((cancelTrigger) => {
+        cancelTrigger.addEventListener('click', () => {
+            const list = cancelTrigger.parentNode;
+            const newNameInput = list.querySelector('input');
+            const cancelButton = list.querySelector('.cancel__rename');
+            const removeButton = list.querySelector('.remove__list');
+            const listName = list.querySelector('.list__name');
+
+            newNameInput.classList.add('d-none');
+            newNameInput.value = '';
+            cancelButton.classList.add('d-none');
+            listName.classList.remove('d-none');
+            removeButton.classList.remove('d-none');
+        });
+    });
+}
+
+/**
+ * Renomme la liste
+ * 
+ * @param {int} listId Id de la liste à modifier
+ * @param {string} newListName Nouveau nom de la liste
+ */
+function renameList(idList, newListName) {
+    fetch('/set/list/name', {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            idList,
+            newListName,
+        }),
+    }).then((response) => response.json()).then((json) => {
+        window.location.reload();
     });
 }
 
@@ -210,8 +287,20 @@ if (newListString !== undefined) {
     }
 }
 
+// Renomme une liste
+if (listRenameInput !== undefined) {
+    listRenameInput.forEach((renameInput) => {
+        renameInput.onkeydown = (e) => {
+            if (e.keyCode == 13) {
+                renameList(renameInput.parentNode.dataset.list, renameInput.value);
+            }
+        }
+    });
+}
+
 window.addEventListener('load', () => {
     fetchListAnimes(null, null);
     listNamesClickEventSetup();
     removeListClickEventSetup();
+    cancelListRenameClickEvent();
 });

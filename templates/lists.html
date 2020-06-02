@@ -25,7 +25,12 @@
                     <li class="selected"><span class="list__name">Tous</span></li>
                     {% for list in user_lists %}
                         {% if loop.index > 4 and current_user.nickname == searched_user.nickname %}
-                            <li data-list="{{ list.id }}"><span class="list__name">{{ list.name }}</span> <span class="remove__list">🗑️</span></li>
+                            <li data-list="{{ list.id }}">
+                                <span class="list__name">{{ list.name }}</span>
+                                <input type="text" class="d-none" style="width: 80%" name="new_list_name" id="{{ list.id }}_new_list_name">
+                                <span class="cancel__rename d-none">🚫</span>
+                                <span class="remove__list">🗑️</span>
+                            </li>
                         {% else %}  
                             <li data-list="{{ list.id }}"><span class="list__name">{{ list.name }}</span></li>
                         {% endif %}

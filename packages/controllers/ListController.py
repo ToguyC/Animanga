@@ -188,3 +188,24 @@ class ListController:
         except SqliteError as e:
             print(str(e))
             raise e
+
+    @classmethod
+    def rename(cls, list_id: int, new_list_name: str) -> bool:
+        """Renomme une liste
+
+            Arguments:
+                list_id {int} -- Id de la liste à renommé
+                new_list_name {str} -- Nouveau nom de la liste
+
+            Returns:
+                bool -- État de la requête
+        """
+        try:
+            sql_update = "UPDATE list SET nameList = ? WHERE idList = ?"
+
+            SqliteController().execute(sql_update, values=(new_list_name, list_id,), fetch_mode=SqliteController.NO_FETCH)
+
+            return True
+        except SqliteError as e:
+            log(e)
+            return False

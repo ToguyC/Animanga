@@ -951,7 +951,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1000,8 +1000,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #F34C56;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1470,10 +1470,6 @@
         Planification imprévue
     </div>
 </div>
-
-
-
-
 
 
 

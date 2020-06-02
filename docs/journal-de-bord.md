@@ -331,3 +331,11 @@ Les listes présentes dans le json ne sont que les listes contenant des animes.
 Je commence maintenant la suppression des listes et de leur contenu.
 
 11h40 : J'ai terminé la suppression des listes et de leur contenu. Il ne me reste qu'à faire le renommage. Je commence cela maintenant.
+
+12h : Je n'ai pas encore terminé la mise à jour du nom de la liste mais il ne me reset que la partie base de données à faire. Toute la partie logique est faite. Je recommencerai cet après-midi.
+
+---
+
+13h : Je recommence la journée et je vais terminé la mise à jour du nom d'une liste.
+
+13h10 : J'ai terminé la mise à jour du nom d'une liste et je passe maintenant à la mise à jour de l'ordre des favoris.

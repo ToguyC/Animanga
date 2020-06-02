@@ -214,7 +214,7 @@ def set_favorite():
 @main_bp.route('/set/list', methods=['PUT'])
 @login_required
 def set_list():
-    """Met à jour le status de favoris d'un anime pour l'utilisateur connecté
+    """Met à jour l'association d'un anime avec une liste
     """
     id_anime = request.get_json()['idAnime']
     id_list = request.get_json()['idList']
@@ -261,3 +261,13 @@ def delete_list():
     """Supprime une liste à l'utilisateur connecté
     """
     return jsonify({ 'Status': ListController().delete_by_id(request.json.get('idList'), current_user.id) })
+
+@main_bp.route('/set/list/name', methods=['PATCH'])
+@login_required
+def rename_list():
+    """Renomme une liste
+    """
+    list_id = request.get_json()['idList']
+    new_list_name = request.get_json()['newListName']
+
+    return jsonify({'Status': ListController().rename(list_id, new_list_name)})
