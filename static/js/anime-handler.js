@@ -12,6 +12,7 @@
 
 const favoriteTogglers = document.querySelectorAll('.favorite-toggler');
 const statusCombo = document.querySelectorAll('.status_combo');
+const customChecks = document.querySelectorAll('.custom-check');
 
 /**
  * Supprime un anim des listes par défaut
@@ -39,7 +40,7 @@ function deleteAnimeFromDefaultLists(idAnime, callback = () => {}) {
  * @param {int} idList Id de la liste
  * @param {function} callback Fonction à éxecuter en tant que callback du fetch
  */
-function putAnimeInList(idAnime, idList, callback = () => {}) {
+function putAnimeInList(idAnime, idList, callback = (json) => {}) {
     fetch('/set/list', {
         method: 'PUT',
         headers: {
@@ -47,8 +48,8 @@ function putAnimeInList(idAnime, idList, callback = () => {}) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ idAnime, idList }),
-    }).then((response) => response.json()).then(() => {
-        callback();
+    }).then((response) => response.json()).then((json) => {
+        callback(json);
     });
 }
 
@@ -92,3 +93,23 @@ statusCombo.forEach((comboOption) => {
         }
     });
 });
+
+// Ajout d'un anime dans une liste
+customChecks.forEach((customCheck) => {
+    customCheck.addEventListener('click', (e) => {
+        const check = e.target;
+        const input = check.querySelector('input[type="checkbox"]');
+        input.checked = !input.checked;
+
+        const idAnime = input.value.split('-')[0];
+        const idList = input.value.split('-')[1];
+
+        putAnimeInList(idAnime, idList, (json) => {
+            if (json.Status === true) {
+                check.classList.add('checked');
+            } else {
+                check.classList.remove('checked');
+            }
+        });
+    });
+})

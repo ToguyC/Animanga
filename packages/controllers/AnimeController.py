@@ -486,7 +486,8 @@ class AnimeController:
                             JOIN list ON list.idList = list_has_anime.idList
                             JOIN type ON type.idType = anime.type
                             JOIN status ON status.idStatus = anime.status
-                            WHERE user_has_list.idUser = ?"""
+                            WHERE user_has_list.idUser = ?
+                            ORDER BY list.idList"""
             
             if search_terms is not None and search_terms != "":
                 sql_select += " AND anime_ft.title MATCH ?"
@@ -504,9 +505,9 @@ class AnimeController:
             
             rows = SqliteController().execute(sql_select, values=values, fetch_mode=SqliteController.FETCH_ALL)
 
+            # Ajoute les animes dans la bonne liste
             for row in rows:
-                # Obliger de mettre l'id en plus car sinon le javascript va trier automatiquement par ordre alphabétique
-                new_name = (str(row['idList']) + '-' + row['nameList'])
+                new_name = row['nameList']
                 if new_name not in animes:
                     animes[new_name] = []
                 animes[new_name].append(Anime(row['idAnime'], row['title'], row['nameType'], row['episodes'], row['nameStatus'], row['picture'], row['thumbnail'], row['synonyms']).serialize())

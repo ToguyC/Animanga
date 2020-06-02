@@ -5,6 +5,8 @@
 @version: 1.0.0
 @date: 2020-05-28
 """
+from datetime import datetime as dt
+
 from .SqliteController import SqliteError, SqliteController
 from .logger import log
 from ..models.List import List
@@ -116,3 +118,48 @@ class ListController:
         except SqliteError as e:
             log(e)
             return []
+
+    @classmethod
+    def get_by_id(cls, list_id: int) -> List:
+        """Récupère une liste via son id
+
+            Arguments:
+                list_id {int} -- Id de la liste
+
+            Return:
+                List -- Liste trouvée
+        """
+        try:
+            sql_select = "SELECT idList, nameList FROM list WHERE idList = ?"
+
+            row = SqliteController().execute(sql_select, values=(list_id,), fetch_mode=SqliteController.FETCH_ONE)
+
+            return List(row['idList'], row['nameList'])
+        except SqliteError as e:
+            log(e)
+            return None
+
+    @classmethod
+    def add_new_list(cls, new_name: str, user_id: int) -> List:
+        """Ajoute une nouvelle liste pour l'utiliateur connecté
+
+            Arguments:
+                new_name {str} -- Nom de la nouvelle liste
+                user_id {int} -- Id de l'utilisateur connecté
+
+            Returns:
+                List -- Nouvelle liste créée
+        """
+        try:
+            sql_insert = "INSERT INTO list(nameList, modificationDate) VALUES(?, ?)"
+            sql_link_to_user = "INSERT INTO user_has_list(idUser, idList, modificationDate) VALUES(?, ?, ?)"
+
+            current_date = dt.now()
+
+            list_id = SqliteController().execute(sql_insert, values=(new_name, current_date,), fetch_mode=SqliteController.NO_FETCH)
+            SqliteController().execute(sql_link_to_user, values=(user_id, list_id, current_date,), fetch_mode=SqliteController.NO_FETCH)
+
+            return cls.get_by_id(list_id).serialize()
+        except SqliteError as e:
+            log(e)
+            return None

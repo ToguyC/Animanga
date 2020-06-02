@@ -113,10 +113,6 @@
 
 ## Diagramme de Gantt
 
-Planning prévisionnel : <span style="color: #F7DC79; font-weight: bold">#F7DC79</span>
-
-Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
-
 <table>
     <thead>
         <tr>
@@ -1080,7 +1076,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td style="background: #f7dc79;"></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1104,7 +1100,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td></td> <!-- style="background: #F34C56;"-->
             <td></td>
             <td></td>
             <td></td>
@@ -1129,7 +1125,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #f7dc79;"></td>
             <td style="background: #f7dc79;"></td>
             <td style="background: #f7dc79;"></td>
             <td style="background: #f7dc79;"></td>
@@ -1474,6 +1470,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         Planification imprévue
     </div>
 </div>
+
 
 
 

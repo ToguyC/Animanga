@@ -289,3 +289,20 @@ Je termine ma journée.
 ### Bilan
 
 Cette journée c'est très bien passée. J'ai pu faire tout ce qu'il fallait pour la journée et aucun bug n'est présent pour le moment.
+
+## J6 : mardi 2 juin 2020
+
+### Objectif
+
+Cette journée est relativement remplie. Premièrement, je dois affiché le contenu des listes d'un utilisateur. Secondement, il faut que je fasse la gestion des listes. Cela comprend l'ajout de nouvelle liste, la suppression des listes existantes et le renommage des listes existantes. Enfin, il va falloir que je fasse la gestion de l'ordre des favoris.
+
+### Déroulement
+
+8h : Je commence ma journée en commençant l'affichage du contenu des listes d'un utilisateur. Une route doit être faite pour récupérer les animes d'une liste.
+
+9h : J'ai remarqué que le javascript ordonne automatiquement les listes lorsqu'il les reçoit via un fetch. J'ai donc dû mettre l'id de la liste devant le nom pour que l'ordre soit fait sur l'id et non sur le nom de la liste. Cela permet de garder l'ordre de création des listes.
+
+9h30 : J'ai terminé l'affichage des listes. Dès que l'on clique sur le nom d'une liste, le site nous montre les animes contenu dans la liste cliquée. Par défaut, c'est `Tous` qui est sélectionné, ce qui permet de voir tout les animes de toutes les listes de l'utilisateur.
+
+Je commence maintenant maitenant la gestion des listes.s
+

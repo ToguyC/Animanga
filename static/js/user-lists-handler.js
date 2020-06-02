@@ -15,7 +15,7 @@ const newListString = document.querySelector('#new-list__name');
 
 /**
  * Récupère tout les animes d'une liste et les affiche
- * 
+ *
  * @param {string} searchTerms Chaine de recherche
  * @param {int} idList Id de la liste à fetch
  */
@@ -29,24 +29,27 @@ function fetchListAnimes(searchTerms, idList) {
         body: JSON.stringify({
             nicknameUser: document.getElementById('searched_user').dataset.nickname,
             idList,
-            'search-terms': searchTerms
+            'search-terms': searchTerms,
         }),
     }).then((response) => response.json()).then((json) => {
         const animes = json.animes;
+        const collator = new Intl.Collator(undefined, {numeri: true, sensitivity: 'base'});
+        console.log(Object.keys(json.animes).sort(collator.compare));
+        
         const animesContainer = document.querySelector('#animes-container');
-
+        
         if (Object.keys(animes).length > 0) {
             const animeLists = Object.keys(animes);
-
+            
             animesContainer.innerHTML = '';
-
+            
             animeLists.forEach((list) => {
                 const listSection = document.createElement('div');
                 const listSectionTitle = document.createElement('h2');
 
                 listSection.classList = 'mb-5 list-section';
-                listSectionTitle.innerHTML = list.split('-')[1];
-
+                listSectionTitle.innerHTML = list;
+                
                 animes[list].forEach((anime) => {
                     const animeItem = document.createElement('div');
                     const animeItemTitle = document.createElement('h4');
@@ -87,13 +90,13 @@ function fetchListAnimes(searchTerms, idList) {
 
             animesContainer.appendChild(infos);
         }
-    })
+    });
 }
 
 /**
  * Récupère les animes de la list cliquée
  */
-function listNameClickEventSetup() {
+function listNamesClickEventSetup() {
     // Event clique pour le nom des listes afin d'afficher les animes de cette dite liste
     listNames.forEach((listName) => {
         const currentListName = listName;
@@ -102,10 +105,10 @@ function listNameClickEventSetup() {
             const list = currentListName.parentElement;
 
             if (!list.classList.contains('new-list')) {
-                // Parcour toutes les listes existantes dans la page et supprime la classe `selected` 
-                // pour l'ajouté sur la liste courante
+                // Parcour toutes les listes existantes dans la page et supprime la classe 
+                // `selected` pour l'ajouté sur la liste courante
                 lists.forEach((l) => l.classList.remove('selected'));
-                list.classList.add('selected')
+                list.classList.add('selected');
 
                 fetchListAnimes(listSearchString.value, list.dataset.list);
             }
@@ -113,7 +116,96 @@ function listNameClickEventSetup() {
     });
 }
 
+/**
+ * Supprime une liste
+ *
+ * @param {int} idList Id de la liste à supprimer
+ */
+function deleteList(idList) {
+    fetch('/delete/list', {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            idList,
+        }),
+    }).then((response) => response.json()).then(() => {
+        window.location.reload();
+    });
+}
+
+/**
+ * Supprime la liste cliqueé
+ */
+function removeSistClickEventSetup() {
+    // Event clique pour la suppression d'une liste
+    listRemovables.forEach((removeTrigger) => {
+        removeTrigger.addEventListener('click', () => {
+            const list = removeTrigger.parentNode;
+            deleteList(list.dataset.list);
+        });
+    });
+}
+
+/**
+ * Ajoute une nouvelle liste personnelle à l'utilisateur
+ *
+ * @param {string} newListName Nom de la nouvelle liste
+ */
+function addNewList(newListName) {
+    fetch('/add/list', {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            newListName,
+        }),
+    }).then((response) => response.json()).then((json) => {
+        newListString.value = '';
+        const createdList = json.list;
+
+        const li = document.createElement('li');
+        const listName = document.createElement('span');
+        const removeButton = document.createElement('span');
+
+        li.dataset.list = createdList.id;
+        listName.classList.add('list__name');
+        listName.innerHTML = createdList.name;
+        removeButton.classList.add('remove__list');
+        removeButton.innerHTML = '🗑';
+
+        li.appendChild(listName);
+        li.appendChild(removeButton);
+
+        // Ajoute la nouvelle liste juste avant le champ text permettant d'ajouter 
+        // une nouvelle liste
+        document.querySelector('#lists .lists-container ul').insertBefore(li, lists[lists.length - 1]);
+
+        // Mise à jour des éléments DOM pour les listes
+        lists = document.querySelectorAll('#lists .lists-container ul li');
+        listNames = document.querySelectorAll('#lists .lists-container ul li .list__name');
+        listRemovables = document.querySelectorAll('#lists .lists-container ul li .remove__list');
+
+        // Ajout des events pour la liste venant d'être créer
+        listNamesClickEventSetup();
+        removeSistClickEventSetup();
+    });
+}
+
+// Créer une nouvelle liste pour l'utilisateur connecté lorsque la touche entrée et pressée
+if (newListString !== undefined) {
+    newListString.onkeydown = (e) => {
+        if (e.keyCode == 13) {
+            addNewList(newListString.value);
+        }
+    }
+}
+
 window.addEventListener('load', () => {
     fetchListAnimes(null, null);
-    listNameClickEventSetup();
+    listNamesClickEventSetup();
 });

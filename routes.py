@@ -71,7 +71,7 @@ def search(search_string: str = None):
                             current_user=current_user,
                             search_string=search_string,
                             search_results=searched_animes,
-                            user_list=ListController().get_defaults_for_user(current_user.id))
+                            user_list=ListController().get_user_lists(current_user.id))
 
 @main_bp.route('/profile/<string:nickname>', methods=['GET'])
 @login_required
@@ -247,3 +247,10 @@ def get_animes_from_list():
         user_id = current_user.id
 
     return jsonify({ 'animes': AnimeController().get_animes_in_list_for_user(user_id, request.json.get('idList'), request.json.get('search-term')) })
+
+@main_bp.route('/add/list', methods=['PUT'])
+@login_required
+def add_list():
+    """Ajoute une nouvelle liste à l'utilisateur connecté
+    """
+    return jsonify({ 'list': ListController().add_new_list(request.json.get('newListName'), current_user.id) })
