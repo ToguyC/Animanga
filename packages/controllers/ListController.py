@@ -163,3 +163,28 @@ class ListController:
         except SqliteError as e:
             log(e)
             return None
+
+    @classmethod
+    def delete_by_id(cls, list_id: int, user_id: int) -> bool:
+        """Supprime une liste via son id
+
+            Arguments:
+                list_id {int} -- Id de la list à supprimer
+                user_id {int} -- Id de l'utilisateur connecté
+        
+            Returns:
+                bool -- États de la requete
+        """
+        try:
+            sql_unlink_anime = "DELETE FROM list_has_anime WHERE idList = ?"
+            sql_unlink_to_user = "DELETE FROM user_has_list WHERE idUser = ? AND idList = ?"
+            sql_delete = "DELETE FROM list WHERE idList = ?"
+
+            SqliteController().execute(sql_unlink_anime, values=(list_id,), fetch_mode=SqliteController.NO_FETCH)
+            SqliteController().execute(sql_unlink_to_user, values=(user_id, list_id,), fetch_mode=SqliteController.NO_FETCH)
+            SqliteController().execute(sql_delete, values=(list_id,), fetch_mode=SqliteController.NO_FETCH)
+
+            return True
+        except SqliteError as e:
+            print(str(e))
+            raise e

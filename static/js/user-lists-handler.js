@@ -33,9 +33,6 @@ function fetchListAnimes(searchTerms, idList) {
         }),
     }).then((response) => response.json()).then((json) => {
         const animes = json.animes;
-        const collator = new Intl.Collator(undefined, {numeri: true, sensitivity: 'base'});
-        console.log(Object.keys(json.animes).sort(collator.compare));
-        
         const animesContainer = document.querySelector('#animes-container');
         
         if (Object.keys(animes).length > 0) {
@@ -139,7 +136,7 @@ function deleteList(idList) {
 /**
  * Supprime la liste cliqueé
  */
-function removeSistClickEventSetup() {
+function removeListClickEventSetup() {
     // Event clique pour la suppression d'une liste
     listRemovables.forEach((removeTrigger) => {
         removeTrigger.addEventListener('click', () => {
@@ -192,9 +189,17 @@ function addNewList(newListName) {
 
         // Ajout des events pour la liste venant d'être créer
         listNamesClickEventSetup();
-        removeSistClickEventSetup();
+        removeListClickEventSetup();
     });
 }
+
+// Affiche les animes des listes de l'utilisateur dont le titre concorde avec
+// la chaine recherchée lorsque la touche entrés est pressée
+listSearchString.onkeydown = (e) => {
+    if (e.keyCode === 13) { // Touche entrée
+        fetchListAnimes(listSearchString.value, null);
+    }
+};
 
 // Créer une nouvelle liste pour l'utilisateur connecté lorsque la touche entrée et pressée
 if (newListString !== undefined) {
@@ -208,4 +213,5 @@ if (newListString !== undefined) {
 window.addEventListener('load', () => {
     fetchListAnimes(null, null);
     listNamesClickEventSetup();
+    removeListClickEventSetup();
 });

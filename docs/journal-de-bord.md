@@ -304,5 +304,30 @@ Cette journée est relativement remplie. Premièrement, je dois affiché le cont
 
 9h30 : J'ai terminé l'affichage des listes. Dès que l'on clique sur le nom d'une liste, le site nous montre les animes contenu dans la liste cliquée. Par défaut, c'est `Tous` qui est sélectionné, ce qui permet de voir tout les animes de toutes les listes de l'utilisateur.
 
-Je commence maintenant maitenant la gestion des listes.s
+Je commence maintenant maitenant la gestion des listes.
 
+10h : J'ai terminé l'ajout de nouvelles listes. Cependant, je dois changé la manière de récupération des listes car l'ordre d'affichage est faux.
+
+10h30 : J'ai eu un rendez-vous GMeet avec mon référant pour faire le point. Je lui ai expliqué sur quoi je travaillais et que je n'avais pas de soucis. Le rendez-vous a duré que très peu de temps.
+
+11h : J'ai résolu le soucis d'ordre d'affichage des listes. Ma route `/get/animes` renvoie le json suivant:
+
+```json
+{
+    'Complétés': [
+        animes...
+    ],
+    'En cours': [
+        animes...
+    ],
+    listes... : [
+    	animes...
+    ]
+}
+```
+
+Les listes présentes dans le json ne sont que les listes contenant des animes.
+
+Je commence maintenant la suppression des listes et de leur contenu.
+
+11h40 : J'ai terminé la suppression des listes et de leur contenu. Il ne me reste qu'à faire le renommage. Je commence cela maintenant.

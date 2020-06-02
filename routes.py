@@ -246,7 +246,7 @@ def get_animes_from_list():
     else:
         user_id = current_user.id
 
-    return jsonify({ 'animes': AnimeController().get_animes_in_list_for_user(user_id, request.json.get('idList'), request.json.get('search-term')) })
+    return jsonify({ 'animes': AnimeController().get_animes_in_list_for_user(user_id, request.json.get('idList'), request.json.get('search-terms')) })
 
 @main_bp.route('/add/list', methods=['PUT'])
 @login_required
@@ -254,3 +254,10 @@ def add_list():
     """Ajoute une nouvelle liste à l'utilisateur connecté
     """
     return jsonify({ 'list': ListController().add_new_list(request.json.get('newListName'), current_user.id) })
+
+@main_bp.route('/delete/list', methods=['DELETE'])
+@login_required
+def delete_list():
+    """Supprime une liste à l'utilisateur connecté
+    """
+    return jsonify({ 'Status': ListController().delete_by_id(request.json.get('idList'), current_user.id) })
