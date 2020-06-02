@@ -1,0 +1,23 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}
+    Listes - {{ searched_user.nickname }}
+{% endblock title %}
+
+{% block content %}
+    {% include 'layouts/profile-header.html' %}
+    
+    <div class="profile">
+        <button class="reorder">Réordonner les favoris</button>
+        <div class="favorites"></div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/fetch-favorites.js') }}"></script>
+<script src="{{ url_for('static', filename='js/favorites-reorder.js') }}"></script>
+<script>
+    window.addEventListener('load', () => { fetchFavorites(false); });
+</script>
+{% endblock script %}

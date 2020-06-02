@@ -64,7 +64,7 @@ def search(search_string: str = None):
     # Ajout des relations
     for anime in searched_animes:
         anime['relations'] = AnimeController().get_relations_by_anime_id(anime['id'])
-        anime['is_favorite'] = AnimeController().is_anime_is_user_favorite(current_user.id, anime['id'])
+        anime['is_favorite'] = AnimeController().is_anime_in_user_favorite(current_user.id, anime['id'])
         anime['in_list'] = [l['id'] for l in ListController().get_list_of_an_anime(anime['id'])]
 
     return render_template('index.html',
@@ -124,6 +124,32 @@ def lists_redirect():
     """Redirige l'utilisateur si aucuns pseudo n'est inscrit dans l'url
     """
     return redirect(url_for('main_bp.lists', nickname=current_user.nickname))
+
+@main_bp.route('/favorites/<string:nickname>')
+@login_required
+def favorites(nickname: str = None):
+    """Affiche tout les favoris de l'utilisateur mentionné dans l'url
+    """
+    if nickname is None:
+        nickname = current_user.nickname
+
+    searched_user = UserController().get_by_nickname(nickname)
+
+    if searched_user is not None:
+        user_lists = ListController().get_user_lists(searched_user.id)
+        return render_template('favorites.html',
+                                current_user=current_user,
+                                searched_user=searched_user)
+
+    return redirect(url_for('main_bp.home'))
+
+@main_bp.route('/favorites')
+@main_bp.route('/favorites/')
+@login_required
+def favorites_redirect():
+    """Redirige l'utilisateur si aucuns pseudo n'est inscrit dans l'url
+    """
+    return redirect(url_for('main_bp.favorites', nickname=current_user.nickname))
 
 @main_bp.route('/get/favorites', methods=['GET'])
 @login_required
@@ -271,3 +297,10 @@ def rename_list():
     new_list_name = request.get_json()['newListName']
 
     return jsonify({'Status': ListController().rename(list_id, new_list_name)})
+
+@main_bp.route('/set/favorites-order', methods=['PATCH'])
+@login_required
+def set_favorites_order():
+    """Met à jour l'ordre des favoris
+    """
+    return jsonify({ 'Status': AnimeController().reorder_favorites(current_user.id, request.json.get('ids')) })

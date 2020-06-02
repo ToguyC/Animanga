@@ -184,6 +184,23 @@ class AnimeController:
         return [anime.serialize() for anime in encapsulated_animes]
 
     @classmethod
+    def __get_count(cls) -> int:
+        """Retourne le nombre d'anime présent en base
+
+            Returns:
+                int -- Nombre d'anime en base
+        """
+        try:
+            sql_count = """SELECT COUNT(*) AS `Count` FROM anime"""
+
+            count = SqliteController().execute(sql_count, fetch_mode=SqliteController.FETCH_ONE)['Count']
+
+            return count
+        except SqliteError as e:
+            log(e)
+            return None
+
+    @classmethod
     def get_from_search_string(cls, search_string: str) -> [Anime]:
         """Retourne les animes concordant avec la chaine de recherche
 
@@ -252,23 +269,6 @@ class AnimeController:
             return []
 
     @classmethod
-    def get_count(cls) -> int:
-        """Retourne le nombre d'anime présent en base
-
-            Returns:
-                int -- Nombre d'anime en base
-        """
-        try:
-            sql_count = """SELECT COUNT(*) AS `Count` FROM anime"""
-
-            count = SqliteController().execute(sql_count, fetch_mode=SqliteController.FETCH_ONE)['Count']
-
-            return count
-        except SqliteError as e:
-            log(e)
-            return None
-
-    @classmethod
     def get_random_anime(cls) -> Anime:
         """Récupère un anime aléatoire
 
@@ -282,7 +282,7 @@ class AnimeController:
                             JOIN type ON anime.type = type.idType
                             WHERE idAnime = ?"""
 
-            random_anime_id = randint(1, cls.get_count())
+            random_anime_id = randint(1, cls.__get_count())
             
             results = SqliteController().execute(sql_select, values=(random_anime_id,), fetch_mode=SqliteController.FETCH_ONE)
 
@@ -294,7 +294,7 @@ class AnimeController:
             return None
 
     @classmethod
-    def is_anime_is_user_favorite(cls, user_id: int, anime_id: int) -> bool:
+    def is_anime_in_user_favorite(cls, user_id: int, anime_id: int) -> bool:
         """Retourne si l'anime est dans la liste des favoris de l'utilisateur
 
             Arguments:
@@ -363,7 +363,7 @@ class AnimeController:
                                        LIMIT 1"""
             sql_add_favorite = "INSERT INTO user_has_favorite(idAnime, idUser, orderId, modificationDate) VALUES(?, ?, ?, ?)"
 
-            if cls.is_anime_is_user_favorite(user_id, anime_id):
+            if cls.is_anime_in_user_favorite(user_id, anime_id):
                 SqliteController().execute(sql_delete_favorite, values=(anime_id,user_id,), fetch_mode=SqliteController.NO_FETCH)
 
                 # Réattribué les orderId
@@ -517,3 +517,29 @@ class AnimeController:
         except SqliteError as e:
             log(e)
             return {}
+
+    @classmethod
+    def reorder_favorites(cls, user_id: int, ids: list) -> bool:
+        """Met à jour l'ordre des animes
+
+            Arguments:
+                user_id {int} -- Id de l'utilisateur
+                ids {list} -- Liste des ids des animes
+        
+            Returns:
+                bool -- État de la mise à jour
+        """
+        try:
+            sql_update = "UPDATE user_has_favorite SET orderId = ?, modificationDate = ? WHERE idAnime = ? AND idUser = ?"
+
+            order_id = 1
+            modification_date = dt.now()
+
+            for anime_id in ids:
+                SqliteController().execute(sql_update, values=(order_id, modification_date, anime_id, user_id,), fetch_mode=SqliteController.NO_FETCH)
+                order_id += 1
+
+            return True
+        except SqliteError as e:
+            log(e)
+            return False 

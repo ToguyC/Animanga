@@ -339,3 +339,7 @@ Je commence maintenant la suppression des listes et de leur contenu.
 13h : Je recommence la journée et je vais terminé la mise à jour du nom d'une liste.
 
 13h10 : J'ai terminé la mise à jour du nom d'une liste et je passe maintenant à la mise à jour de l'ordre des favoris.
+
+14h : La mise à jour de l'ordre des favoris est terminé et je vais maintenant faire l'affichage des activités de l'utilisateur connecté.
+
+Cette tâche n'est pas présente dans le planning prévisionnel car je l'avais oublié lors de la rédaction du planning. Je l'ai cependant rajouté dans le product backlog. C'est pourquoi il n'y a pas de case orange dans la planning prévisionnel et seulement une case rouge.
