@@ -34,7 +34,7 @@ function fetchListAnimes(searchTerms, idList) {
             'search-terms': searchTerms,
         }),
     }).then((response) => response.json()).then((json) => {
-        const { animes } = json.animes;
+        const animes = json.animes;
         const animesContainer = document.querySelector('#animes-container');
 
         if (Object.keys(animes).length > 0) {
@@ -292,12 +292,15 @@ if (newListString !== undefined) {
 // Renomme une liste
 if (listRenameInput !== undefined) {
     listRenameInput.forEach((renameInput) => {
-        const curentRenameInput = renameInput;
-        curentRenameInput.onkeydown = (e) => {
-            if (e.keyCode === 13) {
-                renameList(curentRenameInput.parentNode.dataset.list, curentRenameInput.value);
-            }
-        };
+        const currentRenameInput = renameInput;
+
+        if (currentRenameInput.id !== 'new-list__name') {
+            currentRenameInput.onkeydown = (e) => {
+                if (e.keyCode === 13) {
+                    renameList(currentRenameInput.parentNode.dataset.list, currentRenameInput.value);
+                }
+            };
+        }
     });
 }
 
