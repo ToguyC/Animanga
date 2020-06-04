@@ -25,17 +25,15 @@ class SqliteController:
 
     connection = None
 
-    def __init__(self):
-        """Constructeur vide
-        """
-
-    def __get_cursor(self) -> object:
+    @classmethod
+    def __get_cursor(cls) -> object:
         """Récupère le curseur de ma connexion
         """
-        return self.get_instance().cursor()
+        return cls.get_instance().cursor()
 
     #pylint: disable=no-self-use
-    def __dict_factory(self, cursor: object, row: object) -> dict:
+    @classmethod
+    def __dict_factory(cls, cursor: object, row: object) -> dict:
         """Retourne les valeurs du fetch comme dictionnaire
             see: https://stackoverflow.com/questions/3300464/how-can-i-get-dict-from-sqlite-query
 
@@ -51,34 +49,38 @@ class SqliteController:
             d[col[0]] = row[idx]
         return d
 
-    def get_instance(self) -> object:
+    @classmethod
+    def get_instance(cls) -> object:
         """Récupère l'instance de connexion à la base
         """
         SqliteController.connection = getattr(g, '_database', None)
         if SqliteController.connection is None:
             SqliteController.connection = g._database = sqlite3.connect("/home/cavagnat/Documents/programmation/python/Animanga/static/database/tpi.db", detect_types=sqlite3.PARSE_DECLTYPES)
-            SqliteController.connection.row_factory = self.__dict_factory
+            SqliteController.connection.row_factory = cls.__dict_factory
 
         return SqliteController.connection
 
     #pylint: disable=no-self-use
-    def close(self) -> None:
+    @classmethod
+    def close(cls) -> None:
         """Ferme la connexion courante
         """
         SqliteController.connection = getattr(g, '_database', None)
         if SqliteController.connection is not None:
             SqliteController.connection.close()
 
-    def execute_many(self, query: str, values: tuple) -> None:
+    @classmethod
+    def execute_many(cls, query: str, values: tuple) -> None:
         """Fait une requete de type many. (INSERT INTO <table> VALUES(...values), (...values), (...values), ...)
         """
-        cursor = self.__get_cursor()
+        cursor = cls.__get_cursor()
 
         cursor.executemany(query, values)
 
-        self.get_instance().commit()
+        cls.get_instance().commit()
 
-    def execute(self, query: str, values = None, fetch_mode = 2) -> Any:
+    @classmethod
+    def execute(cls, query: str, values = None, fetch_mode = 2) -> Any:
         """Exécute une requete en base
 
             Arguments:
@@ -92,7 +94,7 @@ class SqliteController:
                 None|[]|int -- Si pas de fetch, retourne le last_row_id, sinon retourne le fetch voulu
         """
         try:
-            cursor = self.__get_cursor()
+            cursor = cls.__get_cursor()
 
             if values is not None:
                 cursor.execute(query, values)
@@ -101,16 +103,16 @@ class SqliteController:
 
             last_row_id = cursor.lastrowid
 
-            self.get_instance().commit()
+            cls.get_instance().commit()
 
-            if fetch_mode == self.FETCH_ONE:
+            if fetch_mode == cls.FETCH_ONE:
                 result = cursor.fetchone()
-            elif fetch_mode == self.FETCH_ALL:
+            elif fetch_mode == cls.FETCH_ALL:
                 result = cursor.fetchall()
             else:
                 result = None
 
-            if (fetch_mode == self.NO_FETCH):
+            if (fetch_mode == cls.NO_FETCH):
                 return last_row_id
 
             return result
@@ -119,28 +121,30 @@ class SqliteController:
 
     # Données de la base de données
 
-    def truncate_anime_related(self) -> None:
+    @classmethod
+    def truncate_anime_related(cls) -> None:
         """Vide toutes les tables relatives aux animes
         """
         try:
-            self.execute("DELETE FROM `user_has_favorite`")
-            self.execute("DELETE FROM `list_has_anime`")
-            self.execute("DELETE FROM `anime_ft`")
-            self.execute("DELETE FROM `anime`")
-            self.execute("DELETE FROM `url`")
-            self.execute("DELETE FROM `type`")
-            self.execute("DELETE FROM `status`")
+            cls.execute("DELETE FROM `user_has_favorite`")
+            cls.execute("DELETE FROM `list_has_anime`")
+            cls.execute("DELETE FROM `anime_ft`")
+            cls.execute("DELETE FROM `anime`")
+            cls.execute("DELETE FROM `url`")
+            cls.execute("DELETE FROM `type`")
+            cls.execute("DELETE FROM `status`")
 
             return True
         except SqliteError as e:
             log(e)
             return False
 
-    def setup_anime_table(self) -> None:
+    @classmethod
+    def setup_anime_table(cls) -> None:
         """Créer la table anime si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `anime` (
                         `idAnime` integer NOT NULL PRIMARY KEY,
@@ -159,17 +163,18 @@ class SqliteController:
                 None
             )
             # Obligatoire pour pouvoir faire une recherche full text
-            self.execute("CREATE VIRTUAL TABLE IF NOT EXISTS `anime_ft` USING FTS5(`idAnime`, `title`)")
+            cls.execute("CREATE VIRTUAL TABLE IF NOT EXISTS `anime_ft` USING FTS5(`idAnime`, `title`)")
             return True
         except SqliteError as e:
             log(e)
             return False
 
-    def setup_type_table(self) -> None:
+    @classmethod
+    def setup_type_table(cls) -> None:
         """Créer la table type si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `type` (
                         `idType` integer NOT NULL PRIMARY KEY,
@@ -184,11 +189,12 @@ class SqliteController:
             log(e)
             return False
 
-    def setup_status_table(self) -> None:
+    @classmethod
+    def setup_status_table(cls) -> None:
         """Créer la status anime si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `status` (
                         `idStatus` integer NOT NULL PRIMARY KEY,
@@ -203,11 +209,12 @@ class SqliteController:
             log(e)
             return False
 
-    def setup_url_table(self) -> None:
+    @classmethod
+    def setup_url_table(cls) -> None:
         """Créer la url anime si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `url` (
                         `idUrl` integer NOT NULL PRIMARY KEY,
@@ -224,11 +231,12 @@ class SqliteController:
             log(e)
             return False
 
-    def setup_user_table(self) -> None:
+    @classmethod
+    def setup_user_table(cls) -> None:
         """Créer la user anime si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `user` (
                         `idUser` integer NOT NULL PRIMARY KEY,
@@ -245,11 +253,12 @@ class SqliteController:
             log(e)
             return False
 
-    def setup_list_table(self) -> None:
+    @classmethod
+    def setup_list_table(cls) -> None:
         """Créer la list anime si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `list` (
                         `idList` integer NOT NULL PRIMARY KEY,
@@ -264,11 +273,12 @@ class SqliteController:
             log(e)
             return False
 
-    def setup_user_has_list_table(self) -> None:
+    @classmethod
+    def setup_user_has_list_table(cls) -> None:
         """Créer la user_has_list anime si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `user_has_list` (
                         `idUserHasList` integer NOT NULL PRIMARY KEY,
@@ -284,11 +294,12 @@ class SqliteController:
             log(e)
             return False
 
-    def setup_list_has_anime_table(self) -> None:
+    @classmethod
+    def setup_list_has_anime_table(cls) -> None:
         """Créer la table list_has_anime si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `list_has_anime` (
                         `idListHasAnime` integer NOT NULL PRIMARY KEY,
@@ -304,11 +315,12 @@ class SqliteController:
             log(e)
             return False
 
-    def setup_user_has_favorite_table(self) -> None:
+    @classmethod
+    def setup_user_has_favorite_table(cls) -> None:
         """Créer la table user_has_favorite si elle n'existe pas
         """
         try:
-            self.execute(
+            cls.execute(
                 """
                     CREATE TABLE IF NOT EXISTS `user_has_favorite` (
                         `idUserHasFavorite` integer NOT NULL PRIMARY KEY,
@@ -324,3 +336,11 @@ class SqliteController:
         except SqliteError as e:
             log(e)
             return False
+
+    @classmethod
+    def synchronise_with_mysql(cls) -> bool:
+        """Synchronise la base MySQL avec Sqlite3
+
+            Returns:
+                bool -- Status de la synchronisation
+        """
