@@ -14,6 +14,7 @@ from .packages.controllers.AnimeController import AnimeController
 from .packages.controllers.ListController import ListController
 from .packages.controllers.UserController import UserController
 from .packages.controllers.ActivitiesController import ActivitiesController
+from .packages.controllers.SqliteController import SqliteController
 
 # Configuration du Blueprint
 main_bp = Blueprint('main_bp', __name__,
@@ -227,6 +228,13 @@ def override_datas():
     current_directory = '/'.join(__file__.split('/')[:-1])
     return Response(stream_with_context(stream_template('index.html',
                                                          override_messages=AnimeController().override_local_with_json(current_directory + '/static/json/anime.json'))))
+
+@main_bp.route('/sync')
+@login_required
+def sync():
+    """Synchronise les données entre Sqlite3 et MySQL
+    """
+    return jsonify({'Status': SqliteController().synchronise_with_mysql()})
 
 # ================
 #      POST, PATCH, PUT, DELETE
