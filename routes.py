@@ -234,7 +234,9 @@ def override_datas():
 def sync():
     """Synchronise les données entre Sqlite3 et MySQL
     """
-    return jsonify({'Status': SqliteController().synchronise_with_mysql()})
+    SqliteController().synchronise_with_mysql()
+    
+    return redirect(url_for('main_bp.home'))
 
 # ================
 #      POST, PATCH, PUT, DELETE

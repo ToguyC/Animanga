@@ -63,7 +63,7 @@ class AnimeController:
             values_source = []
             values_relation = []
 
-            current_time = dt.now()
+            current_time = dt.now().strftime('%Y-%m-%d %H:%M:%S')
 
             yield "Récupération des types et status"
 
@@ -372,7 +372,7 @@ class AnimeController:
             else:
                 last_order_id = SqliteController().execute(sql_get_last_order_id, values=(user_id,), fetch_mode=SqliteController.FETCH_ONE)
                 last_order_id = int(last_order_id['orderId']) + 1 if last_order_id is not None else 1
-                SqliteController().execute(sql_add_favorite, values=(anime_id,user_id,last_order_id,dt.now(),), fetch_mode=SqliteController.NO_FETCH)
+                SqliteController().execute(sql_add_favorite, values=(anime_id,user_id,last_order_id,dt.now().strftime('%Y-%m-%d %H:%M:%S'),), fetch_mode=SqliteController.NO_FETCH)
 
                 is_favorite = True
             
@@ -428,7 +428,7 @@ class AnimeController:
                 SqliteController().execute(sql_delete_from_list, values=(anime_id,list_id,), fetch_mode=SqliteController.NO_FETCH)
                 is_in_list = False
             else:
-                SqliteController().execute(sql_add_to_list, values=(anime_id,list_id,dt.now(),), fetch_mode=SqliteController.NO_FETCH)
+                SqliteController().execute(sql_add_to_list, values=(anime_id,list_id,dt.now().strftime('%Y-%m-%d %H:%M:%S'),), fetch_mode=SqliteController.NO_FETCH)
                 is_in_list = True
 
             return is_in_list
@@ -533,7 +533,7 @@ class AnimeController:
             sql_update = "UPDATE user_has_favorite SET orderId = ?, modificationDate = ? WHERE idAnime = ? AND idUser = ?"
 
             order_id = 1
-            modification_date = dt.now()
+            modification_date = dt.now().strftime('%Y-%m-%d %H:%M:%S')
 
             for anime_id in ids:
                 SqliteController().execute(sql_update, values=(order_id, modification_date, anime_id, user_id,), fetch_mode=SqliteController.NO_FETCH)

@@ -154,7 +154,7 @@ class ListController:
             sql_insert = "INSERT INTO list(nameList, modificationDate) VALUES(?, ?)"
             sql_link_to_user = "INSERT INTO user_has_list(idUser, idList, modificationDate) VALUES(?, ?, ?)"
 
-            current_date = dt.now()
+            current_date = dt.now().strftime('%Y-%m-%d %H:%M:%S')
 
             list_id = SqliteController().execute(sql_insert, values=(new_name, current_date,), fetch_mode=SqliteController.NO_FETCH)
             SqliteController().execute(sql_link_to_user, values=(user_id, list_id, current_date,), fetch_mode=SqliteController.NO_FETCH)

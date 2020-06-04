@@ -45,7 +45,7 @@ class ActivitiesController:
                 [] -- Liste des activités
         """
         try:
-            current_datetime = dt.now()
+            current_datetime = dt.now().strftime('%Y-%m-%d %H:%M:%S')
 
             sql_list_additions = """SELECT anime.title, anime.picture, list_has_anime.modificationDate, list.nameList
                                     FROM list_has_anime
@@ -81,7 +81,7 @@ class ActivitiesController:
                 [] -- Liste des activités
         """
         try:
-            current_datetime = dt.now()
+            current_datetime = dt.now().strftime('%Y-%m-%d %H:%M:%S')
 
             sql_favorite_additions = """SELECT anime.title, anime.picture, user_has_favorite.modificationDate
                                     FROM user_has_favorite

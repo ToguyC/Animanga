@@ -6,11 +6,10 @@
 @date: 2020-05-26
 """
 import sqlite3
-#import sys
-#from os import path
 from typing import Any
 from sqlite3 import Error as SqliteError
-#from datetime import datetime as dt
+from mysql.connector import Error as MysqlError
+from .MySQLController import MySQLController
 
 from flask import g
 from .logger import log
@@ -344,3 +343,128 @@ class SqliteController:
             Returns:
                 bool -- Status de la synchronisation
         """
+        try:
+            tables = {
+                'type': 'idType',
+                'status': 'idStatus',
+                'anime': 'idAnime',
+                'url': 'idUrl',
+                'user': 'idUser',
+                'list': 'idList',
+                'user_has_list': 'idUserHasList',
+                'list_has_anime': 'idListHasAnime',
+                'user_has_favorite': 'idUserHasFavorite',
+            }
+            sql_table_columns = "PRAGMA table_info("
+            sql_entries = "SELECT * FROM "
+            sql_insert = "INSERT INTO "
+            sql_delete = "DELETE FROM "
+
+            connection = MySQLController().openConnection()
+            MySQLController().executeQuery(connection, "SET FOREIGN_KEY_CHECKS=0;", fetch_mode=MySQLController.NO_FETCH, close_connection=False)
+
+            for current_table in tables:
+                print('TABLE COURANTE :', current_table)
+
+                # Récupération des noms de colonnes de la table courante
+                current_tables_columns = SqliteController().execute(sql_table_columns + current_table + ')', fetch_mode=SqliteController.FETCH_ALL)
+                current_tables_columns = [item['name'] for item in current_tables_columns]
+
+                # Récupération des enregistrements de la table courante sur sqlite et mysql
+                sqlite_entries = cls.execute(sql_entries + current_table, fetch_mode=SqliteController.FETCH_ALL)
+                mysql_entries = MySQLController().executeQuery(connection, sql_entries + current_table, fetch_mode=MySQLController.FETCH_ALL, close_connection=False)
+
+                # Création d'un tableau contenant l'id et la modificationDate de chaque enregistrement
+                sqlite_ids_timestamps = [{'id': sqlite_entry[tables[current_table]], 'timestamp': sqlite_entry['modificationDate'].replace(microsecond=0)} for sqlite_entry in sqlite_entries]
+                mysql_ids_timestamps = [({'id': mysql_entry[tables[current_table]], 'timestamp': mysql_entry['modificationDate'].replace(microsecond=0)}) for mysql_entry in mysql_entries]
+
+                # Tri des tableaux par id
+                sqlite_ids_timestamps = sorted(sqlite_ids_timestamps, key=lambda k: k['id'])
+                mysql_ids_timestamps = sorted(mysql_ids_timestamps, key=lambda k: k['id'])
+                
+                print('Data same', len(sqlite_entries) == len(mysql_entries))
+                ids_to_skip_for_update = []
+                # Ajout des données manquantes mysql et suppression des données en trop mysql
+                if len(sqlite_entries) != len(mysql_entries):
+                    # Ajout des éléments manquants dans mysql
+                    ids_non_present_in_mysql = []
+                    if len(sqlite_ids_timestamps) > len(mysql_ids_timestamps):
+                        # Éléments non présents dans la table myqsl
+                        ids_non_present_in_mysql = [i['id'] for i in sqlite_ids_timestamps if i['id'] not in [j['id'] for j in mysql_ids_timestamps]]
+
+                        # Récupère les valeurs sqlite a ajouté dans mysql seulement si elles ne sont déjà présentes dans mysql
+                        values_to_append = []
+                        for sqlite_entry in sqlite_entries:
+                            if sqlite_entry[tables[current_table]] in ids_non_present_in_mysql:
+                                values_to_append.append(tuple(sqlite_entry.values()))
+                                ids_to_skip_for_update.append(sqlite_entry[tables[current_table]])
+
+                        # Construction de la requête d'ajout de données et insertion des données dans mysql
+                        columns_list = ''
+                        for column in current_tables_columns: columns_list += column + ','
+                        parameter_list = ''
+                        for _ in range(len(current_tables_columns)): parameter_list += '%s,'
+                        # Format de la requete :
+                        #       INSERT INTO <table>(...champs) VALUES(...valeurs)
+                        MySQLController().executeMany(connection,
+                                                         sql_insert + current_table + "(" + columns_list[:-1] + ") VALUES(" + parameter_list[:-1] + ")",
+                                                         values=values_to_append)
+                    # Suppression des éléments en trop de mysql
+                    elif len(sqlite_ids_timestamps) < len(mysql_ids_timestamps):
+                        # Éléments non présents dans la tablea sqlite
+                        ids_non_present_in_sqlite = [i['id'] for i in mysql_ids_timestamps if i['id'] not in [j['id'] for j in sqlite_ids_timestamps]]
+
+                        # Construction de la requête de suppressions de données
+                        delete_list = ''
+                        for delete in ids_non_present_in_sqlite: delete_list += str(delete) + ','
+
+                        # Format de la requete :
+                        #       DELETE FROM <table> WHERE <id table> IN (...valeurs)
+                        MySQLController().executeQuery(connection,
+                                                         sql_delete + current_table + " WHERE " + tables[current_table] + " IN (" + delete_list[:-1] + ")",
+                                                         fetch_mode=MySQLController.NO_FETCH,
+                                                         close_connection=False)
+
+                # Réafectation des variables pour avoir les données à jour
+                mysql_entries = MySQLController().executeQuery(connection, sql_entries + current_table, fetch_mode=MySQLController.FETCH_ALL, close_connection=False)
+                mysql_ids_timestamps = [({'id': mysql_entry[tables[current_table]], 'timestamp': mysql_entry['modificationDate'].replace(microsecond=0)}) for mysql_entry in mysql_entries]
+                mysql_ids_timestamps = sorted(mysql_ids_timestamps, key=lambda k: k['id'])
+
+                # Récupération des id à mettre à jour dans mysql
+                elements_to_updates = []
+                for sqlite_element in mysql_ids_timestamps:
+                    if sqlite_element['id'] not in ids_to_skip_for_update:
+                        # Format de la requete :
+                        #       SELECT <id table> AS `id` FROM <table> WHERE modificationDate NOT LIKE '<date mysql>%' AND <id table> = <id mysql>
+                        # Je suis obliger de mettre le `NOT LIKE` pour la date car Sqlite contient les millisecondes et pas mysql
+                        entry = SqliteController().execute("SELECT " + tables[current_table] + " AS `id` FROM " + current_table + " WHERE modificationDate NOT LIKE '" + str(sqlite_element['timestamp']) + "%' AND " + tables[current_table] + " = " + str(sqlite_element['id']),
+                                                           fetch_mode=SqliteController.FETCH_ONE)
+                        if entry is not None:
+                            elements_to_updates.append(entry['id'])
+
+                print(elements_to_updates)
+                # A voir avec Bonvin car trop long
+                for index in elements_to_updates:
+                    # Récupération des valeurs sqlite à mettre dans mysql
+                    values_to_append = None
+                    for item in sqlite_entries:
+                        if item[tables[current_table]] == index:
+                            # [1:] pour éviter de prendre l'id
+                            values_to_append = tuple(list(item.values())[1:])
+                            break
+                        
+                    # Mise à jours des données mysql avec les valeurs sqlite
+                    set_list = ''
+                    # [1:] pour éviter de mettre à jour l'id
+                    for column in current_tables_columns[1:]: set_list += column + "=%s,"
+                    MySQLController().executeQuery(connection,
+                                                      "UPDATE " + current_table + " SET " + set_list[:-1] + " WHERE " + tables[current_table] + " = " + str(index),
+                                                      values=values_to_append,
+                                                      fetch_mode=MySQLController.NO_FETCH, 
+                                                      close_connection=False)
+            MySQLController().executeQuery(connection, "SET FOREIGN_KEY_CHECKS=1;", fetch_mode=MySQLController.NO_FETCH, close_connection=False)
+            MySQLController().closeConnection(connection)
+            return True
+        except (SqliteError, MysqlError, ValueError, TypeError) as e:
+            log(e)
+            return False

@@ -77,7 +77,7 @@ class UserController:
                 email,
                 password,
                 nickname,
-                dt.now()
+                dt.now().strftime('%Y-%m-%d %H:%M:%S')
             ))
 
             last_row_id = SqliteController().execute(sql_insert, values=values_user, fetch_mode=SqliteController.NO_FETCH)
@@ -177,7 +177,7 @@ class UserController:
                 'Planifiés'
             ]
 
-            current_time = dt.now()
+            current_time = dt.now().strftime('%Y-%m-%d %H:%M:%S')
             for list_name in values_list:
                 list_id = SqliteController().execute(sql_default_list, values=(list_name,current_time,), fetch_mode=SqliteController.NO_FETCH)
                 SqliteController().execute(sql_link_list_user, values=(user_id,list_id,current_time,), fetch_mode=SqliteController.NO_FETCH)
