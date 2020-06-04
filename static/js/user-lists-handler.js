@@ -34,7 +34,8 @@ function fetchListAnimes(searchTerms, idList) {
             'search-terms': searchTerms,
         }),
     }).then((response) => response.json()).then((json) => {
-        const animes = json.animes;
+        const { animes } = json; // Récupère la valeur de la clef `animes` de l'object `json`
+        
         const animesContainer = document.querySelector('#animes-container');
 
         if (Object.keys(animes).length > 0) {
