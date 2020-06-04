@@ -345,3 +345,183 @@ Je commence maintenant la suppression des listes et de leur contenu.
 Cette tâche n'est pas présente dans le planning prévisionnel car je l'avais oublié lors de la rédaction du planning. Je l'ai cependant rajouté dans le product backlog. C'est pourquoi il n'y a pas de case orange dans la planning prévisionnel et seulement une case rouge.
 
 15h30 : Les activité ont été implémentées. J'affiche toutes les activités des 24 dernières heures. Les animes mis en favoris et les animes mise dans des listes. Elles sont présentes sur la page d'accueil si l'utilisateur n'a fait aucune recherche.
+
+16h : J'avais fais au début de la session de TPI la méthode qui permet de récupérer un aime aléatoire. J'ai maintenant terminé de l'affiché sur le site via un bouton placé dans la barre de navigation.
+
+16h45 : J'ai terminé l'affichage de l'anime tiré aléatoirement. Je termine ma journée maintenant.
+
+### Bilan
+
+Cette journée était plutôt bien remplie. J'ai réussis à faire plusieurs tâches indispensable et toutes fonctionnent. Il ne me reste que la partie synchronisation à faire au niveau technique de l'application et je n'aurai que les partie de documentation, d'aide, et de page à propos à terminé. Je suis content du travail fournis aujourd'hui.
+
+## J7 : mercredi 03 juin 2020
+
+### Objectif
+
+Le but de cette journée est de commencer une des parties principale de l'application : la synchronisation entre Sqlite3 et MySQL. En effet, cette partie est de très loin la plus complexe à mettre en place car aucune libraire ne permet de le faire automatiquement. C'est pour cela que je dois moi-même penser à un algorithme de synchronisation et le mettre en place. D'où les 4 jours de planification.
+
+### Déroulement
+
+8h30 : J'ai eu un rendez-vous avec mes experts (M. Terrond et M. Bouille) afin de faire le point sur mon avancement dans le travail. Je leur ai expliqué le cas de la tâche manquante dans le planning prévisionnel, et je leur ai montré le planning dans son ensemble pour qu'ils aient une idée global de l'avancement. Alors qu'ils voulaient que je leur fasse une démonstration, j'ai pu décelé un bug apparu après avoir corrigé ma syntaxe hier vers 16h. Je n'avais alors pas retesté le bon fonctionnement de mon application et le bug c'est manifesté ce matin.
+
+En plus de cela, M. Bouille m'a donner le conseil de faire une slide spécifique dans ma présentation pour toutes les fonctionnalités qui pourraient être rajouté ou amélioré.
+
+9h10 : Le rendez-vous c'est terminé et je vais maintenant corrigé les bugs trouvé lors de la démonstration.
+
+9h30 : les bugs sont corrigé. Rien de grave, simplement une variable mal initialisé ainsi qu'un id HTML pas exclu lors d'un test javascript. Je vais maintenant commencé à réfléchir à l'algorithme que je pourrai utilisé lors de la synchronisation.
+
+10h30 : J'ai fais une première version d'algorithme. Elle n'est de loin pas optimisé et donc je continue à chercher. Voici la première version :
+
+```pseudocode
+foreach table {
+	stocker le nom de la table courante
+	récupérer les enregistrements et les stocker
+	
+	découper les données en parties de 5k enregistrements
+	// [
+	//   [
+	//	   {données}
+	//     ...x5k
+	//   ]
+	//   ...autant de tableau de 5k données pour avoir toutes les données
+	// ]
+	
+	foreach paquet in tout les paquets découpé {
+		inserer les données dans la table courante MySQL via un insert multiple
+		// INSERT INTO table(...colonnes) VALUES(...values), (...values), ...
+	}
+}
+```
+
+Je vais maintenant essayer d'améliorer mon algorithme pour le rendre moins couteux en ressources et plus rapide.
+
+11h40 : Je suis encore entrain de travailler sur la seconde version de mon algorithme. Je continuerai cet après-midi.
+
+---
+
+13h : Je reprend ma journée et je continue l'élaboration de mon algorithme de synchronisation.
+
+13h10 : J'ai une seconde version de mon algorithme. Le voici :
+
+```pseudocode
+foreach table {
+	stocker le nom de la table courante
+	
+	récupérer le nombre d'enregistrements de Sqlite3 et le stocker
+	récupérer le nombre d'enregistrements de MySQL et le stocker
+	
+	if nombre enregistrements Sqlite3 égale nombre enregistrements MySQL {
+		passé à la table suivante
+	} else {
+		vider la table MySQL
+		
+		découper les données en parties de 5k enregistrements
+		
+		foreach paquet in tout les paquets découpé {
+            inserer les données dans la table courante MySQL via un insert multiple
+        }
+	}
+}
+```
+
+Je  suis persuadé que je peux faire autrement que de découpé mes données en paquets de 5000 enregistrements. Je continue a cherché pour une manière plus efficace.
+
+16h : Je pense avoir une version presque final de l'algorithme. J'ai décidé de travailler avec les timestamps que j'ai en base. Je ne sais pas pourquoi je n'y avais pas pensé plus tôt mais avec les timestamps, je peux savoir quand est-ce que les données ont été altérées pour la dernière fois et donc trier plus facilement les enregistrements à modifier, supprimer, ou ajouter.
+
+Il se peut qu'il y aie des modifications à venir sur cet algorithme mais voici la version actuelle avec laquelle je penses continuer l'application :
+
+```pseudocode
+foreach table {
+	stocker le nom de la table courante
+	
+	récupérer le nombre d'enregistrements de Sqlite3 et le stocker
+	récupérer le nombre d'enregistrements de MySQL et le stocker
+	
+	if nombre enregistrements Sqlite3 différent de nombre enregistrements MySQL {
+		récupérer ids et timestamp Sqlite3 pour stocker dans tableau id: timestamp
+		récupérer ids et timestamp MySQL pour stocker dans tableau id: timestamp
+		
+		trier les tableaux par id
+		
+		if tableau Sqlite3 > tableau MySQL {
+			stocker ids Sqlite3 non présent dans tableau MySQL
+			retirer les ids ci-dessus du tableau Sqlite3
+			
+			récupérer les enregistrements Sqlite3 correspondant aux ids non présent MySQL
+			
+			foreach enregistrement Sqlite3 {
+				insérer dans MySQL
+			}
+		} else {
+			stocker ids MySQL non présent dans Sqlite3
+			
+			foreach id MySQL {
+				supprimer l'entrée MySQL
+			}
+		}
+	}
+	
+	déclarer tableau pour ids Sqlite3 dont timestamp diffère du MySQL
+	foreach enregistrements Sqlite3 {
+		if timestamp courant différent du timestamp MySQL correspondant {
+			ajouter l'id dans le tablea créer à cet effet
+		}
+	}
+	
+	récupérer les enregistrements Sqlite3 correspondant aux ids
+	foreach enregistrement {
+		mettre à jour l'enregistrement correspondant dans MySQL
+	}
+}
+```
+
+Je commence maintenant à implémenter cet algorithme dans l'application.
+
+17h : Je n'ai pas terminé l'implémentation et je continuerai demain. J'ai terminé ma journée.
+
+### Bilan
+
+Cette journée n'a pas eu beaucoup de diversité. Je n'ai fait que développé mon algorithme et j'ai à peine commencé à l'implémenté dans l'application. Je terminerai l'implémentation demain je pense. Cela me fera prendre de l'avance de 2 jours environ sur le planning prévisionnel.
+
+## J8 : jeudi 04 juin 2020
+
+### Objectif
+
+Aujourd'hui je prévois de terminé l'implémentation de l'algorithme de synchronisation. Cela me fera prendre 2 jours d'avance sur mon planning prévisionnel.
+
+### Déroulement
+
+8h10 : Je commence ma journée. Aujourd'hui je vais implémenter la synchronisation entre les bases de données.
+
+9h30 : J'ai eu un rendez-vous avec mon référent pour faire le point. Comme tout ce passe bien, le rendez-vous n'a duré que très peu de temps. Mon référent va cependant prendre du temps pour regarder le code et nous allons faire une conférence pour corriger les parties qui ont besoin de modifier.
+
+10h30 : J'ai un élève (Vincent Steinmann) qui m'as demandé de l'aide pour son projet. Comme j'ai de l'avance, j'ai pris l'initiative d'aller l'aider pendant un moment.
+
+11h30 : J'ai terminé d'aidé Vincent. Cette aide ne m'a pas fait prendre de retard sur mon planning donc tout va bien. Je continue à implémenter la synchronisation.
+
+12h : Je prend ma pause de midi.
+
+---
+
+13h : Je reprend l'implémentation de l'algorithme.
+
+14h : J'ai remarqué, lors de la mise à jour des données dans MySQL, que j'ai stocké les timestamp avec les millisecondes dans Sqlite3. Cela pose problème pour MySQL car lorsque je met les nouveau enregistrements, les timestamps sont arrondis.
+
+> Exemple:
+>
+> J'ai un enregistrement dans Sqlite3 dont le timestamp est de 2020-05-04 14:28:30.67293
+>
+> Dans MySQL, il deviendra : 2020-05-04 14:28:31
+
+J'ai donc modifier le code de l'ajout des timestamp dans Sqlite3 pour retiré les millisecondes à la source directement. J'ai remplacer tout les `dt.now()` par `dt.now().strftime('%Y-%m-%d %H:%M:%S')`.
+
+16h : J'ai terminé d'implémenté la synchronisation entre les bases. J'ai pris 2 jours d'avances grâce à cela. Je vais en profiter pour corriger tout les potentiels bugs qui pourrais y avoir et faire de la documentation. De plus, ça me permettra de vérifier que je n'ai rien oublié des points mentionné dans le cahier des charges.
+
+Je met maintenant à jour la documentation.
+
+17h : Je termine ma journée.
+
+### Bilan
+
+Cette journée était très fructueuse. J'ai pu finir la synchronisation et donc j'ai 2 jours d'avance sur mon planning. Cela m'a permis de terminer les fonctionnalités de mon application. Maintenant, je vais vérifier que je n'ai rien oublier et corriger les potentiels bugs qui pourraient être présent.
+

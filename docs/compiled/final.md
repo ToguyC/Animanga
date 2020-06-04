@@ -18,7 +18,7 @@
     - [6. Évaluer](#6-évaluer)
   - [Planification](#planification)
     - [Product backlog](#product-backlog)
-  - [Diagramme de Gantt](#diagramme-de-gantt)
+    - [Diagramme de Gantt](#diagramme-de-gantt)
   - [Implémentation](#implémentation)
     - [Base de données](#base-de-données)
     - [Dictionnaire de données](#dictionnaire-de-données)
@@ -146,22 +146,22 @@ Une fois toutes les étapes précédentes achevées, nous avons pu nous lancer d
 ### Product backlog
 
 
-| Nom                            | S1 : Inscription à Animanga                                                                      |
-| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Nom                            | S1 : Inscription à Animanga                                  |
+| ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur non connecté, je peux me créer un compte afin de pouvoir accéder au site. |
-| **Critère d'acceptation**      | ***Pas encore écris de tests***                                                                  |
-| **Priorité**                   | 🚫 Bloquant                                                                                      |
+| **Critère d'acceptation**      | Les tests *1.1* et *1.2* passent.                            |
+| **Priorité**                   | 🚫 Bloquant                                                   |
 
 | Nom                            | S2 : Connexion à Animanga                                    |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur non connecté, je peux me connecter afin de pouvoir accéder au site. |
-| **Critère d'acceptation**      | ***Pas encore écris de tests***                              |
+| **Critère d'acceptation**      | Les tests *2.1* et *2.2* passent.                            |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
 | Nom                            | S3 : Importation des animes                                  |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur connecté, je peux écraser les animes avec un nouveau set de données. |
-| **Critère d'acceptation**      | ***Pas encore écris de tests***                              |
+| **Critère d'acceptation**      | Le test *3.1* passe.                                         |
 | **Priorité**                   | 💥 Critique                                                   |
 
 | Nom                            | S4 : Rechercher des animes                                   |
@@ -242,17 +242,19 @@ Une fois toutes les étapes précédentes achevées, nous avons pu nous lancer d
 | **Critère d'acceptation**      | ***Pas encore écris de tests\***                             |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
-| Nom                            | S16 : Vérifications syntaxique                               |
+| Nom                            | S17: Vérifications syntaxique                                |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant que développeur, je peux lancé la commande `npm run lint` pour vérifier la syntaxe, basé sur le preset Airbnb, des fichiers JavaScript, et la commande `python3 -m pylint --output-format=colorized` pour vérifier la syntaxe des fichiers Python, basé sur les conventions PEP8. |
 | **Critère d'acceptation**      | Les test *12.1* et *12.2* passent.                           |
 | **Priorité**                   | 🚫 Bloquant                                                   |
 
-## Diagramme de Gantt
+| Nom                            | S18: Affichage des activités                                 |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Description (*user story*)** | En tant qu'utilisateur connecté, je vois mon fil d'actualité contenant le temps écoulé depuis l'ajout d'un favoris et l'ajout d'un anime dans une liste. |
+| **Critère d'acceptation**      | **Pas encore de tests**                                      |
+| **Priorité**                   | ❓ Secondaire                                                 |
 
-Planning prévisionnel : <span style="color: #F7DC79; font-weight: bold">#F7DC79</span>
-
-Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
+### Diagramme de Gantt
 
 <table>
     <thead>
@@ -398,7 +400,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
         <tr>
             <td></td>
             <td style="background: #7fc77f;"></td>
-            <td style="background: #7fc77f;"></td>
+            <td style="background: #F34C56;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -469,7 +471,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
 		<tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S12 : Utilisation d'un git</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S13 : Utilisation d'un git</td>
             <td></td>
             <td style="background: #f7dc79;"></td>
             <td></td>
@@ -518,7 +520,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S13 : Configuration de la base de données</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S14 : Configuration de la base de données</td>
             <td></td>
             <td></td>
             <td style="background: #f7dc79;"></td>
@@ -567,7 +569,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S15 : Configuration de Flask</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S16 : Configuration de Flask</td>
             <td></td>
             <td></td>
             <td style="background: #f7dc79;"></td>
@@ -694,7 +696,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -744,7 +746,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -763,7 +765,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
 		<tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S11 : Affichage de la landing page</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S12 : Affichage de la landing page</td>
             <td></td>
             <td></td>
             <td></td>
@@ -791,7 +793,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td style="background: #7fc77f;"></td>
+            <td style="background: #F34C56;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -843,7 +845,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -860,6 +862,27 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
         </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th>Jour</th>
+            <th colspan="2" style="text-align: center">J1<br><span>lu.25</span></th>
+            <th colspan="2" style="text-align: center">J2<br><span>ma.26</span></th>
+            <th colspan="2" style="text-align: center">J3<br><span>me.27</span></th>
+            <th colspan="2" style="text-align: center">J4<br><span>je.28</span></th>
+            <th colspan="2" style="text-align: center">J5<br><span>ve.29</span></th>
+            <th colspan="2" style="text-align: center">J7<br><span>ma.2</span></th>
+            <th colspan="2" style="text-align: center">J8<br><span>me.3</span></th>
+            <th colspan="2" style="text-align: center">J9<br><span>je.4</span></th>
+            <th colspan="2" style="text-align: center">J10<br><span>ve.5</span></th>
+            <th colspan="2" style="text-align: center">J11<br><span>lu.8</span></th>
+            <th colspan="2" style="text-align: center">J12<br><span>ma.9</span></th>
+        </tr>
+    </thead>
+    <tbody>
         <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 15px">S5 : Affichage de la carte de l'anime</td>
             <td></td>
@@ -893,7 +916,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -942,8 +965,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #F34C56;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -993,6 +1016,55 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S10 : Affichage des favoris</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #f7dc79;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #F34C56;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1043,7 +1115,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1092,6 +1164,8 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #F34C56;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1104,8 +1178,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S10 : Organisation des favoris</td>
-            <td></td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S11 : Organisation des favoris</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1127,6 +1200,56 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S18 : Affichage des activités</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td></td>
@@ -1140,7 +1263,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td style="background: #F34C56;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1153,8 +1276,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">S14 : Synchronisation MySQL Sqlite3</td>
-            <td></td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">S15 : Synchronisation MySQL Sqlite3</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1170,6 +1292,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #f7dc79;"></td>
             <td style="background: #f7dc79;"></td>
             <td style="background: #f7dc79;"></td>
+            <td style="background: #f7dc79;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1202,7 +1325,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold;">S16 : Vérifications syntaxique</td>
+            <td rowspan="2" style="font-weight: bold;">S17 : Vérifications syntaxique</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1231,14 +1354,14 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1280,14 +1403,14 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
             <td></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1329,14 +1452,14 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1349,7 +1472,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 15px">Résumé du TPI</td>
+            <td rowspan="2" style="font-weight: bold; font-size: 15px">Résumé </br>du TPI</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1398,7 +1521,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 10px">Finalisation / Impression</td>
+            <td rowspan="2" style="font-weight: bold;">Finalisation / Impression</td>
             <td></td>
             <td></td>
             <td></td>
@@ -1447,7 +1570,7 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td></td>
         </tr>
 		<tr>
-            <td rowspan="2" style="font-weight: bold; font-size: 10px">Tenue du journal de bord</td>
+            <td rowspan="2" style="font-weight: bold;">Tenue du journal de bord</td>
             <td style="background: #f7dc79;"></td>
             <td style="background: #f7dc79;"></td>
             <td style="background: #f7dc79;"></td>
@@ -1476,14 +1599,14 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1505,6 +1628,10 @@ Planning réel : <span style="color: #7FC77F; font-weight: bold">#7FC77F</span>
     <div style="display: flex; align-items: center; width: 40%">
         <img src="https://i.loli.net/2020/05/25/kscEVbJ4Wh9xuSv.png" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 20px">
         Planification réelle
+    </div>
+    <div style="display: flex; align-items: center; width: 40%">
+        <img src="https://i.imgur.com/LUikyEA.png" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 20px">
+        Planification imprévue
     </div>
 </div>
 
@@ -1629,31 +1756,31 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 
 | __Nom__               | __1.1__ Création d'un nouveau compte                         |
 | :-------------------- | :----------------------------------------------------------- |
-| __User Story__        | S1 : Inscription à AniHome                                   |
-| __Situation__         | **Étant donné que** je suis un nouvel utilisateur de AniHome, je ne possède pas encore de compte. <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli les informations demandées. <br>**Alors**, je suis redirigé sur la page d'accueil avec mon nouveau compte connecté. |
+| __User Story__        | S1 : Inscription à Animanga                                  |
+| __Situation__         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte. <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli les informations demandées. <br>**Alors**, je suis redirigé sur la page d'accueil avec mon nouveau compte connecté. |
 | __Résultats obtenus__ | Je clique sur *Inscription*. Je suis redirigé vers la page d'inscription. Je remplie le formulaire avec des informations valides. Je clique sur *Inscription*. Je suis redirigé vers la page d'accueil avec mon nouveau compte connecté. |
-| __Statut__            | ❌ KO                                                         |
+| __Statut__            | ✔ OK                                                         |
 
 | **Nom**               | **1.2** Création d'un nouveau compte (avec erreurs)          |
 | :-------------------- | :----------------------------------------------------------- |
-| **User Story**        | S1 : Inscription à AniHome                                   |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de AniHome, je ne possède pas encore de compte.  <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec des informations erronées.  <br>**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
+| **User Story**        | S1 : Inscription à Animanga                                  |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.  <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec des informations erronées.  <br>**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
 | **Résultats obtenus** | Je clique sur *Inscription*. Je suis redirigé vers la page d'inscription. Je remplie le formulaire avec un email invalide. Je clique sur *Inscription*. Un message s'affiche m'indiquant que l'email fourni n'est pas correct. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 2.1 Connexion avec un compte existant                        |
 | :-------------------- | :----------------------------------------------------------- |
-| **User Story**        | S2 : Connexion à AniHome                                     |
-| **Situation**         | **Étant donné que** je suis un utilisateur de AniHome, j'ai déjà un compte à disposition. <br>**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je rempli les informations demandées. <br>**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
+| **User Story**        | S2 : Connexion à Animanga                                    |
+| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition. <br>**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je rempli les informations demandées. <br>**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
 | **Résultats obtenus** | Je clique sur *Connexion*. Je suis redirigé vers la page d'inscription. Je remplie le formulaire avec des informations valides. Je clique sur *Connexion*. Je suis redirigé vers la page d'accueil avec mon nouveau compte connecté. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **2.2 Déconnexion**                                          |
 | :-------------------- | :----------------------------------------------------------- |
-| **User Story**        | S2 : Connexion à AniHome                                     |
+| **User Story**        | S2 : Connexion à Animanga                                    |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site.<br>**Quand** je clique sur le bouton *Déconnexion* placé dans le dropdown du menu *Utilisateur*.<br>**Alors**, je deviens un utilisateur non connecté et je suis redirigé sur la page de connexion. |
 | **Résultats obtenus** | Je clique sur *Utilisateur* et *Déconnexion*. Je ne suis plus connecté et je suis revenue sur la page de connexion. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 3.1 Importation des animes                                   |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1667,28 +1794,28 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **User Story**        | S4 : Recherche des animes                                    |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je clique sur le bouton 🔍 placé dans la barre de navigation et que j'écris "k On" dans le champs de recherche de la modale.<br />**Alors**, je suis redirigé vers la page d'accueil et les résultats de la recherche affiche l'anime "K-ON!". |
 | **Résultats obtenus** | L'anime "K-ON!" est présent dans la zone de résultat de recherche. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 4.2 Recherche des animes avec raccourcis                     |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S4 : Recherche des animes                                    |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je fais le raccourcis clavier <kbd>Ctrl</kbd> + <kbd>S</kbd> et que j'écris "k On" dans le champs de recherche de la modale.<br />**Alors**, je suis redirigé vers la page d'accueil et les résultats de la recherche affiche l'anime "K-ON!". |
 | **Résultats obtenus** | L'anime "K-ON!" est présent dans la zone de résultat de recherche. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 5.1 Affichage de la carte de l'anime                         |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S5 : Affichage de la carte de l'anime                        |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche. <br />**Quand** je clique sur le titre d'un anime présent dans la zone de résultat de la recherche.<br />**Alors**, une modale s'affiche contenant l'image de couverture, le titre, le statut de visionnement de l'anime, et les listes personnelles de l'utilisateur. |
 | **Résultats obtenus** | La modale s'affiche avec le contenu adéquat.                 |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.1 Mise à jour du statut de l'anime sélectionné             |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime. <br />**Quand** sélectionne un statut autre que "---".<br />**Alors**, le combo-box se met à jour avec la nouvelle valeur sélectionnée. |
 | **Résultats obtenus** | La valeur du combo-box c'est bien mise à jour.               |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.2 Ajout de l'anime dans une liste personnelle              |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1702,14 +1829,14 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime. <br />**Quand** je clique sur le cœur blanc pour ajouté au favoris.<br />**Alors**, le cœur se colore et l'anime se rajoute dans la zone des favoris de la page d'accueil. |
 | **Résultats obtenus** | Le cœur c'est coloré et l'anime c'est correctement ajouté dans la zone des favoris de la page d'accueil. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.4 Suppression du statut de l'anime                         |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** sélectionne le statut "---".<br />**Alors**, le combo-box se met à jour avec la nouvelle valeur sélectionnée et l'anime n'est plus présent dans aucun autre statut. |
 | **Résultats obtenus** | La valeur du combo-box c'est bien mise à jour et l'anime n'est effectivement plus présent dans les autres statuts. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.5 Suppression de l'anime d'une liste personnelle           |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1723,21 +1850,21 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur le cœur rose pour supprimer des favoris.<br />**Alors**, le cœur se colore en blanc et l'anime se supprime de la zone des favoris de la page d'accueil. |
 | **Résultats obtenus** | Le cœur c'est coloré en blanc et l'anime c'est correctement supprimé de la zone des favoris de la page d'accueil. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 7.1 Affichage du profile de l'utilisateur connecté           |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S7 : Affichage du profile                                    |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur *Profile* dans la barre de navigation.<br />**Alors**, la page de profile de l'utilisateur connecté s'affiche avec ses statistiques et ses favoris. |
 | **Résultats obtenus** | La page de profile de l'utilisateur connecté s'affiche correctement et les statistiques ainsi que les favoris sont les siens. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 7.2 Affichage du profile d'un autre utilisateur              |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S7 : Affichage du profile                                    |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je modifie l'url pour entré "/profile/Test".<br />**Alors**, la page de profile de "Test" s'affiche avec ses statistiques et ses favoris. |
 | **Résultats obtenus** | La page de profile de "Test" s'affiche correctement et les statistiques ainsi que les favoris sont les siens. |
-| **Statut**            | ❌ KO                                                         |
+| **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 8.1 Affichage des listes de l'utilisateur connecté           |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1767,30 +1894,51 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **Résultats obtenus** | La liste à bien été supprimer et n'est plus présente dans les listes déjà existante. |
 | **Statut**            | ❌ KO                                                         |
 
-| **Nom**               | 10.1 Organisation des favoris                                |
+| **Nom**               | 10.1 Affichage des favoris sur l'accueil                     |
 | :-------------------- | :----------------------------------------------------------- |
-| **User Story**        | S10 : Organisation des favoris                               |
+| **User Story**        | S10 : Affichage des favoris                                  |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page d'accueil.<br />**Alors**, mes favoris sont présent sur la page. |
+| **Résultats obtenus** | Mes favoris sont bien affiché.                               |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 10.2 Affichage des favoris du profile                     |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S10 : Affichage des favoris                                  |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur ma page de profile.<br />**Alors**, mes favoris sont présent sur la page. |
+| **Résultats obtenus** | Mes favoris sont bien affiché.                               |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 10.3 Affichage des favoris d'un autre                      |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S10 : Affichage des favoris                                  |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je modifie l'url pour entré "/favorites/Test".<br />**Alors**, les favoris de l'utilisateur "Test" s'affiche dans l'ordre que "Test" à décidé. |
+| **Résultats obtenus** | Mes favoris sont bien affiché.                               |
+| **Statut**            | ❌ KO                                                         |
+
+| **Nom**               | 11.1 Organisation des favoris                                |
+| :-------------------- | :----------------------------------------------------------- |
+| **User Story**        | S11 : Organisation des favoris                               |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des favoris et je clique sur le bouton *Réorganiser les favoris*, je peux glisser déposer les animes dans l'ordre que je veux. Je clique sur le bouton *Sauvegarder* pour enregistrer l'ordre.<br />**Alors**, mes favoris sont enregistrer dans l'ordre voulu. |
 | **Résultats obtenus** | Mes favoris ont bien été réorganisé.                         |
 | **Statut**            | ❌ KO                                                         |
 
-| **Nom**               | 11.1 Affichage de la landing page                            |
+| **Nom**               | 12.1 Affichage de la landing page                            |
 | :-------------------- | :----------------------------------------------------------- |
-| **User Story**        | S11 : Affichage de la landing page                           |
+| **User Story**        | S12 : Affichage de la landing page                           |
 | **Situation**         | **Étant donné que** je suis un utilisateur non connecté.<br />**Quand** je suis sur le site.<br />**Alors**, une page d'accueil s'affiche avec comme possibilité : la visite de la page *À propos*, se connecter et s'inscrire. |
 | **Résultats obtenus** | La page d'accueil ainsi que la barre de navigation sont affiché correctement pour un utilisateur non connecté. |
 | **Statut**            | ✔ OK                                                         |
 
-| **Nom**               | 12.1 Respect du preset Airbnb                                |
+| **Nom**               | 13.1 Respect du preset Airbnb                                |
 | :-------------------- | :----------------------------------------------------------- |
-| **User Story**        | S16 : Vérification syntaxique                                |
+| **User Story**        | S17 : Vérification syntaxique                                |
 | **Situation**         | **Étant donné que** je suis un développeur. <br />**Quand** j'exécute la commande `npm run lint` dans le dossier de mon projet. <br />**Alors**, aucune erreur de syntaxe sur la base du preset Airbnb n'est relevée. |
 | **Résultats obtenus** | <span style="font-size: 0.8rem">\> Animanga@1.0.0 lint /home/cavagnat/Documents/programmation/python/Animanga<br/>\> eslint '**/*.js' --ignore-pattern node_modules/</span> |
 | **Statut**            | ✔ OK                                                         |
 
-| **Nom**               | 12.2 Respect des conventions PEP8                            |
+| **Nom**               | 13.2 Respect des conventions PEP8                            |
 | :-------------------- | :----------------------------------------------------------- |
-| **User Story**        | S16 : Vérification syntaxique                                |
+| **User Story**        | S17 : Vérification syntaxique                                |
 | **Situation**         | **Étant donné que** je suis un développeur. <br />**Quand** j'exécute la commande `python3 -m pylint --output-format=colorized packages` à la racine de mon projet.<br /> **Alors**, les erreurs *Too many return statements* n'ont pas besoin d'être prises en compte, tout comme *Method could be a function* du fichier `SqliteController.py`. |
 | **Résultats obtenus** | La note attribuée au code et supérieur à 9.5/10.             |
 | **Statut**            | ✔ OK                                                         |
@@ -1799,26 +1947,30 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 
 | N° Test | J1<br /><span style="font-weight: normal">lu.25</span> | J2<br /><span style="font-weight: normal">ma.26</span> | J3<br /><span style="font-weight: normal">me.27</span> | J4<br /><span style="font-weight: normal">je.28</span> | J5<br /><span style="font-weight: normal">ve.29</span> | J6<br /><span style="font-weight: normal">ma.2</span> | J7<br /><span style="font-weight: normal">me.3</span> | J8<br /><span style="font-weight: normal">je.4</span> | J9<br /><span style="font-weight: normal">ve.5</span> | J10<br /><span style="font-weight: normal">lu.8</span> | J11<br /><span style="font-weight: normal">ma.9</span> |
 | :-----: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: |
-|   1.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   1.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   2.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   2.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   3.1   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   4.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   4.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   5.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   6.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   6.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   6.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   6.4   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   6.5   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   7.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   7.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   8.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   8.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   9.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|   9.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|  10.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|  11.1   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|  12.1   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
-|  12.2   |                           ❌                            |                           ✔                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   1.1   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   1.2   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   2.1   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   2.2   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   3.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   4.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   4.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   5.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.4   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.5   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   6.6   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   7.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   7.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   8.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   8.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   9.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|   9.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  10.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  11.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  11.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  11.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  12.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  13.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
+|  13.2   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ❌                           |                           ❌                           |                           ❌                           |                           ❌                            |                           ❌                            |
