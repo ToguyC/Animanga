@@ -9,9 +9,9 @@ import sqlite3
 from typing import Any
 from sqlite3 import Error as SqliteError
 from mysql.connector import Error as MysqlError
-from .MySQLController import MySQLController
-
 from flask import g
+
+from .MySQLController import MySQLController
 from .logger import log
 
 class SqliteController:
@@ -336,6 +336,7 @@ class SqliteController:
             log(e)
             return False
 
+    # pylint: disable=too-many-locals,too-many-nested-blocks
     @classmethod
     def synchronise_with_mysql(cls) -> bool:
         """Synchronise la base MySQL avec Sqlite3

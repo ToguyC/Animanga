@@ -15,11 +15,9 @@ class MySQLController:
     """Classe permettant d'accéder à ma base de données MySQL
     """
 
-    #region Public constants
     FETCH_ALL = 0
     FETCH_ONE = 1
     NO_FETCH = 2
-    #endregion
 
     def __init__(self):
         """Constructeur vide
@@ -30,7 +28,8 @@ class MySQLController:
         """
         return "Tried to handle unknown method / attribute : {0}".format(attr)
 
-    def __connection(self) -> mysql.connector.MySQLConnection:
+    @classmethod
+    def __connection(cls) -> mysql.connector.MySQLConnection:
         """Créer et retourne la connexion
 
             Returns:
@@ -41,15 +40,17 @@ class MySQLController:
                                        user='root',
                                        password='root')
     
-    def openConnection(self) -> mysql.connector.MySQLConnection:
+    @classmethod
+    def openConnection(cls) -> mysql.connector.MySQLConnection:
         """Ouvre une connexion
         
             Returns:
                {mysql.connector.MySQLConnection} -- Connection to the database
         """
-        return self.__connection()
+        return cls.__connection()
 
-    def closeConnection(self, connection) -> None:
+    @classmethod
+    def closeConnection(cls, connection) -> None:
         """Ferme une connexion données
 
             Arguments:
@@ -57,7 +58,8 @@ class MySQLController:
         """
         connection.close()
 
-    def executeMany(self, connection, query, values) -> None:
+    @classmethod
+    def executeMany(cls, connection, query, values) -> None:
         """Fait une requete de type many. (INSERT INTO <table> VALUES(...values), (...values), (...values), ...)
 
             Arguments:
@@ -72,7 +74,8 @@ class MySQLController:
         except Error as e:
             log(e)
 
-    def executePrepare(self, connection, query, values = None, fetch_mode = 0) -> Any:
+    @classmethod
+    def executePrepare(cls, connection, query, values = None, fetch_mode = 0) -> Any:
         """Éxecute une requête préparée
         
             Arguments:
@@ -96,13 +99,13 @@ class MySQLController:
             fields_names = [i[0] for i in cursor.description]
 
             # Fetch datas
-            if fetch_mode == self.FETCH_ALL:
+            if fetch_mode == cls.FETCH_ALL:
                 results = cursor.fetchall()
 
                 rows = [dict(zip(fields_names, results[i])) for i in range(len(results))]
-            elif fetch_mode == self.FETCH_ONE:
+            elif fetch_mode == cls.FETCH_ONE:
                 rows = cursor.fetchone()
-            elif fetch_mode == self.NO_FETCH:
+            elif fetch_mode == cls.NO_FETCH:
                 rows = None
         
             # Return datas
@@ -114,9 +117,10 @@ class MySQLController:
             log(e)
             return False
         finally:
-            self.closeConnection(connection)
+            cls.closeConnection(connection)
 
-    def executeQuery(self, connection, query, values = None, fetch_mode = 0, last_insert_id = False, close_connection = True) -> Any:
+    @classmethod
+    def executeQuery(cls, connection, query, values = None, fetch_mode = 0, last_insert_id = False, close_connection = True) -> Any:
         """Execute and retrieve data from querie
         
             Arguments:
@@ -150,11 +154,11 @@ class MySQLController:
                 
 
             # Fetch datas
-            if fetch_mode == self.FETCH_ALL:
+            if fetch_mode == cls.FETCH_ALL:
                 rows = cursor.fetchall()
-            elif fetch_mode == self.FETCH_ONE:
+            elif fetch_mode == cls.FETCH_ONE:
                 rows = cursor.fetchone()
-            elif fetch_mode == self.NO_FETCH:
+            elif fetch_mode == cls.NO_FETCH:
                 rows = None
 
             if last_insert_id:
@@ -173,4 +177,5 @@ class MySQLController:
             return False
         finally:
             if close_connection:
-                self.closeConnection(connection)
+                cls.closeConnection(connection)
+                
