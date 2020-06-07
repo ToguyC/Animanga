@@ -8,7 +8,21 @@
  */
 
 const reorder = document.querySelector('.reorder');
+let removers = document.querySelectorAll('.favorite-remover');
 let toggleReorder = false;
+
+/**
+ * Affiche ou cache les boutton de suppression des favoris
+ */
+function toggleHideFavoriteRemovers(hide = true) {
+    removers.forEach((remover) => {
+        if (hide === true) {
+            remover.classList.add('d-none');
+        } else {
+            remover.classList.remove('d-none');
+        }
+    });
+}
 
 reorder.addEventListener('click', () => {
     $('.favorites').sortable({ disabled: toggleReorder });
@@ -17,6 +31,7 @@ reorder.addEventListener('click', () => {
     // Si bouton cliqué pour sauvegarder
     if (toggleReorder === true) {
         const favorites = document.querySelectorAll('.favorites .favorite-item');
+        toggleHideFavoriteRemovers(true);
 
         const ids = [];
         favorites.forEach((favorite) => {
@@ -35,7 +50,11 @@ reorder.addEventListener('click', () => {
         }).catch(() => {
             // Ne rien faire
         });
+    } else { // Clique sur `Réordonner les favoris` pour afficher les boutons de suppression
+        removers = document.querySelectorAll('.favorite-remover');
+        toggleHideFavoriteRemovers(false);
     }
 
     toggleReorder = !toggleReorder;
 });
+

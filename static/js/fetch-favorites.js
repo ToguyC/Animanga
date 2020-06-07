@@ -6,7 +6,7 @@
  *                              utilisateur que celui connecté
  */
 /* eslint-disable-next-line no-unused-vars */
-function fetchFavorites(col = false, searchedUser = null) {
+function fetchFavorites(col = false, canDelete = false, searchedUser = null) {
     const favorites = document.querySelector('.favorites');
 
     if (favorites != null) {
@@ -32,6 +32,7 @@ function fetchFavorites(col = false, searchedUser = null) {
                 json.animes.forEach((anime) => {
                     const favoriteItem = document.createElement('div');
                     const favoritePicture = document.createElement('img');
+                    const favoriteRemover = document.createElement('img');
 
                     favoriteItem.classList.add('favorite-item');
                     favoriteItem.dataset.id = anime.id;
@@ -41,7 +42,25 @@ function fetchFavorites(col = false, searchedUser = null) {
                     }
 
                     favoritePicture.src = anime.picture;
+                    favoriteRemover.classList.add('favorite-remover');
+                    if (canDelete === false) {
+                        favoriteRemover.classList.add('d-none');
+                    }
+                    favoriteRemover.addEventListener('click', () => {
+                        fetch('/set/favorite', {
+                            method: 'PATCH',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ idAnime: anime.id }),
+                        }).then((response) => response.json()).then(() => {
+                            fetchFavorites(false, true);
+                        });
+                    });
+                    favoriteRemover.src = '/static/img/remove.svg';
                     favoriteItem.appendChild(favoritePicture);
+                    favoriteItem.appendChild(favoriteRemover);
                     favorites.appendChild(favoriteItem);
                 });
             } else {

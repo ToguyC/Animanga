@@ -38,6 +38,6 @@
 {% block script %}
     <script src="{{ url_for('static', filename='js/fetch-favorites.js') }}"></script>
     <script>
-        window.addEventListener('load', () => { fetchFavorites(false, document.getElementById('searched_user').dataset.nickname) });
+        window.addEventListener('load', () => { fetchFavorites(false, false, document.getElementById('searched_user').dataset.nickname) });
     </script>
 {% endblock script %}

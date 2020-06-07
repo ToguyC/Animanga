@@ -115,7 +115,7 @@
     <script src="{{ url_for('static', filename='js/ratio-keeper.js') }}"></script>
     <script src="{{ url_for('static', filename='js/anime-handler.js') }}"></script>
     <script>
-        window.addEventListener('load', () => { fetchFavorites(true, null); fetchActivities(); });
+        window.addEventListener('load', () => { fetchFavorites(true, false, null); fetchActivities(); });
         
         // Déclaration obligatoire pour que les message du stream puissent être mis dans un élément DOM
         let override_info = document.getElementById('override-info');
