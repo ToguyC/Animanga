@@ -42,13 +42,13 @@
 | Nom                            | S7 : Affichage du profile                                    |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur connecté, je peux avoir accès à ma page de profile afin de pourvoir voir les statistiques et favoris. Il est également possible de voir la page de profile d'autre utilisateur du site. |
-| **Critère d'acceptation**      | Les tests *7.1* et *7.2* passent.                            |
+| **Critère d'acceptation**      | Le test *7.1* passe.                                         |
 | **Priorité**                   | ❗ Important                                                  |
 
 | Nom                            | S8 : Affichage des listes                                    |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur connecté, je peux avoir accès à ma page de listes afin de voir toutes mes listes et leur contenu. Il est également possible de voir les listes d'autre utilisateur du site. |
-| **Critère d'acceptation**      | Les tests *8.1* et *8.2* passent.                            |
+| **Critère d'acceptation**      | Le test *8.1* passe.                                         |
 | **Priorité**                   | ❗ Important                                                  |
 
 | Nom                            | S9 : Gestion des listes                                      |
@@ -60,13 +60,13 @@
 | Nom                            | S10 : Affichage des favoris                                  |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur connecté, je peux avoir accès à ma page favoris afin de voir tout mes favoris. Il est également possible de voir les favoris d'autre utilisateur du site. |
-| **Critère d'acceptation**      | Les test *10.1* à *10.3* passent.                            |
+| **Critère d'acceptation**      | Les test *10.1* et *10.2* passent.                           |
 | **Priorité**                   | ❗ Important                                                  |
 
 | Nom                            | S11 : Gestion des favoris                                    |
 | ------------------------------ | ------------------------------------------------------------ |
 | **Description (*user story*)** | En tant qu'utilisateur connecté, je peux organiser l'ordre de mes favoris selon mes envies. |
-| **Critère d'acceptation**      | Le test *11.1* passe.                                        |
+| **Critère d'acceptation**      | Les tests *11.1* et *11.2* passent.                          |
 | **Priorité**                   | ❗ Important                                                  |
 
 | Nom                            | S12 : Affichage de la *landing page*                         |
@@ -122,12 +122,12 @@
             <th colspan="2" style="text-align: center">J3<br><span>me.27</span></th>
             <th colspan="2" style="text-align: center">J4<br><span>je.28</span></th>
             <th colspan="2" style="text-align: center">J5<br><span>ve.29</span></th>
-            <th colspan="2" style="text-align: center">J7<br><span>ma.2</span></th>
-            <th colspan="2" style="text-align: center">J8<br><span>me.3</span></th>
-            <th colspan="2" style="text-align: center">J9<br><span>je.4</span></th>
-            <th colspan="2" style="text-align: center">J10<br><span>ve.5</span></th>
-            <th colspan="2" style="text-align: center">J11<br><span>lu.8</span></th>
-            <th colspan="2" style="text-align: center">J12<br><span>ma.9</span></th>
+            <th colspan="2" style="text-align: center">J6<br><span>ma.2</span></th>
+            <th colspan="2" style="text-align: center">J7<br><span>me.3</span></th>
+            <th colspan="2" style="text-align: center">J8<br><span>je.4</span></th>
+            <th colspan="2" style="text-align: center">J9<br><span>ve.5</span></th>
+            <th colspan="2" style="text-align: center">J10<br><span>lu.8</span></th>
+            <th colspan="2" style="text-align: center">J11<br><span>ma.9</span></th>
         </tr>
     </thead>
     <tbody>
@@ -730,12 +730,12 @@
             <th colspan="2" style="text-align: center">J3<br><span>me.27</span></th>
             <th colspan="2" style="text-align: center">J4<br><span>je.28</span></th>
             <th colspan="2" style="text-align: center">J5<br><span>ve.29</span></th>
-            <th colspan="2" style="text-align: center">J7<br><span>ma.2</span></th>
-            <th colspan="2" style="text-align: center">J8<br><span>me.3</span></th>
-            <th colspan="2" style="text-align: center">J9<br><span>je.4</span></th>
-            <th colspan="2" style="text-align: center">J10<br><span>ve.5</span></th>
-            <th colspan="2" style="text-align: center">J11<br><span>lu.8</span></th>
-            <th colspan="2" style="text-align: center">J12<br><span>ma.9</span></th>
+            <th colspan="2" style="text-align: center">J6<br><span>ma.2</span></th>
+            <th colspan="2" style="text-align: center">J7<br><span>me.3</span></th>
+            <th colspan="2" style="text-align: center">J8<br><span>je.4</span></th>
+            <th colspan="2" style="text-align: center">J9<br><span>ve.5</span></th>
+            <th colspan="2" style="text-align: center">J10<br><span>lu.8</span></th>
+            <th colspan="2" style="text-align: center">J11<br><span>ma.9</span></th>
         </tr>
     </thead>
     <tbody>
@@ -1171,8 +1171,8 @@
             <td></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1220,8 +1220,8 @@
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1269,8 +1269,8 @@
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1318,10 +1318,10 @@
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1465,8 +1465,8 @@
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
             <td style="background: #7fc77f;"></td>
-            <td></td>
-            <td></td>
+            <td style="background: #7fc77f;"></td>
+            <td style="background: #7fc77f;"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1490,6 +1490,9 @@
         Planification imprévue
     </div>
 </div>
+
+
+
 
 
 

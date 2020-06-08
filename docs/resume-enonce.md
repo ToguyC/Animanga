@@ -4,9 +4,9 @@
 
 ## Organisation
 
-| Éléve                                     | Maître d'apprentissage                   | Experts                                                      |
-| ----------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| Tanguy Cavagna \<<tanguy.cvgn@eduge.ch>\> | Pascal Bonvin \<<edu-bonvinp@eduge.ch>\> | Nicolas Terrond \<<nicolas.terrond@sig-ge.ch>\><br />Robin Bouille \<<robin.bouille@gmail.com>\> |
+| Éléve                                         | Maître d'apprentissage                   | Experts                                                      |
+| --------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
+| Tanguy Cavagna<br /><<tanguy.cvgn@eduge.ch>\> | Pascal Bonvin \<<edu-bonvinp@eduge.ch>\> | Nicolas Terrond \<<nicolas.terrond@sig-ge.ch>\><br />Robin Bouille \<<robin.bouille@gmail.com>\> |
 
 ## Livrable
 

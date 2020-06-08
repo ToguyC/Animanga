@@ -481,13 +481,13 @@ Je commence maintenant à implémenter cet algorithme dans l'application.
 
 ### Bilan
 
-Cette journée n'a pas eu beaucoup de diversité. Je n'ai fait que développé mon algorithme et j'ai à peine commencé à l'implémenté dans l'application. Je terminerai l'implémentation demain je pense. Cela me fera prendre de l'avance de 2 jours environ sur le planning prévisionnel.
+Cette journée n'a pas eu beaucoup de diversité. Je n'ai fait que développé mon algorithme et j'ai à peine commencé à l'implémenté dans l'application. Je terminerai l'implémentation demain je pense.
 
 ## J8 : jeudi 04 juin 2020
 
 ### Objectif
 
-Aujourd'hui je prévois de terminé l'implémentation de l'algorithme de synchronisation. Cela me fera prendre 2 jours d'avance sur mon planning prévisionnel.
+Aujourd'hui je prévois de terminé l'implémentation de l'algorithme de synchronisation. Je suis entièrement dans les temps et très content de la vitesse d'avancement du projet.
 
 ### Déroulement
 
@@ -515,7 +515,7 @@ Aujourd'hui je prévois de terminé l'implémentation de l'algorithme de synchro
 
 J'ai donc modifier le code de l'ajout des timestamp dans Sqlite3 pour retiré les millisecondes à la source directement. J'ai remplacer tout les `dt.now()` par `dt.now().strftime('%Y-%m-%d %H:%M:%S')`.
 
-16h : J'ai terminé d'implémenté la synchronisation entre les bases. J'ai pris 2 jours d'avances grâce à cela. Je vais en profiter pour corriger tout les potentiels bugs qui pourrais y avoir et faire de la documentation. De plus, ça me permettra de vérifier que je n'ai rien oublié des points mentionné dans le cahier des charges.
+16h : J'ai terminé d'implémenté la synchronisation entre les bases. J'ai pris 1 jours d'avances grâce à cela. Je vais en profiter pour corriger tout les potentiels bugs qui pourrais y avoir et faire de la documentation. De plus, ça me permettra de vérifier que je n'ai rien oublié des points mentionné dans le cahier des charges.
 
 Je met maintenant à jour la documentation.
 
@@ -523,5 +523,37 @@ Je met maintenant à jour la documentation.
 
 ### Bilan
 
-Cette journée était très fructueuse. J'ai pu finir la synchronisation et donc j'ai 2 jours d'avance sur mon planning. Cela m'a permis de terminer les fonctionnalités de mon application. Maintenant, je vais vérifier que je n'ai rien oublier et corriger les potentiels bugs qui pourraient être présent.
+Cette journée était très fructueuse. J'ai pu finir la synchronisation et donc j'ai 1 jours d'avance sur mon planning. Cela m'a permis de terminer les fonctionnalités de mon application. Maintenant, je vais vérifier que je n'ai rien oublier et corriger les potentiels bugs qui pourraient être présent.
+
+## J9 : vendredi 05 juin
+
+### Objectif
+
+Le but de cette journée est de faire de la documentation. Je vais profiter de cette journée pour vérifier si toutes les fonctionnalités sont implémentées.
+
+### Déroulement
+
+8h : J'ai remarqué que je m'étais trompé dans le numéro des jours sur mon planning. Ceci m'a rendu confus lors de la rédaction du journal de bord. Les jours indiqué dans le planning était : J1, J2, J3, J4, J5, J7, J8, J9, J10, J11, J12.
+
+Je n'ai pas remarqué cela lors de mes mises à jours du planning et donc les planning donné précédemment aux experts étaient erroné.
+
+Je vais donc corriger le planning.
+
+8h30 : Le planning est corrigé et je vais maintenant ajouter la partie *libraires et outils externes*.
+
+10h : Les librairies sont maintenant documentées et je vais pouvoir ajouté la structure du projet dans la partie *implémentation*.
+
+10h30 : J'ai remarqué que je pourrais ajouté dans les scénarios de tests, toutes les possibilités d'erreurs pour l'inscription et la connexion. Cela à ajouté ~10 tests supplémentaires. Étant donné que je suis relativement à jour dans la documentation, je vais pouvoir vérifier si toutes les fonctionnalités ont bien été implémentées.
+
+10h35 : Une fonctionnalité n'a pas été faite. Cette dernière est la possibilité de supprimer un animes des favoris depuis la page d'organisation des favoris. Je l'implémente maintenant.
+
+11h50 : La possibilité de supprimer un animes des favoris depuis la page d'organisation des favoris à été implémenté. J'ai mis <img src="https://i.imgur.com/FzE4PuB.png" width="25px"> pour pouvoir retirer les animes. Cette icône s'affiche lorsque l'utilisateur clique sur le bouton `Réorganiser les favoris`.
+
+Je prend ma pause.
+
+---
+
+13h : Je reprend ma journée et je vais vérifier tout le reste du projet pour vérifier qu'aucun bug n'est présent.
+
+14h30 : Toute l'application est propre. Je n'ai détecté que 1 bug et il a été corriger très rapidement. Un simple problème de type. Je vais maintenant m'attaquer à la documentation. Cela comprend corrections orthographiques et ajout de parties manquantes si le cas se présente.
 

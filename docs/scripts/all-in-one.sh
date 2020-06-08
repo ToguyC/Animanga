@@ -12,7 +12,10 @@ for f in ../index.md \
          ../methodologie.md \
          ../planning.md \
          ../implementation.md \
-         ../scenarios-tests.md
+         ../librairies.md \
+         ../scenarios-tests.md \
+	     ../bibliographie.md \
+	     ../conclusion.md
 do
     echo >> $final
     cat $f >> $final
