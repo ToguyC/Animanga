@@ -9,11 +9,11 @@ nav:
   - Résumé de l'énoncé: resume-enonce.md
   - Méthodologie: methodologie.md
   - Planification: planning.md
-  - Implémentation : implementation.md
-  - Libraires et outils externes : librairies.md
-  - Plans de test et tests : scenarios-tests.md
-  - Bibliographie : bibliographie.md
-  - Conclusion : conclusion.md
+  - Implémentation: implementation.md
+  - Librairies et outils externes: librairies.md
+  - Plan de test et tests: scenarios-tests.md
+  - Bibliographie: bibliographie.md
+  - Conclusion: conclusion.md
   - Journal de bord: journal-de-bord.md
 
 theme:

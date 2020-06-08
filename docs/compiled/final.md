@@ -2,6 +2,7 @@
 
 - [Animanga](#animanga)
   - [Table des versions](#table-des-versions)
+  - [Préambule](#préambule)
   - [Introduction](#introduction)
   - [Résumé de l'énoncé](#résumé-de-lénoncé)
   - [Organisation](#organisation)
@@ -55,10 +56,13 @@
 
 ## Table des versions
 
-| N° de version | Date       | Auteur                                   | Modifications                                                |
-| ------------- | ---------- | ---------------------------------------- | ------------------------------------------------------------ |
-| 0.1           | 2020-05-25 | Tanguy Cavagna \<<tanguy.cvgn@eduge.ch>> | Création de la base de la documentation                      |
-| 0.2           | 2020-05-26 | Tanguy Cavagna \<<tanguy.cvgn@eduge.ch>> | Ajout de la partie *implémentation* et modification des *user stories* et *tests*. |
+| N° de version | Date       | Auteur                                  | Modifications                             |
+| ------------- | ---------- | --------------------------------------- | ----------------------------------------- |
+| 1.0           | 2020-06-09 | Tanguy Cavagna <<tanguy.cvgn@eduge.ch>> | Version finale de la documentation du TPI |
+
+## Préambule
+
+Toute cette documentation a été rédigée en [Markdown](https://www.markdownguide.org/) et le PDF que vous avez entre les mains est généré automatiquement grâce au logiciel d'édition pour fichier Markdown : [Typora](https://typora.io). J'ai fais un script Bash servant à fusionner les différents fichiers PDF nécessaire à la composition final de ce rapport donc il se peut que la mise en page soit quelque peu bancale. C'et pourquoi je vous invite très fortement à aller lire tout ce rapport sur le site <https://animanga.readthedocs.io/fr/latest/>.
 
 ## Introduction
 
@@ -73,7 +77,7 @@ Animanga est une application web écrite en Python permettant aux utilisateurs d
 
 | Éléve                                         | Maître d'apprentissage                   | Experts                                                      |
 | --------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| Tanguy Cavagna<br />\<<tanguy.cvgn@eduge.ch>> | Pascal Bonvin \<<edu-bonvinp@eduge.ch>\> | Nicolas Terrond \<<nicolas.terrond@sig-ge.ch>\><br />Robin Bouille \<<robin.bouille@gmail.com>\> |
+| Tanguy Cavagna<br /><<tanguy.cvgn@eduge.ch>\> | Pascal Bonvin \<<edu-bonvinp@eduge.ch>\> | Nicolas Terrond \<<nicolas.terrond@sig-ge.ch>\><br />Robin Bouille \<<robin.bouille@gmail.com>\> |
 
 ## Livrable
 
