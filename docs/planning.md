@@ -719,26 +719,6 @@
             <td></td>
             <td></td>
         </tr>
-    </tbody>
-</table>
-<table>
-    <thead>
-        <tr>
-            <th>Jour</th>
-            <th colspan="2" style="text-align: center">J1<br><span>lu.25</span></th>
-            <th colspan="2" style="text-align: center">J2<br><span>ma.26</span></th>
-            <th colspan="2" style="text-align: center">J3<br><span>me.27</span></th>
-            <th colspan="2" style="text-align: center">J4<br><span>je.28</span></th>
-            <th colspan="2" style="text-align: center">J5<br><span>ve.29</span></th>
-            <th colspan="2" style="text-align: center">J6<br><span>ma.2</span></th>
-            <th colspan="2" style="text-align: center">J7<br><span>me.3</span></th>
-            <th colspan="2" style="text-align: center">J8<br><span>je.4</span></th>
-            <th colspan="2" style="text-align: center">J9<br><span>ve.5</span></th>
-            <th colspan="2" style="text-align: center">J10<br><span>lu.8</span></th>
-            <th colspan="2" style="text-align: center">J11<br><span>ma.9</span></th>
-        </tr>
-    </thead>
-    <tbody>
         <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 15px">S5 : Affichage de la carte de l'anime</td>
             <td></td>

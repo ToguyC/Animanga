@@ -5,6 +5,7 @@ pdftk ../compiled/cover.pdf \
          ../compiled/final.pdf \
          ../compiled/annexes-cover.pdf \
          ../compiled/resume-cover.pdf \
+         ../compiled/resume-tpi.pdf \
          ../compiled/enonce-cover.pdf \
          ../compiled/"Enoncé TPI CAVAGNA Tanguy  I.DA-P4B v2.pdf" \
          ../compiled/journal-de-bord-cover.pdf \
