@@ -88,7 +88,7 @@ class BaseAuthenticationControlleur:
                 if max == -1: # Seulement une limite minimum est présent
                     message = f'Le champ doit au moins avoir {min} caractères.'
                 elif min == -1: # Seulement une limite maximum est présent
-                    message = f'Le champ ne peut pas excedé {max} caractères.'
+                    message = f'Le champ ne peut pas excéder {max} caractères.'
                 else:
                     message = f'Le champ doit être compris entre {min} et {max} caractères'
             

@@ -9,6 +9,7 @@ from flask import render_template, Response, stream_with_context, jsonify, reque
 from flask import current_app as app
 from flask_swagger import swagger
 from flask_login import current_user, login_required
+import markdown, os
 
 from .packages.controllers.AnimeController import AnimeController
 from .packages.controllers.ListController import ListController
@@ -169,6 +170,24 @@ def favorites_redirect():
     """Redirige l'utilisateur si aucuns pseudo n'est inscrit dans l'url
     """
     return redirect(url_for('main_bp.favorites', nickname=current_user.nickname))
+
+@main_bp.route('/about')
+def about():
+    """Affiche la page à propos
+    """
+    with open(os.path.dirname(os.path.realpath(__file__)) + '/docs/librairies.md', 'r', encoding='utf-8') as input_file:
+        text = input_file.read()
+
+    return render_template('about.html', current_user=current_user, html=markdown.markdown(text))
+
+@main_bp.route('/help')
+def help():
+    """Affiche la page d'aide
+    """
+    with open(os.path.dirname(os.path.realpath(__file__)) + '/docs/aide.md', 'r', encoding='utf-8') as input_file:
+        text = input_file.read()
+
+    return render_template('help.html', current_user=current_user, html=markdown.markdown(text))
 
 @main_bp.route('/get/favorites', methods=['GET'])
 @login_required

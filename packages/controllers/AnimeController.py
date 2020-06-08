@@ -65,7 +65,7 @@ class AnimeController:
 
             current_time = dt.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            yield "Récupération des types et status"
+            yield "Récupération des types et statuts"
 
             # Récupération des statuts et des types
             for anime in animes['data']:

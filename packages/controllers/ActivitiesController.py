@@ -21,9 +21,11 @@ class ActivitiesController:
     @classmethod
     def get_last_24h(cls, user_id: int) -> []:
         """Récupère les activitées d'un utilisateur
+        
             Arguments:
                 user_if {int} -- Id de l'utilisateur
             Returns:
+
                 [] -- Liste des activitées
         """
         activities = cls.__get_list_related(user_id) + cls.__get_favorite_related(user_id)
@@ -39,13 +41,15 @@ class ActivitiesController:
     @classmethod
     def __get_list_related(cls, user_id: int) -> []:
         """Récupère les activitées relatives aux listes
+
             Arguments:
                 user_id {int} -- Id de l'utilisateur
             Returns:
+
                 [] -- Liste des activités
         """
         try:
-            current_datetime = dt.now().strftime('%Y-%m-%d %H:%M:%S')
+            current_datetime = dt.now().replace(microsecond=0)
 
             sql_list_additions = """SELECT anime.title, anime.picture, list_has_anime.modificationDate, list.nameList
                                     FROM list_has_anime
@@ -75,13 +79,15 @@ class ActivitiesController:
     @classmethod
     def __get_favorite_related(cls, user_id: int) -> []:
         """Récupère les activitées relatives aux favoris
+
             Arguments:
                 user_id {int} -- Id de l'utilisateur
             Returns:
+            
                 [] -- Liste des activités
         """
         try:
-            current_datetime = dt.now().strftime('%Y-%m-%d %H:%M:%S')
+            current_datetime = dt.now().replace(microsecond=0)
 
             sql_favorite_additions = """SELECT anime.title, anime.picture, user_has_favorite.modificationDate
                                     FROM user_has_favorite

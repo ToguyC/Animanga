@@ -72,7 +72,6 @@ def login():
             flash('Combinaison email - mot de passe invalide')
             return redirect(url_for('auth_bp.login'))
 
-    print(auth_validation)
     return render_template('login.html',
                             current_user=current_user,
                             auth_errors=auth_validation.get_state())

@@ -63,7 +63,7 @@ function fetchActivities() {
                     const activityTimestamp = document.createElement('span');
                     const activityImg = document.createElement('img');
 
-                    activityContainer.classList = 'activity col-xl-6 col-md-12';
+                    activityContainer.classList = 'activity';
                     subjectTitle.innerHTML = activity.title;
                     activitySubject.classList.add('activity__subject');
                     activitySubject.appendChild(subjectTitle);
