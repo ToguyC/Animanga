@@ -9,7 +9,7 @@
 const titles = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
 const toc = document.querySelector('.toc');
 
-for (let i = 0; i < titles.length; i++) {
+for (let i = 0; i < titles.length; i += 1) {
     const title = titles[i];
     const tocTitle = document.createElement(title.tagName.toLowerCase());
     const tocLink = document.createElement('a');
