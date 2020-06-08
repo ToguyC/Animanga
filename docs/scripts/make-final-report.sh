@@ -10,5 +10,6 @@ pdftk ../compiled/cover.pdf \
          ../compiled/journal-de-bord-cover.pdf \
          ../compiled/journal-de-bord.pdf \
          ../compiled/code-source-cover.pdf \
+         ../compiled/code-source.pdf \
          cat output \
          ../compiled/rapport-tpi-et-documentation-technique.pdf
