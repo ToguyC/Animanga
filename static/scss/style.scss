@@ -955,6 +955,36 @@ input:focus {
         margin-top: 5%;
     }
 }
+.toc {
+    width: 15%;
+    height: auto;
+    position: fixed;
+    top: 100px;
+    left: 40px;
+
+    a {
+        color: $c-light-gray;
+    }
+    h1:hover, h2:hover, h3:hover, h4:hover {
+        cursor: pointer;
+    }
+    h1 {
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+    h2 {
+        font-size: 1.4rem;
+        margin-left: 10px;
+    }
+    h3 {
+        font-size: 1.1rem;
+        margin-left: 20px;
+    }
+    h4 {
+        font-size: 1rem;
+        margin-left: 30px;
+    }
+}
 
 // Media queries
 //=================

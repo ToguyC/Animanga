@@ -5,8 +5,13 @@
 {% endblock title %}
 
 {% block content %}
+    <div class="toc"></div>
     <div class="container about-content mt-5">
         <h1>Aide</h1>
         {{ html | safe }}
     </div>
 {% endblock content %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='js/toc-generator.js') }}"></script>
+{% endblock script %}

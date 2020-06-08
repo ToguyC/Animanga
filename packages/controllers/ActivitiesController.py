@@ -56,11 +56,9 @@ class ActivitiesController:
                                     JOIN list ON list.idList = list_has_anime.idList
                                     JOIN user_has_list ON user_has_list.idList = list.idList
                                     JOIN anime ON anime.idAnime = list_has_anime.idAnime
-                                    WHERE user_has_list.idUser = ?"""
+                                    WHERE user_has_list.idUser = ? AND list_has_anime.modificationDate > ?"""
 
-            user_list_additions = SqliteController().execute(sql_list_additions, values=(user_id,), fetch_mode=SqliteController.FETCH_ALL)
-            # Récupération des activité des dernières 24h
-            user_list_additions = [add for add in user_list_additions if add['modificationDate'] > current_datetime - timedelta(days=1)]
+            user_list_additions = SqliteController().execute(sql_list_additions, values=(user_id,(current_datetime - timedelta(days=1)),), fetch_mode=SqliteController.FETCH_ALL)
 
             results = []
             for add in user_list_additions:
@@ -92,11 +90,9 @@ class ActivitiesController:
             sql_favorite_additions = """SELECT anime.title, anime.picture, user_has_favorite.modificationDate
                                     FROM user_has_favorite
                                     JOIN anime ON anime.idAnime = user_has_favorite.idAnime
-                                    WHERE user_has_favorite.idUser = ?"""
+                                    WHERE user_has_favorite.idUser = ? AND user_has_favorite.modificationDate > ?"""
 
-            user_favorite_additions = SqliteController().execute(sql_favorite_additions, values=(user_id,), fetch_mode=SqliteController.FETCH_ALL)
-            # Récupération des activité des dernières 24h
-            user_favorite_additions = [add for add in user_favorite_additions if add['modificationDate'] > current_datetime - timedelta(days=1)]
+            user_favorite_additions = SqliteController().execute(sql_favorite_additions, values=(user_id, (current_datetime - timedelta(days=1)),), fetch_mode=SqliteController.FETCH_ALL)
 
             results = []
             for add in user_favorite_additions:
