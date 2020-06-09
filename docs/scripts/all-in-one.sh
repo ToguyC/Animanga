@@ -13,6 +13,7 @@ for f in ../index.md \
          ../planning.md \
          ../implementation.md \
          ../librairies.md \
+         ../fonctionnalites-majeurs.md \
          ../scenarios-tests.md \
 	     ../bibliographie.md \
 	     ../conclusion.md

@@ -8,7 +8,7 @@
 
 ## Préambule
 
-Toute cette documentation a été rédigée en [Markdown](https://www.markdownguide.org/). PDF que vous avez entre les mains est généré automatiquement grâce au logiciel d'édition pour fichier Markdown : [Typora](https://typora.io). J'ai fait un script Bash servant à fusionner les différents fichiers PDF nécessaires à la composition finale de ce rapport. Par conséquent, il se peut que la mise en page soit quelque peu bancale. C'est pourquoi je vous invite chaleureusement à lire tout ce rapport sur le site <https://animanga.readthedocs.io/fr/latest/>.
+Toute cette documentation a été rédigée en [Markdown](https://www.markdownguide.org/). PDF que vous avez entre les mains est généré automatiquement grâce au logiciel d'édition pour fichier Markdown : [Typora](https://typora.io). J'ai fait un script Bash servant à fusionner les différents fichiers PDF nécessaires à la composition finale de ce rapport. Par conséquent, il se peut que la mise en page soit quelque peu bancale. C'est pourquoi je vous invite chaleureusement à lire tout ce rapport sur le site <https://animanga.readthedocs.io/fr/latest/>. De plus, mon TPI est hébergé sur un serveur accessible à l'adresse <https://flask.tcsandbox.ch>.
 
 ## Introduction
 

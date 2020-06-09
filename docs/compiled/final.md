@@ -39,6 +39,14 @@
     - [ESLint](#eslint)
     - [Pylint](#pylint)
     - [Git](#git)
+  - [Analyse des fonctionnalités majeurs](#analyse-des-fonctionnalités-majeurs)
+    - [Un CRUD complet permet de gérer une entrée manga de la bibliothèque](#un-crud-complet-permet-de-gérer-une-entrée-manga-de-la-bibliothèque)
+    - [La base de données locale sqlite3 est synchronisée de façon unidirectionnelle avec la base de données d'un serveur mysql](#la-base-de-données-locale-sqlite3-est-synchronisée-de-façon-unidirectionnelle-avec-la-base-de-données-dun-serveur-mysql)
+    - [Les données JSON de github sont importées dans la base de données locale](#les-données-json-de-github-sont-importées-dans-la-base-de-données-locale)
+    - [Le service http utilise Python Flask](#le-service-http-utilise-python-flask)
+    - [Le planning réel est documenté et comparé au planning prescrit](#le-planning-réel-est-documenté-et-comparé-au-planning-prescrit)
+    - [Le projet est publié sur github et une url est communiqué](#le-projet-est-publié-sur-github-et-une-url-est-communiqué)
+    - [Le projet Python contient au moins une classe (python objet) conçu par le candidat](#le-projet-python-contient-au-moins-une-classe-python-objet-conçu-par-le-candidat)
   - [Plans de test et tests](#plans-de-test-et-tests)
     - [Périmètre des tests](#périmètre-des-tests)
     - [Environnement](#environnement)
@@ -62,13 +70,13 @@
 
 ## Préambule
 
-Toute cette documentation a été rédigée en [Markdown](https://www.markdownguide.org/) et le PDF que vous avez entre les mains est généré automatiquement grâce au logiciel d'édition pour fichier Markdown : [Typora](https://typora.io). J'ai fais un script Bash servant à fusionner les différents fichiers PDF nécessaire à la composition final de ce rapport donc il se peut que la mise en page soit quelque peu bancale. C'et pourquoi je vous invite très fortement à aller lire tout ce rapport sur le site <https://animanga.readthedocs.io/fr/latest/>.
+Toute cette documentation a été rédigée en [Markdown](https://www.markdownguide.org/). PDF que vous avez entre les mains est généré automatiquement grâce au logiciel d'édition pour fichier Markdown : [Typora](https://typora.io). J'ai fait un script Bash servant à fusionner les différents fichiers PDF nécessaires à la composition finale de ce rapport. Par conséquent, il se peut que la mise en page soit quelque peu bancale. C'est pourquoi je vous invite chaleureusement à lire tout ce rapport sur le site <https://animanga.readthedocs.io/fr/latest/>. De plus, mon TPI est hébergé sur un serveur accessible à l'adresse <https://flask.tcsandbox.ch>.
 
 ## Introduction
 
 Ce projet a été réalisé dans le cadre du *Travail Pratique Individuel* (TPI) durant la session de mai - juin 2020. Il a pour but de valider les compétences acquises tout au long de la formation *Informaticien CFC* de l'école du CFPT-Informatique au Petit-Lancy.
 
-Animanga est une application web écrite en Python permettant aux utilisateurs de faire leur propre bibliothèque d'anime. Pour ce faire, l'utilisateur à la possibilité de créer ses propres listes afin de correctement organisé sa bibliothèque, mettre des animes en tant que favoris, et rechercher les animes qu'il voudrait ajouter à sa collection directement depuis cette application.
+Animanga est une application web, écrite en Python, permettant aux utilisateurs de faire leur propre bibliothèque d'anime. Pour ce faire, l'utilisateur a la possibilité de créer ses propres listes afin de correctement organiser sa bibliothèque, mettre des animes en tant que favoris, et rechercher les animes qu'il voudrait ajouter à sa collection directement depuis cette application.
 ## Résumé de l'énoncé
 
 *Les informations suivantes sont éxtraites du cahier des charges du TPI.*
@@ -138,39 +146,41 @@ Les données initiales qui permettront de remplir la base de données sont acces
 
 ## Méthodologie
 
-Pour pouvoir planifier correctement ce projet, j'ai décidé d'utilisé la méthode en 6 étapes, décrite ci-dessous :
+Pour pouvoir planifier correctement ce projet, j'ai décidé d'utiliser la méthode en 6 étapes, décrite ci-dessous :
 
 ![Méthode en 6 étapes](https://i.imgur.com/Zi6VG92.png)
 
 ### 1. S’informer
 
-La première étape est utile pour pouvoir comprendre le projet dans son ensemble et comprendre toutes les fonctionnalisées nécessaires. Il est aussi indispensable de demander d’éclaircir tous les points flous de l’énoncé.
+La première étape est utile non seulement pour comprendre le projet dans son ensemble mais également pour se rendre compte de toutes les fonctionnalités nécessaires. Elle permet aussi d’éclaircir tous les points flous de l’énoncé.
 
 ### 2. Planifier
 
-Le fait de planifier le projet permet de séparer les tâches et de définir des priorités. ses dernières sont les suivantes : 🚫 *Bloquant*, 💥 *Critique*, ❗ *Important*, ❓ *Secondaire*.
+Le fait de planifier le projet permet de séparer les tâches, de lister et de définir les priorités. Ses dernières sont les suivantes : 🚫 *Bloquant*, 💥 *Critique*, ❗ *Important*, ❓ *Secondaire*.
 
-Pour représenter le planning nous avons utilisé un diagramme de Gantt. Ce type de diagramme permet de visualiser très correctement la progression quotidienne ainsi que les différences entre les prévisions et le réel.
+Pour représenter le planning, j'ai choisi d'utiliser un diagramme de Gantt. Ce type d'outil de gestion permet de visualiser très correctement la progression quotidienne du projet ainsi que les différences entre ce qui a été prévu et la réalité.
 
 ### 3. Décider
 
-Cette partie nous permet de pouvoir se lancer dans la réalisation du projet. S’il nous reste des points en suspens, c’est le moment de prendre une décision et de se jeter à l’eau une bonne fois pour toute.  
+S’il reste des points en suspens, c’est le dernier moment pour prendre des décisions (les éclaircir, les laisser de côté, les remettre à plus tard, etc.) afin de pouvoir ensuite "se jeter à l'eau" !  
 
 ### 4. Réaliser
 
-Nous pouvons enfin nous lancer dans l’implémentation de toutes les fonctionnalités à développer ainsi que la rédaction de la documentation.
+Cette partie permet de commencer le projet en tant que tel : implémenter toutes les fonctionnalités à développer et rédiger la documentation.
 
 ### 5. Contrôler
 
-Pour valider cette étape, nous avons tester chacune des fonctionnalités indépendamment des autres pour correctement vérifier leur fonctionnement dans différents cas d’usage.
+Cette étape invite à tester chacune des fonctionnalités indépendamment les unes des autres pour vérifier leur fonctionnement dans différents cas d'usage.
 
-Une fois l’application terminée, nous avons pu tester son bon fonctionnement sur plusieurs navigateurs différents pour bien être sûre que tout fonctionne comme prévu dans n’importe quel cas d’utilisation.
+Une fois l'application terminée, il s'agit de tester son bon fonctionnement sur plusieurs navigateurs différents pour bien être certain que tout se déroule comme prévu dans l'import que cas d'utilisation.
 
 ### 6. Évaluer
 
-Une fois toutes les étapes précédentes achevées, nous avons pu nous lancer dans ce qui peut sembler le plus complexe. Nous avons fait une rétrospective de tout ce que nous avons fait avec un regard critique afin de chercher des points sur lesquels nous pourront nous améliorer par la suite. Pour ce faire, nous avons une section dédiée dans le journal de bord répertoriant les problèmes rencontré ainsi que les solutions trouvées pour ces derniers. Une conclusion est aussi présente à la fin de ce rapport servant de bilan final au projet.
+Une fois toutes les étapes précédentes achevées, il s'agit de se lancer dans ce qui peut sembler le plus complexe ; une rétrospective de tout ce qui a été fait avec un regard critique afin de déceler les points à améliorer par la suite.
 
+Pour ce faire, une section est prévue dans le rapport final dans laquelle sont répertoriés les problèmes rencontrés ainsi que les solutions trouvées pour ces derniers.
 
+Pour que je puisse avoir une évaluation complète du projet, le rapport final se termine par une conclusion qui sert de bilan final au projet.
 
 ## Planification
 
@@ -893,26 +903,6 @@ Une fois toutes les étapes précédentes achevées, nous avons pu nous lancer d
             <td></td>
             <td></td>
         </tr>
-    </tbody>
-</table>
-<table>
-    <thead>
-        <tr>
-            <th>Jour</th>
-            <th colspan="2" style="text-align: center">J1<br><span>lu.25</span></th>
-            <th colspan="2" style="text-align: center">J2<br><span>ma.26</span></th>
-            <th colspan="2" style="text-align: center">J3<br><span>me.27</span></th>
-            <th colspan="2" style="text-align: center">J4<br><span>je.28</span></th>
-            <th colspan="2" style="text-align: center">J5<br><span>ve.29</span></th>
-            <th colspan="2" style="text-align: center">J6<br><span>ma.2</span></th>
-            <th colspan="2" style="text-align: center">J7<br><span>me.3</span></th>
-            <th colspan="2" style="text-align: center">J8<br><span>je.4</span></th>
-            <th colspan="2" style="text-align: center">J9<br><span>ve.5</span></th>
-            <th colspan="2" style="text-align: center">J10<br><span>lu.8</span></th>
-            <th colspan="2" style="text-align: center">J11<br><span>ma.9</span></th>
-        </tr>
-    </thead>
-    <tbody>
         <tr>
             <td rowspan="2" style="font-weight: bold; font-size: 15px">S5 : Affichage de la carte de l'anime</td>
             <td></td>
@@ -1911,22 +1901,22 @@ Permet de récupérer toutes les activités des dernières 24h de l'utilisateur 
 
 ### Pip et NPM
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://i.imgur.com/Z4wYwdB.png">[Pip](https://pypi.org/project/pip/) et [NPM](https://www.npmjs.com/) sont deux gestionnaires de dépendances que j'ai utilisé pour mon TPI. Pip est le gestionnaire des dépendances Python tandis que NPM est sont équivalent pour JavaScript. Ces deux gestionnaires m'ont permis d'inclure toutes les librairies externe que j'avais besoin pour mon TPI. Ceci me permet de ne pas avoir à télécharger manuellement les libraires et à les mettre dans mon projet. Leur utilisation m'a permis de grandement facilité le développement du TPI et d'avoir des dépendances toujours à jour.
+<img style="float: right; margin-left: 25px; width: 30%" src="https://i.imgur.com/Z4wYwdB.png">[Pip](https://pypi.org/project/pip/) et [NPM](https://www.npmjs.com/) sont deux gestionnaires de dépendances que j'ai utilisés pour mon TPI. Pip est le gestionnaire des dépendances Python tandis que NPM est sont équivalent pour JavaScript. Ces deux gestionnaires m'ont permis d'inclure toutes les librairies externes dont j'avais besoin pour mon TPI. Ceci me permet de ne pas avoir à télécharger manuellement les libraires et à les mettre dans mon projet. Leur utilisation m'a permis de faciliter grandement le développement du TPI et d'avoir des dépendances toujours à jour.
 
 ### Flask
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg">[Flask](https://palletsprojects.com/p/flask/) est un micro framework web écrit en Python. Aucune couche autre que l'hébergement web n'est présent dans ce micro framework. Flask à été créer par [Armin Ronacher](https://en.wikipedia.org/wiki/Armin_Ronacher), membre de [Pocoo](https://www.pocoo.org/), un groupe de développeurs Python formé en 2004, le 1<sup>er</sup> avril 2010. J'ai choisi d'utiliser ce framework pour mon TPI car il m'a permis d'aisément :
+<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg">[Flask](https://palletsprojects.com/p/flask/) est un micro framework web écrit en Python. Aucune couche autre que l'hébergement web n'est présent dans ce micro framework. Flask à été créé par [Armin Ronacher](https://en.wikipedia.org/wiki/Armin_Ronacher), membre de [Pocoo](https://www.pocoo.org/), un groupe de développeurs Python formé en 2004 - le 1<sup>er</sup> avril 2010. J'ai choisi d'utiliser ce framework pour mon TPI car il m'a permis d'aisément effectuer les tâches suivantes :
 
-* Héberger mon site en local ainsi que de pouvoir créer des routes web. Ces dernières sont url écrites dans la barre d'adresse du navigateur. Elles sont utilisées pour éviter de devoir écrire en dure les nom des fichiers à afficher ainsi que de pouvoir exécuter du code avant d'afficher la page à l'utilisateur afin de récupérer des informations nécessaire au bon affichage des informations dynamiques. Un bon exemple d'utilisation est la page d'accueil : si l'utilisateur n'est pas connecté, un fond contenant une image est affiché et la barre de navigation su site ne permet que d'avoir accès à l'accueil, la page à propos, la page de connexion et enfin d'inscription. L'informations comme quoi l'utilisateur n'est pas connecté est récupérée avant que la page soit affiché.
-* Configurer le debug de mon site de manière générale. Il est possible de données des paramètres de configuration à l'application Flask afin de facilité le développement. J'ai utilisé ces paramètres pour facilité le rafraichissement des pages dès lors qu'une modification est détectée dans un fichier.
+* Héberger mon site en local ainsi de pouvoir créer des routes web. Ces dernières sont des url écrites dans la barre d'adresse du navigateur. Elles sont utilisées non seulement pour éviter de devoir écrire en dur les nom des fichiers à afficher mais aussi de pouvoir exécuter du code avant d'afficher la page à l'utilisateur afin de récupérer des informations nécessaires au bon affichage des informations dynamiques. Un bon exemple d'utilisation est la page d'accueil : si l'utilisateur n'est pas connecté, un fond contenant une image est affiché et la barre de navigation du site ne permet que d'avoir accès à l'accueil, à la page à propos, à celle de connexion et enfin celle d'inscription. L'information comme quoi l'utilisateur n'est pas connecté est récupérée avant que la page soit affichée.
+* Configurer le debug de mon site de manière générale. Il est possible de donner des paramètres de configuration à l'application Flask afin de faciliter le développement. J'ai utilisé ces paramètres pour faciliter le rafraichissement des pages dès lors qu'une modification est détectée dans un fichier.
 
 ### Jinja
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/8/87/Jinja_software_logo.svg">[Jinja](https://jinja.palletsprojects.com/en/2.11.x/) est un moteur de modèle de page web pour Python. Il a été créer par [Armin Ronacher](https://en.wikipedia.org/wiki/Armin_Ronacher). Sa syntaxe est relativement identique au moteur de modèle Django mais adaptée pour la syntaxe de Python. Ce moteur de modèle est celui par défaut de [Flask](###Flask). 
+<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/8/87/Jinja_software_logo.svg">[Jinja](https://jinja.palletsprojects.com/en/2.11.x/) est un moteur de modèle de page web pour Python. Il a été créé par [Armin Ronacher](https://en.wikipedia.org/wiki/Armin_Ronacher). Sa syntaxe est relativement identique au moteur de modèle Django mais adaptée pour la syntaxe de Python. Ce moteur de modèle est celui par défaut de [Flask](###Flask). 
 
 ### Flask-Login
 
-[Flask-Login](https://flask-login.readthedocs.io/en/latest/) donne accès à un gestionnaire de sessions pour [Flask](###Flask). Il prend en compte les tâches standards comme la connexion, la déconnexion, et l'enregistrement de l'utilisateur en session sur une long période de temps. Dans mon TPI je l'utilise afin de connecter / déconnecter mes utilisateur et pour pouvoir stocker leurs informations en session durant leur utilisation du site.
+[Flask-Login](https://flask-login.readthedocs.io/en/latest/) donne accès à un gestionnaire de sessions pour [Flask](###Flask). Il prend en compte les tâches standards comme la connexion, la déconnexion, et l'enregistrement de l'utilisateur en session sur une longue période de temps. Dans mon TPI, je l'utilise afin de connecter / déconnecter mes utilisateur et pour pouvoir stocker leurs informations en session durant leur utilisation du site.
 
 ### Flask-Swagger
 
@@ -1934,52 +1924,155 @@ Permet de récupérer toutes les activités des dernières 24h de l'utilisateur 
 
 ### MySQL Connector/Python
 
-[MySQL Connector/Python](https://dev.mysql.com/doc/connector-python/en/) est une librairie permettant à Python de communiquer avec les serveurs MySQL. Cette librairie est indispensable si l'on veut communiquer avec une base de données MySQL, et elle apporte des avantages tel que la conversion de données entre Python et MySQL. Par exemple, le `datetime` Python et `DATETIME` MySQL.
+[MySQL Connector/Python](https://dev.mysql.com/doc/connector-python/en/) est une librairie permettant à Python de communiquer avec les serveurs MySQL. Cette librairie est indispensable si l'on veut communiquer avec une base de données MySQL, et elle apporte des avantages tels que la conversion de données entre Python et MySQL. Par exemple, le `datetime` Python et `DATETIME` MySQL.
 
 ### SASS
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Sass_Logo_Color.svg">[SASS](https://sass-lang.com/) est un préprocesseur CSS. Cet outil permet d'étendre la syntaxe du langage CSS afin de pouvoir ajouter de nouvelles fonctionnalités. SASS permet aussi d'avoir un système de variable plus puissant que celui de CSS ainsi qu'un système d'import de fichier plus épuré à mon goût. En effet, il est possible de créer un fichier pour stocké toutes les couleurs sous forme de variables et ensuite importé ce fichier dans la feuille de style principale pour pouvoir utilisé les couleurs n'importe où.
+<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Sass_Logo_Color.svg">[SASS](https://sass-lang.com/) est un préprocesseur CSS. Cet outil permet d'étendre la syntaxe du langage CSS afin de pouvoir ajouter de nouvelles fonctionnalités. SASS permet aussi d'avoir un système de variable plus puissant que celui de CSS ainsi qu'un système d'import de fichier plus épuré à mon goût. En effet, il est possible de créer un fichier pour stocker toutes les couleurs sous forme de variables et ensuite importer ce fichier dans la feuille de style principale pour pouvoir utiliser les couleurs n'importe où.
 
 ### Swagger
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg">[Swagger](https://swagger.io/tools/swagger-ui/) permet de visualiser les url d'une API automatiquement, basé sur les spécifications de chaque url. La générations du visuel est automatique et est optimisé pour une interaction avec le client. J'ai utilisé cet outil afin de visualiser correctement les routes utilisées par mon application afin de récupérer des données.
+<img style="float: right; margin-left: 25px; width: 30%" src="https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg">[Swagger](https://swagger.io/tools/swagger-ui/) permet de visualiser les url d'une API automatiquement, en se basant sur les spécifications de chaque url. La génération du visuel est automatique et est optimisé pour une interaction avec le client. J'ai utilisé cet outil afin de visualiser correctement les routes utilisées par mon application et de récupérer des données.
 
 ### jQuery UI
 
-[jQuery](https://jqueryui.com/) UI est un ensemble d'interactions utilisateur, d'effets, de widget, et de thème construit sur la base de jQuery. J'ai utilisé cet outil afin de pouvoir gérer avec facilité la réorganisation des favoris d'un utilisateur. En effet, il est possible de glisser déposé les couvertures des animes présent dans les favoris de l'utilisateur afin de réorganisé l'ordre de ces derniers.
+[jQuery](https://jqueryui.com/) UI est un ensemble d'interactions utilisateur, d'effets, de widgets, et de thèmes construits sur la base de jQuery. J'ai utilisé cet outil afin de pouvoir gérer avec facilité la réorganisation des favoris d'un utilisateur. En effet, il est possible de drag&drop les couvertures des animes présent dans les favoris de l'utilisateur afin de réorganiser l'ordre de ces derniers.
 
 ### ESLint
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://i.imgur.com/CbRxgU2.png">[ESLint](https://eslint.org/) est un outil vérification syntaxique automatique de code. La vérification est basé sur un ensemble de règles définissant la syntaxe à utiliser. Cet outil m'a été utile pour vérifier que mon code était conforme aux normes [Airbnb](https://github.com/airbnb/javascript), pour éviter d'avoir des morceaux de code potentiellement problématiques ou mal optimiser ou même plus utilisé.
+<img style="float: right; margin-left: 25px; width: 30%" src="https://i.imgur.com/CbRxgU2.png">[ESLint](https://eslint.org/) est un outil de vérification syntaxique automatique de code. La vérification est basée sur un ensemble de règles définissant la syntaxe à utiliser. Cet outil m'a été utile pour vérifier que mon code était conforme aux normes [Airbnb](https://github.com/airbnb/javascript), pour éviter d'avoir des morceaux de code potentiellement problématiques ou mal optimisé voire même plus utilisés.
 
 <img src="https://i.imgur.com/ac4CFJV.png">
 
-<div style="width: 100%; text-align: center; color: gray">Cas d'utilisation de ESLint. La command <span style="color: #ff8000;">npm run lint static/js</span> m'indique qu'un point-virgule est manquant à la ligne 93 de mon fichier user-list-handler.js</div>
+<div style="width: 100%; text-align: center; color: gray">Cas d'utilisation de ESLint. La command <span style="color: #ff8000;">npm run lint static/js</span> m'indique qu'un point-virgule est manquant à la ligne 93 de mon fichier user-list-handler.js.</div>
 
 ### Pylint
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://i.imgur.com/BxrqM3f.png">[Pylint](https://www.pylint.org/) est aussi un outil de vérification syntaxique comme [ESLint](###eslint). Cependant, il n'utilise pas de standard créer par la communauté mais les standards officiels de Python, le [PEP8](https://www.python.org/dev/peps/pep-0008/).
+<img style="float: right; margin-left: 25px; width: 30%" src="https://i.imgur.com/BxrqM3f.png">[Pylint](https://www.pylint.org/) est aussi un outil de vérification syntaxique comme [ESLint](###eslint). Cependant, il n'utilise pas de standard créé par la communauté mais les standards officiels de Python, le [PEP8](https://www.python.org/dev/peps/pep-0008/).
 
 <img src="https://i.imgur.com/kJ9BcdV.png">
 
-<div style="width: 100%; text-align: center; color: gray">Cas d'utilisation de Pylint. La command <span style="color: #ff8000;">pylint --output-format=colorized packages/controllers/SqliteController.py</span> m'indique entre autre que des imports ne sont pas bien placés</div>
+<div style="width: 100%; text-align: center; color: gray">Cas d'utilisation de Pylint. La command <span style="color: #ff8000;">pylint --output-format=colorized packages/controllers/SqliteController.py</span> m'indique, entre autre, que des imports ne sont pas bien placés.</div>
 
 ### Git
 
-<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg">[Git](https://git-scm.com/) est un outil de gestion de version. Cet outil à été utilisé durant toute la durée de mon TPI afin de garder un historiques des modifications apportées à mon projet ainsi qu'un système de sauvegarde externe sur [Github](https://github.com) en cas de problème technique sur mon ordinateur local.
+<img style="float: right; margin-left: 25px; width: 30%" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg">[Git](https://git-scm.com/) est un outil de gestion de version. Cet outil a été utilisé durant toute la durée de mon TPI afin de garder un historique des modifications apportées à mon projet ainsi qu'un système de sauvegarde externe sur [Github](https://github.com) en cas de problème technique sur mon ordinateur local.
 
 <div style='page-break-after: always; break-after: page; text-align:right;'></div>
 
 
+## Analyse des fonctionnalités majeurs
+
+### Un CRUD complet permet de gérer une entrée manga de la bibliothèque
+
+L'utilisateur à un contrôle total sur ses propres listes. Cela comprend la création de nouvelles listes, le renommage et la suppression des listes existantes. Il n'a cependant pas la possibilité de créer lui-même une nouvelle entrée, mais il a la possibilité d'écraser toutes les entrées avec un nouveau jeu de données. Le CRUD est donc sur la gestion des entrées et non sur les entrées elles-mêmes, mais toutes les fonctions nécessaires à un CRUD sont présentes.
+
+### La base de données locale sqlite3 est synchronisée de façon unidirectionnelle avec la base de données d'un serveur mysql
+
+Un système de synchronisation unidirectionnelle est en place avec un algorithme fait manuellement. Le fonctionnement de cette synchronisation est le suivant : récupérer tous les enregistrements Sqlite3 et MySQL, s'il y a plus d'enregistrements Sqlite3, ajouter les enregistrements manquants dans MySQL, sinon les supprimer. Ensuite, comparer les timestamps des enregistrements dont les IDS sont identiques. Si les enregistrements MySQL ont une date inférieure à ceux de Sqlite3, les mettre à jour. Ce processus mérite des améliorations, car il reste lent lorsque MySQL est vide ou qu'énormément de modifications ont été apportées aux données. J'explique comment cela pourrait être amélioré dans la parte prévue à cet effet. Voici le pseudo-code :
+
+```pseudocode
+foreach table {
+	stocker le nom de la table courante
+	
+	récupérer le nombre d'enregistrements de Sqlite3 et le stocker
+	récupérer le nombre d'enregistrements de MySQL et le stocker
+	
+	if nombre enregistrements Sqlite3 différent de nombre enregistrements MySQL {
+		récupérer ids et timestamp Sqlite3 pour stocker dans tableau id: timestamp
+		récupérer ids et timestamp MySQL pour stocker dans tableau id: timestamp
+		
+		trier les tableaux par id
+		
+		if tableau Sqlite3 > tableau MySQL {
+			stocker ids Sqlite3 non présent dans tableau MySQL
+			retirer les ids ci-dessus du tableau Sqlite3
+			
+			récupérer les enregistrements Sqlite3 correspondant aux ids non présent MySQL
+			
+			foreach enregistrement Sqlite3 {
+				insérer dans MySQL
+			}
+		} else {
+			stocker ids MySQL non présent dans Sqlite3
+			
+			foreach id MySQL {
+				supprimer l'entrée MySQL
+			}
+		}
+	}
+	
+	déclarer tableau pour ids Sqlite3 dont timestamp diffère du MySQL
+	foreach enregistrements Sqlite3 {
+		if timestamp courant différent du timestamp MySQL correspondant {
+			ajouter l'id dans le tablea créer à cet effet
+		}
+	}
+	
+	récupérer les enregistrements Sqlite3 correspondant aux ids
+	foreach enregistrement {
+		mettre à jour l'enregistrement correspondant dans MySQL
+	}
+}
+```
+
+### Les données JSON de github sont importées dans la base de données locale
+
+Le fichier donné dans l'énoncé comporte ~500k lignes de JSON et a la structure de données suivante :
+
+```json
+{
+    "data": [
+    {
+      "sources": [
+        "https://anidb.net/anime/10143",
+        "https://anilist.co/anime/102416",
+        "https://kitsu.io/anime/8925",
+        "https://myanimelist.net/anime/20707",
+        "https://notify.moe/anime/Ff1bpKmmR"
+      ],
+      "title": "\"0\"",
+      "type": "Special",
+      "episodes": 1,
+      "status": "FINISHED",
+      "picture": "https://cdn.myanimelist.net/images/anime/6/54815.jpg",
+      "thumbnail": "https://cdn.myanimelist.net/images/anime/6/54815t.jpg",
+      "synonyms": [
+        "Chiaki Kuriyama: 「0」",
+        "「0」"
+      ],
+      "relations": []
+    },
+    ...
+}
+```
+
+J'ai dû normaliser les données afin de les insérer correctement dans la base de données locale. Grâce à Sqlite3, l'insertion d'autant d'enregistrement est très rapide, il faut compter uniquement quelques secondes. L'écrasement des données peut être réalisé par tous les utilisateurs. Cet aspect peut être amélioré et j'en parle dans la section prévue à cet effet.
+
+### Le service http utilise Python Flask
+
+Comme l'application est développée en Python, il me faut un moyen d'héberger mon site sur le service HTTP. Pour Python, il faut utiliser Flask. la configuration n'est vraiment pas compliquée et pour lancer le serveur, il faut exécuter la commande dans le dossier parent au projet : `python3 -m Animanga.app run`.
+
+### Le planning réel est documenté et comparé au planning prescrit
+
+Un planning m'a été donné dans l'énoncé mais je ne le trouvais pas assez précis. J'ai alors pris l'initiative de refaire un planning prévisionnel. J'y ai inscrit toutes les *user stories* créées lors du premier jour du TPI. Mon planning réel est mixé au planning prévisionnel mais les couleurs sont différentes. Comme cela, il est plus facile de comparer les deux plannings. La légende concernant les couleurs est présente sous le planning.
+
+### Le projet est publié sur github et une url est communiqué
+
+Mon projet utilise Git et est lié à GitHub. l'URL du répertoire distant est <https://github.com/TanguyCavagna/Animanga>.
+
+### Le projet Python contient au moins une classe (python objet) conçu par le candidat
+
+Mon projet est rempli de classes. En effet, j'ai décidé de faire un contrôleur (classe de contrôle des données) par type de données utilisé et un modèle (classe de représentation des données) pour chaque type de données. Toutes ces classes sont expliquées dans la section adéquate, sous la partie *Implémentation*.
 ## Plans de test et tests
 
 ### Périmètre des tests
 
-Pour *Animanga* j'ai mis en place un protocole de test afin que n'importe quel utilisateur puisse naviguer convenablement dans l'application, peu importe son navigateur WEB.
+Pour *Animanga*, j'ai mis en place un protocole de tests afin que n'importe quel utilisateur puisse naviguer convenablement dans l'application, peu importe son navigateur WEB.
 
 ### Environnement
 
-Lors de ces tests, j'ai utilisé les navigateurs suivants :
+Lors de ces tests, j'utilise les navigateurs suivants :
 
 * Mozilla Firefox 76.0.1 (64 bits) sur Windows 10 Entreprise 1903
 * Google Chrome 81.0.4044.138 (64 bits) sur Windows 10 Entreprise 1903
@@ -1987,138 +2080,138 @@ Lors de ces tests, j'ai utilisé les navigateurs suivants :
 
 ### Scénarios
 
-Les scénarios des tests sont détaillés afin que n'importe quelles personne puisse les exécuter. Pour rédiger mes scénarios j'ai utilisé la syntaxe [**Gherkin**](https://cucumber.io/docs/gherkin/).
+Les scénarios des tests sont détaillés afin qu'un autre professionnel puisse les exécuter. Pour rédiger mes scénarios, j'utilise la syntaxe [**Gherkin**](https://cucumber.io/docs/gherkin/).
 
 | __Nom__               | __1.1__ Création d'un nouveau compte (<span style="color: #2dd674">informations valides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | __User Story__        | S1 : Inscription à Animanga                                  |
-| __Situation__         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte. <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`. <br>**Alors**, je suis redirigé sur la page d'accueil avec mon nouveau compte connecté. |
+| __Situation__         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte. <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`. <br>**Alors**, je suis redirigé sur la page d'accueil avec mon nouveau compte connecté. |
 | __Résultats obtenus__ | Je suis redirigé vers la page d'accueil avec mon nouveau compte connecté. |
 | __Statut__            | ✔ OK                                                         |
 
 | **Nom**               | **1.2** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.  <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `-`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`.  <br>**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.  <br>**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `-`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`.  <br>**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
 | **Résultats obtenus** | Un message s'affiche m'indiquant que l'email n'est pas présent. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.3** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `a@b.c`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplii le formulaire avec les informations suivantes :  email: `a@b.c`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
 | **Résultats obtenus** | Un message s'affiche m'indiquant que l'email fourni est trop court. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.4** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `invalide/@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `invalide/@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasse`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
 | **Résultats obtenus** | Un message s'affiche m'indiquant que l'email fourni n'est pas correct. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.5** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `-`, MDP: `MotDePasse`, confirmation: `MotDePasse`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
-| **Résultats obtenus** | Un message s'affiche m'indiquant que le pseudo n'est pas présent. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `-`, MDP: `MotDePasse`, confirmation: `MotDePasse`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
+| **Résultats obtenus** | Un message s'affiche m'indiquant que le pseudo est manquant. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.6** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `-`, confirmation: `-`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
-| **Résultats obtenus** | Un message s'affiche m'indiquant que le mot de passe n'est pas présent. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `-`, confirmation: `-`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
+| **Résultats obtenus** | Un message s'affiche m'indiquant que le mot de passe est manquant. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.7** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `Court`, confirmation: `Court`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `Court`, confirmation: `Court`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
 | **Résultats obtenus** | Un message s'affiche m'indiquant que le mot de passe est trop court. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.8** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `-`, confirmation: `-`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
-| **Résultats obtenus** | Un message s'affiche m'indiquant que le mot de passe de confirmation n'est pas présent. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `-`, confirmation: `-`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
+| **Résultats obtenus** | Un message s'affiche m'indiquant que le mot de passe de confirmation est manquant. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.9** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasseDifferent`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasseDifferent`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
 | **Résultats obtenus** | Un message s'affiche m'indiquant que les mots de passes sont différent. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | **1.10** Création d'un nouveau compte (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S1 : Inscription à Animanga                                  |
-| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je rempli le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasseDifferent`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qu'il ne c'est pas bien passé. |
+| **Situation**         | **Étant donné que** je suis un nouvel utilisateur de Animanga, je ne possède pas encore de compte.<br />**Quand** je clique sur le bouton *Inscription*, je suis redirigé vers la page d'inscription et je remplis le formulaire avec les informations suivantes :  email: `katalon@recorder.ch`, pseudo: `Katalon`, MDP: `MotDePasse`, confirmation: `MotDePasseDifferent`.<br />**Alors**, le formulaire est rechargé avec un message d'erreur indiquant ce qui ne s'est pas bien passé. |
 | **Résultats obtenus** | Un message s'affiche m'indiquant que l'email est déjà utilisé. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 2.1 Connexion avec un compte existant (<span style="color: #2dd674">informations valides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S2 : Connexion à Animanga                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition. <br>**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je rempli le formulaire avec les informations suivantes : email: `katalon@recorder.ch`, MDP: `MotDePasse`.<br>**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
+| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition. <br>**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je remplis le formulaire avec les informations suivantes : email: `katalon@recorder.ch`, MDP: `MotDePasse`.<br>**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
 | **Résultats obtenus** | Je suis redirigé vers la page d'accueil avec mon nouveau compte connecté. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 2.2 Connexion avec un compte existant (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S2 : Connexion à Animanga                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je rempli le formulaire avec les informations suivantes : email: `-`, MDP: `MotDePasse`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
-| **Résultats obtenus** | Un message s'affiche m'indiquant que l'email n'est pas présent. |
+| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je remplis le formulaire avec les informations suivantes : email: `-`, MDP: `MotDePasse`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
+| **Résultats obtenus** | Un message s'affiche m'indiquant que l'email est manquant.   |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 2.3 Connexion avec un compte existant (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S2 : Connexion à Animanga                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je rempli le formulaire avec les informations suivantes : email: `invalide/@recorder.ch`, MDP: `MotDePasse`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
-| **Résultats obtenus** | Un message s'affiche m'indiquant que l'email est invalide. |
+| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je remplis le formulaire avec les informations suivantes : email: `invalide/@recorder.ch`, MDP: `MotDePasse`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
+| **Résultats obtenus** | Un message s'affiche m'indiquant que l'email est invalide.   |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 2.4 Connexion avec un compte existant (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S2 : Connexion à Animanga                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je rempli le formulaire avec les informations suivantes : email: `katalon@recorder.ch`, MDP: `-`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
-| **Résultats obtenus** | Un message s'affiche m'indiquant que le mot de passe n'est pas présent. |
+| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je remplis le formulaire avec les informations suivantes : email: `katalon@recorder.ch`, MDP: `-`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
+| **Résultats obtenus** | Un message s'affiche m'indiquant que le mot de passe est manquant. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 2.5 Connexion avec un compte existant (<span style="color: #d62d46">informations invalides</span>) |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S2 : Connexion à Animanga                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je rempli le formulaire avec les informations suivantes : email: `katalon@recorder.ch`, MDP: `MotDePasseInexistant`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
+| **Situation**         | **Étant donné que** je suis un utilisateur de Animanga, j'ai déjà un compte à disposition.<br />**Quand** je clique sur le bouton *Connexion*, je suis redirigé vers la page de connexion et je remplis le formulaire avec les informations suivantes : email: `katalon@recorder.ch`, MDP: `MotDePasseInexistant`.<br />**Alors**, je suis redirigé sur la page d'accueil avec mon compte connecté. |
 | **Résultats obtenus** | Un message s'affiche m'indiquant que la combinaison email - mot de passe est invalide. |
 | **Statut**            | ✔ OK                                                         |
 
-| **Nom**               | 2.6 Déconnexion                                         |
+| **Nom**               | 2.6 Déconnexion                                              |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S2 : Connexion à Animanga                                    |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site.<br>**Quand** je clique sur le bouton *Déconnexion* placé dans le dropdown du menu *Utilisateur*.<br>**Alors**, je deviens un utilisateur non connecté et je suis redirigé sur la page de connexion. |
-| **Résultats obtenus** | Je clique sur *Utilisateur* et *Déconnexion*. Je ne suis plus connecté et je suis revenue sur la page de connexion. |
+| **Résultats obtenus** | Je clique sur *Utilisateur* et *Déconnexion*. Je ne suis plus connecté et je suis redirigé sur la page de connexion. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 3.1 Importation des animes                                   |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S3 : Importation des animes                                  |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je clique sur le bouton *Écraser tous les animes* placé dans le dropdown du menu *Utilisateur*.<br />**Alors**, j'écrase toutes les données du site relatives aux animes. Cela comprend les animes en eux même, les favoris ainsi que les animes contenu dans les listes. |
-| **Résultats obtenus** | Je clique sur *Utilisateur* et *Écraser tous les animes*. Je suis redirigé vers la page d'accueil et des alertes s'affiche en haut au centre de l'écran indiquant l'état de la mise à jours des animes. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je clique sur le bouton *Écraser tous les animes* placé dans le dropdown du menu *Utilisateur*.<br />**Alors**, j'écrase toutes les données du site relatives aux animes eux-même. Cela comprend les animes en eux même, les favoris ainsi que les animes contenus dans les listes. |
+| **Résultats obtenus** | Je clique sur *Utilisateur* et *Écraser tous les animes*. Je suis redirigé vers la page d'accueil et des alertes s'affichent en haut au centre de l'écran indiquant l'état de la mise à jours des animes. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 4.1 Recherche des animes                                     |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S4 : Recherche des animes                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je clique sur le bouton 🔍 placé dans la barre de navigation et que j'écris "k On" dans le champs de recherche de la modale.<br />**Alors**, je suis redirigé vers la page d'accueil et les résultats de la recherche affiche l'anime "K-ON!". |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je clique sur le bouton 🔍 placé dans la barre de navigation et que j'écris "k On" dans le champ de recherche de la modale.<br />**Alors**, je suis redirigé vers la page d'accueil et les résultats de la recherche affiche l'anime "K-ON!". |
 | **Résultats obtenus** | L'anime "K-ON!" est présent dans la zone de résultat de recherche. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 4.2 Recherche des animes avec raccourcis                     |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S4 : Recherche des animes                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je fais le raccourcis clavier <kbd>Ctrl</kbd> + <kbd>S</kbd> et que j'écris "k On" dans le champs de recherche de la modale.<br />**Alors**, je suis redirigé vers la page d'accueil et les résultats de la recherche affiche l'anime "K-ON!". |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site. <br />**Quand** je fais le raccourcis clavier <kbd>Ctrl</kbd> + <kbd>S</kbd> et que j'écris "k On" dans le champ de recherche de la modale.<br />**Alors**, je suis redirigé vers la page d'accueil et les résultats de la recherche affiche l'anime "K-ON!". |
 | **Résultats obtenus** | L'anime "K-ON!" est présent dans la zone de résultat de recherche. |
 | **Statut**            | ✔ OK                                                         |
 
@@ -2133,42 +2226,42 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime. <br />**Quand** sélectionne un statut autre que "---".<br />**Alors**, le combo-box se met à jour avec la nouvelle valeur sélectionnée. |
-| **Résultats obtenus** | La valeur du combo-box c'est bien mise à jour.               |
+| **Résultats obtenus** | La valeur du combo-box s'est bien mise à jour.               |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.2 Ajout de l'anime dans une liste personnelle              |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime. <br />**Quand** je clique sur une check-box blanche d'une des listes personnelles.<br />**Alors**, l'état de la check-box ce met à jour et elle se colore en bleu. L'anime est maintenant présent dans la liste personnelle. |
-| **Résultats obtenus** | L'état de la check-box c'est bien mis à jour et est bien coloré en bleu. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime. <br />**Quand** je clique sur une check-box blanche d'une des listes personnelles.<br />**Alors**, l'état de la check-box se met à jour et elle se colore en bleu. L'anime est maintenant présent dans la liste personnelle. |
+| **Résultats obtenus** | L'état de la check-box s'est bien mis à jour et est bien coloré en bleu. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.3 Ajout de l'anime dans les favoris                        |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime. <br />**Quand** je clique sur le cœur blanc pour ajouté au favoris.<br />**Alors**, le cœur se colore et l'anime se rajoute dans la zone des favoris de la page d'accueil. |
-| **Résultats obtenus** | Le cœur c'est coloré et l'anime c'est correctement ajouté dans la zone des favoris de la page d'accueil. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime. <br />**Quand** je clique sur le cœur blanc pour ajouter au favoris.<br />**Alors**, le cœur se colore et l'anime se rajoute dans la zone des favoris de la page d'accueil. |
+| **Résultats obtenus** | Le cœur s'est coloré et l'anime s'est correctement ajouté dans la zone des favoris de la page d'accueil. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.4 Suppression du statut de l'anime                         |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** sélectionne le statut "---".<br />**Alors**, le combo-box se met à jour avec la nouvelle valeur sélectionnée et l'anime n'est plus présent dans aucun autre statut. |
-| **Résultats obtenus** | La valeur du combo-box c'est bien mise à jour et l'anime n'est effectivement plus présent dans les autres statuts. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je sélectionne le statut "---".<br />**Alors**, le combo-box se met à jour avec la nouvelle valeur sélectionnée et l'anime n'est plus présent dans aucun autre statut. |
+| **Résultats obtenus** | La valeur du combo-box s'est bien mise à jour et l'anime n'est effectivement plus présent dans les autres statuts. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.5 Suppression de l'anime d'une liste personnelle           |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur une check-box bleue d'une des listes personnelles.<br />**Alors**, l'état de la check-box ce met à jour et se colore en blanc. L'anime n'est plus présent dans la cette liste personnelle. |
-| **Résultats obtenus** | L'état de la check-box c'est bien mis à jour et est coloré en blanc. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur une check-box bleue d'une des listes personnelles.<br />**Alors**, l'état de la check-box se met à jour et se colore en blanc. L'anime n'est plus présent dans la cette liste personnelle. |
+| **Résultats obtenus** | L'état de la check-box s'est bien mis à jour et est coloré en blanc. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 6.6 Suppression de l'anime des favoris                       |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S6 : Mise à jour de l'anime                                  |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté au site sur la page d'accueil ayant fait une recherche et ayant ouvert la modale d'informations d'un anime.<br />**Quand** je clique sur le cœur rose pour supprimer des favoris.<br />**Alors**, le cœur se colore en blanc et l'anime se supprime de la zone des favoris de la page d'accueil. |
-| **Résultats obtenus** | Le cœur c'est coloré en blanc et l'anime c'est correctement supprimé de la zone des favoris de la page d'accueil. |
+| **Résultats obtenus** | Le cœur s'est coloré en blanc et l'anime s'est correctement supprimé de la zone des favoris de la page d'accueil. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 7.1 Affichage du profile de l'utilisateur connecté           |
@@ -2181,36 +2274,36 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **Nom**               | 8.1 Affichage des listes de l'utilisateur connecté           |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S8 : Affichage des listes                                    |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur *Listes* dans la barre de navigation.<br />**Alors**, la page contenant toutes les listes de l'utilisateur connecté s'affiche ainsi que les animes contenu dans ces listes. |
-| **Résultats obtenus** | La page contenant les listes de l'utilisateur connecté c'est correctement affiché et les animes sont correctement affiché aussi. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur *Listes* dans la barre de navigation.<br />**Alors**, la page contenant toutes les listes de l'utilisateur connecté s'affiche ainsi que les animes contenus dans ces listes. |
+| **Résultats obtenus** | La page contenant les listes de l'utilisateur connecté s'est correctement affichée et les animes sont correctement affiché aussi. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 9.1 Créer une liste                                          |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S9 : Gestion des listes                                      |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que j'écris "Ma nouvelle liste" dans le champs de texte *Nouvelle liste* et que j'appuie sur <kbd>Enter</kbd>.<br />**Alors**, la liste apparaîtra en bas des listes déjà présentes avec une 🗑️ à côté. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que j'écris "Ma nouvelle liste" dans le champ de texte *Nouvelle liste* et que j'appuie sur <kbd>Enter</kbd>.<br />**Alors**, la liste apparaît en bas des listes déjà présentes avec une 🗑️ à côté. |
 | **Résultats obtenus** | La liste à bien été ajoutée en base des listes déjà présente. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 9.2 Supprimer une liste                                      |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S9 : Gestion des listes                                      |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que je clique sur 🗑️ d'une liste présente.<br />**Alors**, la liste ne sera plus présente dans les listes présentes. |
-| **Résultats obtenus** | La liste à bien été supprimer et n'est plus présente dans les listes déjà existante. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des listes et que je clique sur 🗑️ d'une liste présente.<br />**Alors**, la liste ne sera plus présente dans les listes déjà existantes. |
+| **Résultats obtenus** | La liste à bien été supprimée et n'est plus présente dans les listes déjà existantes. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 9.3 Renommer une liste                                       |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S9 : Gestion des listes                                      |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je double-clique sur le nom de la liste, je peux renommer la liste et valider en appuyant sur <kbd>Entré</kbd>.<br />**Alors**, le nom de la liste est changé. |
-| **Résultats obtenus** | Le nom de la listes est bien mis à jour.                     |
+| **Résultats obtenus** | Le nom de la liste est bien mis à jour.                      |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 10.1 Affichage des favoris sur l'accueil                     |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S10 : Affichage des favoris                                  |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page d'accueil.<br />**Alors**, mes favoris sont présent sur la page. |
-| **Résultats obtenus** | Mes favoris sont bien affiché.                               |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page d'accueil.<br />**Alors**, mes favoris sont présents sur la page. |
+| **Résultats obtenus** | Mes favoris sont bien affichés.                              |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 10.2 Affichage des favoris du profile                        |
@@ -2223,22 +2316,22 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **Nom**               | 11.1 Organisation des favoris                                |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S11 : Organisation des favoris                               |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des favoris et je clique sur le bouton *Réorganiser les favoris*, je peux glisser déposer les animes dans l'ordre que je veux. Je clique sur le bouton *Sauvegarder* pour enregistrer l'ordre.<br />**Alors**, mes favoris sont enregistrer dans l'ordre voulu. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des favoris et je clique sur le bouton *Réorganiser les favoris*, je peux glisser déposer les animes dans l'ordre que je veux. Je clique sur le bouton *Sauvegarder* pour enregistrer l'ordre.<br />**Alors**, mes favoris sont enregistrés dans l'ordre voulu. |
 | **Résultats obtenus** | Mes favoris ont bien été réorganisé.                         |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 11.2 suppression des favoris                                 |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S11 : Organisation des favoris                               |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des favoris et je clique sur le bouton *Réorganiser les favoris*, je peux cliquer sur <img src="https://i.imgur.com/FzE4PuB.png" width="25px"> pour enlever l'anime des favoris.<br />**Alors**, l'anime ne fait plus parti des favoris. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je suis sur la page des favoris et je clique sur le bouton *Réorganiser les favoris*, je peux cliquer sur <img src="https://i.imgur.com/FzE4PuB.png" width="25px"> pour enlever l'anime des favoris.<br />**Alors**, l'anime ne fait plus partie des favoris. |
 | **Résultats obtenus** | L'anime est bien retiré des favoris.                         |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 12.1 Affichage de la landing page                            |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S12 : Affichage de la landing page                           |
-| **Situation**         | **Étant donné que** je suis un utilisateur non connecté.<br />**Quand** je suis sur le site.<br />**Alors**, une page d'accueil s'affiche avec comme possibilité : la visite de la page *À propos*, se connecter et s'inscrire. |
-| **Résultats obtenus** | La page d'accueil ainsi que la barre de navigation sont affiché correctement pour un utilisateur non connecté. |
+| **Situation**         | **Étant donné que** je suis un utilisateur non connecté.<br />**Quand** je suis sur le site.<br />**Alors**, une page d'accueil s'affiche avec comme possibilité : la visite de la page *À propos*, la connexion et l'inscription. |
+| **Résultats obtenus** | La page d'accueil ainsi que la barre de navigation sont affichés correctement pour un utilisateur non connecté. |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 13.1 Respect du preset Airbnb                                |
@@ -2251,7 +2344,7 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | **Nom**               | 13.2 Respect des conventions PEP8                            |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S17 : Vérification syntaxique                                |
-| **Situation**         | **Étant donné que** je suis un développeur. <br />**Quand** j'exécute la commande `python3 -m pylint --output-format=colorized packages` à la racine de mon projet.<br /> **Alors**, aucune erreur de syntaxe sur la base des convention PEP8 n'est relevée. |
+| **Situation**         | **Étant donné que** je suis un développeur. <br />**Quand** j'exécute la commande `python3 -m pylint --output-format=colorized packages` à la racine de mon projet.<br /> **Alors**, aucune erreur de syntaxe sur la base des conventions PEP8 n'est relevée. |
 | **Résultats obtenus** | La note attribuée au code et supérieur à 10/10.              |
 | **Statut**            | ✔ OK                                                         |
 
@@ -2259,13 +2352,13 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S15 : Synchronisation MySQL Sqlite3                          |
 | **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je clique sur l'icône de synchronisation.<br />**Alors**, la page charge et je suis redirigé vers la page d'accueil. |
-| **Résultats obtenus** | Les données sont identique entre la base Sqlite3 et MySQL.   |
+| **Résultats obtenus** | Les données sont identiques entre la base Sqlite3 et MySQL.  |
 | **Statut**            | ✔ OK                                                         |
 
 | **Nom**               | 15.1 Affichage des activités des 24 dernières heures         |
 | :-------------------- | :----------------------------------------------------------- |
 | **User Story**        | S15 : Affichage des activités                                |
-| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je met un anime en favoris et dans une liste (changement de statut aussi).<br />**Alors**, une carte s'affiche sur l'accueil avec le nom de l'anime modifier ainsi que son image, le nom de la liste dans laquelle il a été ajouté, et le temps écoulé depuis la mise à jour. |
+| **Situation**         | **Étant donné que** je suis un utilisateur connecté.<br />**Quand** je mets un anime en favoris et dans une liste (changement de statut aussi).<br />**Alors**, une carte s'affiche sur l'accueil avec le nom de l'anime modifié ainsi que son image, le nom de la liste dans laquelle il a été ajouté, et le temps écoulé depuis la mise à jour. |
 | **Résultats obtenus** | La carte s'affiche avec les informations correctes.          |
 | **Statut**            | ✔ OK                                                         |
 
@@ -2273,112 +2366,124 @@ Les scénarios des tests sont détaillés afin que n'importe quelles personne pu
 
 | N° Test | J1<br /><span style="font-weight: normal">lu.25</span> | J2<br /><span style="font-weight: normal">ma.26</span> | J3<br /><span style="font-weight: normal">me.27</span> | J4<br /><span style="font-weight: normal">je.28</span> | J5<br /><span style="font-weight: normal">ve.29</span> | J6<br /><span style="font-weight: normal">ma.2</span> | J7<br /><span style="font-weight: normal">me.3</span> | J8<br /><span style="font-weight: normal">je.4</span> | J9<br /><span style="font-weight: normal">ve.5</span> | J10<br /><span style="font-weight: normal">lu.8</span> | J11<br /><span style="font-weight: normal">ma.9</span> |
 | :-----: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: |
-|   1.1   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.2   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.3   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.4   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.5   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.6   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.7   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.8   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   1.9   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   2.1   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   2.2   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   2.3   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   2.4   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   2.5   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   2.6   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   3.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   4.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   4.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   5.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   6.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   6.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   6.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   6.4   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   6.5   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   6.6   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   7.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   8.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-
-| N° Test | J1<br /><span style="font-weight: normal">lu.25</span> | J2<br /><span style="font-weight: normal">ma.26</span> | J3<br /><span style="font-weight: normal">me.27</span> | J4<br /><span style="font-weight: normal">je.28</span> | J5<br /><span style="font-weight: normal">ve.29</span> | J6<br /><span style="font-weight: normal">ma.2</span> | J7<br /><span style="font-weight: normal">me.3</span> | J8<br /><span style="font-weight: normal">je.4</span> | J9<br /><span style="font-weight: normal">ve.5</span> | J10<br /><span style="font-weight: normal">lu.8</span> | J11<br /><span style="font-weight: normal">ma.9</span> |
-| :-----: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: |
-|   9.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|   9.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  10.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  10.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  11.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  11.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  12.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  13.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  13.2   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  14.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
-|  15.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ❌                            |                           ❌                            |
+|   1.1   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.2   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.3   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.4   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.5   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.6   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.7   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.8   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   1.9   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   2.1   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   2.2   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   2.3   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   2.4   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   2.5   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   2.6   |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   3.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   4.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   4.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   5.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   6.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   6.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   6.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   6.4   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   6.5   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   6.6   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   7.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   8.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   9.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|   9.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  10.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  10.2   |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  11.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  11.3   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  12.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  13.1   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  13.2   |                           ❌                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                            |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  14.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ❌                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
+|  15.1   |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                            |                           ❌                           |                           ✔                           |                           ✔                           |                           ✔                           |                           ✔                            |                           ✔                            |
 ## Bibliographie
 
 Voici les différentes ressource techniques consultées lors lu développement de mon projet :
 
-* Le documentation officielle Python : https://docs.python.org/3/
-* MDN web docs, recueil très complet concernant le HTML, CSS, et JavaScript, créer par Mozilla : https://developer.mozilla.org/en-US/
-* Site de questions en lignes pour développeurs de tout les horizons : https://stackoverflow.com/
-* Le guide de style Airbnb, spécialisé pour la syntaxe JavaScript : https://github.com/airbnb/javascript
+* Le documentation officielle Python : <https://docs.python.org/3/>
+* MDN web docs, recueil très complet concernant le HTML, CSS, et JavaScript, créer par Mozilla : <https://developer.mozilla.org/en-US/>
+* Site de questions en lignes pour développeurs de tout les horizons : <https://stackoverflow.com/>
+* Le guide de style Airbnb, spécialisé pour la syntaxe JavaScript : <https://github.com/airbnb/javascript>
 * Les sources des librairies externes utilisées lors de ce projet :
-  * Documentation officielle de Flask : https://palletsprojects.com/p/flask/
-  * Documentation officielle de Jinja2 : https://jinja.palletsprojects.com/en/2.11.x/
-  * Documentation officielle de Flask-Login : https://flask-login.readthedocs.io/en/latest/
-  * Exemple d'utilisation de flask-swagger : https://pypi.org/project/flask-swagger/
-  * Documentation complète de Mysql Connector/Python : https://dev.mysql.com/doc/connector-python/en/
-  * Explications de ce qu'est Swagger : https://swagger.io/tools/swagger-ui/
-  * Documentation officielle de JquerUI : https://jqueryui.com/
-  * Sources de SwaggerUI, répertoire distant comportant les fichiers utilisés pour l'affichage de mes points d'entrés pour mon API interne : https://github.com/swagger-api/swagger-ui
+  * Documentation officielle de Flask : <https://palletsprojects.com/p/flask/>
+  * Documentation officielle de Jinja2 : <https://jinja.palletsprojects.com/en/2.11.x/>
+  * Documentation officielle de Flask-Login : <https://flask-login.readthedocs.io/en/latest/>
+  * Exemple d'utilisation de flask-swagger : <https://pypi.org/project/flask-swagger/>
+  * Documentation complète de Mysql Connector/Python : <https://dev.mysql.com/doc/connector-python/en/>
+  * Explications de ce qu'est Swagger : <https://swagger.io/tools/swagger-ui/>
+  * Documentation officielle de JquerUI : <https://jqueryui.com/>
+  * Sources de SwaggerUI, répertoire distant comportant les fichiers utilisés pour l'affichage de mes points d'entrés pour mon API interne : <https://github.com/swagger-api/swagger-ui>
 
 ## Glossaire
+
+|                                        Termes | Explications                                                 |
+| --------------------------------------------: | :----------------------------------------------------------- |
+|            **Anime**<br />(Anglais : *anime*) | Série, films ou épisodes spéciaux en dessins animé d'origine japonaise. |
+|             **Liste**<br />(Anglais : *list*) | Conteneur pouvant accueil 1 ou plusieurs animes en son sein afin de pouvoir organisé correctement sa collection. |
+|          **Statut**<br />(Anglais : *status*) | État de visionnement d'un anime. Ce dernier peut être *Complété*, *En cours*, *Abandonné* ou *Planifié.* |
+|       **Favoris**<br />(Anglais : *favorite*) | Anime que l'utilisateur aime particulièrement beaucoup.      |
+|                                     **Route** | Url ne pointant pas sur un fichier directement mais fonctionnant comme une requête faite au serveur afin d'afficher des données ou faire une action précise. |
+|                                  **Template** | Page HTML comportant une mise en page précise et où les données sont inséré dynamiquement grâce à des requête ou au back-end lors du chargement de la page. |
+|                                  **Back-end** | Partie caché d'une application permettant de communiquer avec tout le côté serveur. Cela comprend la base de données, l'authentification, etc... |
+|                                 **Front-end** | Partie visible par l'utilisateur d'une application. C'est cette partie qui comprend entre autre toute la partie ergonomie et les interfaces. |
+|                                **Librairies** | Ensemble de fonctionnalités externes au projet conçu par des développeur pour des développeur. |
+|                                    **Script** | Programme chargé d'exécuter une tâche pré-défini permettant habituellement d'automatisé des actions. |
+| **API** (*Application Programming Interface*) | Permet d'avoir accès à des fonctionnalités d'un site facilement. En web, ces accesseurs sont des urls définissant clairement ce qu'elles font (Exemple : */get/users* ➡ récupère les utilisateurs). |
+|                                 **Framework** | En web, ensemble d'outils et de fonctionnalités construit spécialement pour le support de services web, gestion de ressources et déploiement web. Un framework apporte un manière standardisé de réalisé un projet et automatise des protocole fastidieux si fait manuellement . |
 
 
 ## Conclusion
 
 ### Difficultés majeures rencontrées
 
-Durant tout le développement de mon projet, aucun problème bloquant n'a été rencontré. Voici cependant la liste des soucis les plus majeurs :
+Durant tout le développement de mon projet, aucun problème bloquant n'a surgi. Voici cependant la liste des soucis majeurs que j'ai rencontrés :
 
-* > L'outil de fusion de PDF que j'utilisait - [pdfunite](http://manpages.ubuntu.com/manpages/bionic/man1/pdfunite.1.html) - ne prenait pas en charge les titres lors de la fusion de plusieurs PDF. En effet, si un PDF seul comportait des titres, après la fusion ces derniers étaient considéré comme simple texte.
+* > L'outil de fusion de PDF que j'utilisais - [pdfunite](http://manpages.ubuntu.com/manpages/bionic/man1/pdfunite.1.html) - ne prenait pas en charge les titres lors de la fusion de plusieurs PDF. Ainsi, si un PDF comportait des titres, après la fusion sa fusion avec les autres documents, les titres étaient considérés comme simple texte.
 
-  ➡ J'ai pu corriger ce soucis en changeant de librairie de fusion de document PDF. La recherche de nouvelle librairie n'était pas compliqué du tout car il existe un nombre élevé de librairies permettant de fusionner des PDF, dont [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) et le didacticiel disponible à [cette adresse](https://www.ostechnix.com/how-to-merge-pdf-files-in-command-line-on-linux/).
+  ➡ J'ai pu corriger ce souci en changeant de librairie de fusion de document PDF. La recherche d'une nouvelle librairie n'a pas été compliquée du tout car il existe un nombre élevé de librairies permettant de fusionner des PDF, dont [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) et le didacticiel disponible à [cette adresse](https://www.ostechnix.com/how-to-merge-pdf-files-in-command-line-on-linux/).
 
-* > Lors de la synchronisation, j'utilise des timestamps pour savoir quels enregistrements ont été modifié. Cependant, j'utilisais un format différent entre ma base Sqlite3 et MySQL. Dans Sqlite3, le format utilisé était `%Y-%m-%d %H:%M:%f` ce qui donne `2020-06-08 09:08:32.276`. Les millisecondes sont présentes avec ce format. Or, le format utilisé par défaut dans MySQL est `%Y-%m-%d %H:%M:%S` ce qui donne `2020-06-08 09:08:32`. Cette différence de format faisait que lorsqu'un timestamp Sqlite3 dont les millisecondes sont plus grandes que `.500`, ce timestamp est arrondi vers le haut et donc mes timestamps sont différents.
+* > Lors de la synchronisation, j'utilise des timestamps pour savoir quels enregistrements ont été modifiés. Cependant, j'utilisais un format différent entre ma base Sqlite3 et MySQL. Dans Sqlite3, le format utilisé était `%Y-%m-%d %H:%M:%f` ce qui donne `2020-06-08 09:08:32.276`. Les millisecondes sont présentes avec ce format. Or, le format utilisé par défaut dans MySQL est `%Y-%m-%d %H:%M:%S` ce qui donne `2020-06-08 09:08:32`. Cette différence de format faisait que lorsqu'un timestamp Sqlite3 dont les millisecondes sont plus grandes que `.500`, ce timestamp était arrondi vers le haut et donc mes timestamps étaient différents.
 
-  ➡ Le soucis n'était de loin pas compliqué à régler mais j'ai mis un certain moment afin de trouvé ce qui causait le soucis d'enregistrement différent entre Sqlite3 et MySQL. Une fois la cause trouvé, j'ai simplement fait en sorte que la date que j'insérais dans Sqlite3 ne comportait pas les millisecondes et tout est rentré dans l'ordre.
+  ➡ Le souci n'était de loin pas compliqué à régler mais j'ai mis un certain temps avant de trouver ce qui causait un différent entre Sqlite3 et MySQL. Une fois la cause trouvée, j'ai simplement fait en sorte que la date que j'insère dans Sqlite3 ne comporte pas les millisecondes En procédant ainsi, la synchronisation se fait sans problème.
 
 ### Améliorations possibles
 
-Étant donné la courte période mise à disposition, il est claire que des améliorations sont possibles sur les fonctionnalités existantes. Voici un aperçut de ce qui pourrait être améliorer :
+Étant donnée la courte période mise à disposition, il est clair que des améliorations sont possibles sur les fonctionnalités existantes. Voici un aperçu de ce qui pourrait être amélioré :
 
-* Ajouter la fonctionnalité de pouvoir modifier son profile. Cela comporte le pseudo, email et le mot de passe
+* Ajouter la fonctionnalité de pouvoir modifier son profile. Cela comporte le pseudo, l'email et le mot de passe ;
 
-* Faire en sorte que l'interface du site soit *responsive design* (qu'il s'adapte sur tout type d'écran). Pour le moment, cette fonctionnalité n'est implémentée qu'à moitié
+* Faire en sorte que l'interface du site soit *responsive design* (qu'il s'adapte sur tout type d'écran). Pour le moment, cette fonctionnalité n'est qu'à demi implémentée ;
 
-* Mettre plus de résultat lors d'une recherche. Pour le moment ce n'est que les neufs les plus adéquats par rapport à la chaine recherché
+* Proposer davantage de résultats lors d'une recherche. Pour le moment, seuls les neufs résultats les plus adéquats par rapport à la chaine recherché apparaissent ;
 
-* Modifier la fonctionnalité de synchronisation unidirectionnel entre Sqlite3 et MySQL. Pour le moment, l'algorithme utilisé est relativement efficace mais il pourrait être amélioré de cette façon par exemple :
+* Modifier la fonctionnalité de synchronisation unidirectionnelle entre Sqlite3 et MySQL. Pour le moment, l'algorithme utilisé est relativement efficace mais il pourrait être amélioré, par exemple, en stockant le timestamp de la dernière synchronisation dans une table, en supprimant tous les enregistrements qui ne sont plus présents dans Sqlite3 de MySQL, en ne sélectionnant que les enregistrements dont la date est supérieure ou égale à la dernière synchronisation, en mettant à jours les enregistrements MySQL et en ajoutant les enregistrements manquant. Cette façon de faire permettrait à l'algorithme d'être beaucoup plus rapide qu'actuellement.
 
-  Stocké le timestamp de la dernière synchronisation dans une table, supprimer tout les enregistrements plus présents dans Sqlite3 de MySQL, sélectionner que les enregistrements dont la date est supérieur ou égale à la dernière synchronisation et mettre à jours les enregistrements MySQL et ajouté ceux qui manque.
 
-  Cette façon de faire permettrait à algorithme d'être beaucoup plus rapide qu'actuellement.
+Outre les fonctionnalités existantes, j'ai pensé à ces quelques idées durant le développement de l'application :
 
-Outre les fonctionnalités existantes, j'ai penser à ces quelques idées durant le développement de l'application :
-
-* Ajouter la fonctionnalité de pouvoir se faire une liste d'amis en cherchant le pseudo de l'utilisateur dans un champs prévu à cet effet et ensuite avoir une page dédié à l'affichage de cette dite liste d'amis afin de pouvoir aller voir le profil de ces derniers.
-* Ajouter un système de rôle permettant aux administrateur de pouvoir gérer les animes sans que les utilisateur puisse le faire pour éviter toute fausse manipulation
-* Ajouter la fonctionnalité permettant aux utilisateur de mettre une note à un anime et une progression de visionnage (nombre d'épisode regardé)
-* Modifier le contenu des activités pour ajouter celles des amis
+* Ajouter la fonctionnalité de pouvoir se faire une liste d'amis en cherchant le pseudo de l'utilisateur dans un champs prévu à cet effet et ensuite avoir une page dédiée à l'affichage de cette dite liste d'amis afin de pouvoir aller voir le profil de ces derniers ;
+* Ajouter un système de rôle permettant aux administrateurs de pouvoir gérer les animes sans que les utilisateurs puissent le faire pour éviter toute fausse manipulation ;
+* Ajouter la fonctionnalité permettant aux utilisateurs de mettre une note à un anime et une progression de visionnage (nombre d'épisodes regardés) ;
+* Modifier le contenu des activités pour ajouter celles des amis.
 
 ### Bilan personnel
 
-Ce projet m'a énormément plus. Le sujet était parfait pour moi : j'adore réaliser des projet en Python, surtout web, et je suis passionné par les animes. Le fait de pouvoir lier ces deux passions était très agréable. Je trouve très plaisant d'utilisé cette application de part sa simplicité et son contenu fourni. Le fait d'écrire une documentation aussi grosse était une première pour moi et ce fût très enrichissant, en plus de me satisfaire grandement.
+Ce projet m'a énormément plus. Le sujet était parfait pour moi : j'adore réaliser des projets en Python, surtout web, et je suis passionné par les animes. Le fait de pouvoir lier ces deux passions était très agréable.
+
+Je trouve très plaisant d'utiliser cette application de par sa simplicité et son contenu fourni. Le fait d'écrire une documentation aussi volumineuse était une première pour moi ! Ce fût non seulement satisfaisant mais aussi très enrichissant. J'ai en effet, appris quantité de choses.
 
 ### Remerciements
 
 J'apporte mes remerciements à :
 
-* M. Pascal Bonvin pour son suivi assidu lors de ce TPI
-* M. Nicolas Ettlin pour ses conseils avisé concernant l'utilisation d'eslint et quelque techniques CSS.
+* M. Pascal Bonvin pour son suivi assidu lors de ce TPI ;
+* M. Nicolas Ettlin pour ses conseils avisés concernant l'utilisation d'eslint et quelques techniques CSS ;
+* Ma famille pour la relecture et l'aide à la correction orthographique et grammaticale.
