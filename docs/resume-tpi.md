@@ -15,11 +15,12 @@
 
 ### Situation de départ
 
-
+Ce *Travail Pratique Individuel* (TPI), de 88 heures disposé sur 11 jours, a été réalisé dans le cadre de l'examen de validation d'acquis pour la formation CFC-Informatique Développement d'Application. L'énoncé qui m'a été attribué me donne le projet suivant : une application web permettant de faire des listes personnelles d'animes ainsi que les mettre en favoris. Les utilisateurs doivent avoir un compte pour accéder à l'application et ainsi utilisé le site. Les données doivent provenir d'un fichier `json` donné et doivent être importées dans une base de données Sqlite3. D'autre fonctionnalités sont indispensables pour pouvoir rechercher les animes et affiché les activités de l'utilisateur.
 
 ### Mise en œuvre
 
-
+L'application a été réalisée avec Python et le micro-framework Flask pour la partie back-end, JavaScript pour le front-end, ainsi que Sqlite3 et MySQL pour la base de données. L'application fonctionne grâce à des routes mises en places dans Flask et les pages chargent les données en utilisant `fetch` de JavaScript ainsi que des variable Python interprétées lors du chargement de la page. Les tâche de l'énoncé ont été divisées en *user stories* et la *méthodologie en 6 étapes* a été utilisé pour structuré la progression du projet. Un protocole de test complet a été créer pour rendre l'application conforme à l'énoncé. Un journal de bord quotidien a été tenu à jour et comporte toutes les étapes entreprise tout au long du travail, les problèmes rencontré, solutions apportées et rendez-vous télévisuel fait.
 
 ### Résultats
 
+Toutes les fonctionnalité de l'énoncé ont été implémentées et les utilisateur ont une expérience agréable lors de l'utilisation de l'application. Le code JavaScript est conforme aux norme Airbnb, vérifier grâce l'analyseur syntaxique (*linter*) ESLint, tout comme le Python est conforme aux normes PEP8 grâce à l'analyseur syntaxique Pylint. Une documentation complète a également été rédigée.
