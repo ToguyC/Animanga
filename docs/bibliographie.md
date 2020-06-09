@@ -18,18 +18,23 @@ Voici les différentes ressource techniques consultées lors lu développement d
 
 ## Glossaire
 
+### Termes métier
 |                                        Termes | Explications                                                 |
 | --------------------------------------------: | :----------------------------------------------------------- |
 |            **Anime**<br />(Anglais : *anime*) | Série, films ou épisodes spéciaux en dessins animé d'origine japonaise. |
+|       **Favoris**<br />(Anglais : *favorite*) | Anime que l'utilisateur aime particulièrement beaucoup.      |
 |             **Liste**<br />(Anglais : *list*) | Conteneur pouvant accueil 1 ou plusieurs animes en son sein afin de pouvoir organisé correctement sa collection. |
 |          **Statut**<br />(Anglais : *status*) | État de visionnement d'un anime. Ce dernier peut être *Complété*, *En cours*, *Abandonné* ou *Planifié.* |
-|       **Favoris**<br />(Anglais : *favorite*) | Anime que l'utilisateur aime particulièrement beaucoup.      |
-|                                     **Route** | Url ne pointant pas sur un fichier directement mais fonctionnant comme une requête faite au serveur afin d'afficher des données ou faire une action précise. |
-|                                  **Template** | Page HTML comportant une mise en page précise et où les données sont inséré dynamiquement grâce à des requête ou au back-end lors du chargement de la page. |
+
+### Termes technique
+|                                        Termes | Explications                                                 |
+| --------------------------------------------: | :----------------------------------------------------------- |
+| **API** (*Application Programming Interface*) | Permet d'avoir accès à des fonctionnalités d'un site facilement. En web, ces accesseurs sont des urls définissant clairement ce qu'elles font (Exemple : */get/users* ➡ récupère les utilisateurs). |
 |                                  **Back-end** | Partie caché d'une application permettant de communiquer avec tout le côté serveur. Cela comprend la base de données, l'authentification, etc... |
+|                                 **Framework** | En web, ensemble d'outils et de fonctionnalités construit spécialement pour le support de services web, gestion de ressources et déploiement web. Un framework apporte un manière standardisé de réalisé un projet et automatise des protocole fastidieux si fait manuellement . |
 |                                 **Front-end** | Partie visible par l'utilisateur d'une application. C'est cette partie qui comprend entre autre toute la partie ergonomie et les interfaces. |
 |                                **Librairies** | Ensemble de fonctionnalités externes au projet conçu par des développeur pour des développeur. |
+|                                     **Route** | Url ne pointant pas sur un fichier directement mais fonctionnant comme une requête faite au serveur afin d'afficher des données ou faire une action précise. |
 |                                    **Script** | Programme chargé d'exécuter une tâche pré-défini permettant habituellement d'automatisé des actions. |
-| **API** (*Application Programming Interface*) | Permet d'avoir accès à des fonctionnalités d'un site facilement. En web, ces accesseurs sont des urls définissant clairement ce qu'elles font (Exemple : */get/users* ➡ récupère les utilisateurs). |
-|                                 **Framework** | En web, ensemble d'outils et de fonctionnalités construit spécialement pour le support de services web, gestion de ressources et déploiement web. Un framework apporte un manière standardisé de réalisé un projet et automatise des protocole fastidieux si fait manuellement . |
+|                                  **Template** | Page HTML comportant une mise en page précise et où les données sont inséré dynamiquement grâce à des requête ou au back-end lors du chargement de la page. |
 
