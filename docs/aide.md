@@ -40,7 +40,7 @@ Le formulaire suivant vous sera présenté. Il vous suffit de remplir les champs
 
 ## Profil
 
-![](https://i.imgur.com/RiOQbeR.png)
+![](https://i.imgur.com/VtRH9jx.jpg)
 
 * **Informations de l'utilisateur** : Contient les informations de l'utilisateur : Pseudo et images par défaut
 * **Statistiques** : Contient les statistiques de l'utilisateur. Ce sont le nombre de séries, films, Ona, et épisodes spéciaux regardé et complété
@@ -48,7 +48,7 @@ Le formulaire suivant vous sera présenté. Il vous suffit de remplir les champs
 
 ## Listes
 
-![](https://i.imgur.com/xEsib36.jpg)
+![](https://i.imgur.com/TIDh2Sb.jpg)
 
 * **Informations de l'utilisateur** : Contient les informations de l'utilisateur : Pseudo et images par défaut
 * **Listes** : Contient toutes les listes de l'utilisateur. Il est possible faire une recherche sur les animes qui sont contenu dans les listes, ainsi que la gestion totale des listes personnelles : ajouter une liste grâce au champ `Nouvelle liste` et la touche <kbd>Entré</kbd> pour valider, double-cliquer sur le nom d'une liste personnelle pour renommer et la touche <kbd>Entré</kbd> pour valider, et la 🗑 pour supprimer la liste en question
@@ -58,7 +58,7 @@ Il est possible de filtrer les animes souhaité par liste en cliquant sur la lis
 
 ## Favoris
 
-![](https://i.imgur.com/XW8m26m.png)
+![](https://i.imgur.com/WbMITqj.png)
 
 * **Informations de l'utilisateur** : Contient les informations de l'utilisateur : Pseudo et images par défaut
 * **Favoris** : Contient les favoris de l'utilisateur. Sur cette page, il est possible de modifier l'ordre des favoris en cliquant sur le bouton <img src="https://i.imgur.com/U2VxH9L.png">. Il est alors possible de drag&drop les animes dans l'ordre souhaité. Une fois le bouton cliqué, vous voyez apparaître des <img src="https://i.imgur.com/80HGBb1.png" width="25px">. Ces derniers servent à supprimer l'anime des favoris.
