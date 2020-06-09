@@ -1,0 +1,181 @@
+components:
+  #-------------------------------
+  # Reusable schemas (data models)
+  #-------------------------------
+  schemas:
+    # Can be referenced as '#/components/schemas/Anime'
+    Anime:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id
+        title:
+          type: string
+          description: Titre
+        type:
+          type: string
+          description: Type (TV, Movie, ONA, Special)
+        episodes:
+          type: integer
+          description: Nombre d'episode
+        status:
+          type: string
+          description: État (FINISHED, CURRENTLY, UPCOMING, UNKNOWN)
+        picture:
+          type: string
+          description: Url de l'image
+        thumbnail:
+          type: string
+          description: Url de l'image
+        synonims:
+          type: string
+          description: Synonimes du titre séparé par des virgules
+        relations:
+          type: array
+          description: Liste des relations (contient des anime)
+          items:
+            $ref: '#/components/schemas/Anime'
+        is_favorite:
+          type: boolean
+          description: Est favoris
+        in_list:
+          type: array
+          description: Liste des liste dont l'anime fait parti
+          items:
+            $ref: '#/components/schemas/List'
+    
+    # Can be referenced as '#/components/schemas/List'
+    List:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id
+        name:
+          type: string
+          description: Nom
+
+  #-------------------------------
+  # Reusable operation parameters
+  #-------------------------------
+  parameters:
+    # Can be referenced as '#/components/parameters/idAnime'
+    idAnime:
+      name: idAnime
+      in: body
+      description: Id de l'anime
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        example: 34
+  
+    # Can be referenced as '#/components/parameters/idList'
+    idList:
+      name: idList
+      in: body
+      description: Id de la liste
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        example: 2
+
+    # Can be referenced as '#/components/parameters/search_terms'
+    search_terms:
+      name: search-terms
+      in: body
+      description: Chaine de recherche
+      required: true
+      schema:
+        type: string
+        example: Ma recherche
+
+    # Can be referenced as '#/components/parameters/idAnimeList'
+    idAnimeList:
+      name: ids
+      in: body
+      description: Liste d'id d'animes
+      required: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/parameters/idAnime'
+        example: [1, 3, 4, 7]
+
+    # Can be referenced as '#/components/parameters/newListName'
+    newListName:
+      name: newListName
+      in: body
+      description: Nom de la nouvelle liste
+      required: true
+      schema:
+        type: string
+        example: Ma nouvelle liste
+
+    # Can be referenced as '#/components/parameters/userNickname'
+    userNickname:
+      name: searched-user
+      in: body
+      description: Nickname de l'utilisateur cherché
+      required: true
+      schema:
+        type: string
+        example: Toguy
+
+  #-------------------------------
+  # Reusable responses
+  #-------------------------------
+  responses:
+    # Can be referenced as '#/components/responses/GenericResponse'
+    GenericResponse:
+      description: Status de la bonne execution de la requete
+      schema:
+        type: object
+        properties:
+          Status:
+            type: boolean
+            description: Bonne execution de la requete
+
+    # Can be referenced as '#/components/responses/AnimeListResponse'
+    AnimeListResponse:
+      description: Liste d'animes
+      schema:
+        type: object
+        properties:
+          Animes:
+            items:
+              $ref: '#/components/schemas/Anime'
+
+    # Can be referenced as '#/components/responses/ListResponse'
+    ListResponse:
+      description: Nouvelle liste
+      schema:
+        $ref: '#/components/schemas/List'
+
+    # Can be referenced as '#/components/responses/LoggedUserFavorites' 
+    LoggedUserFavorites:
+      description: La liste des favoris de l'utilisateur connecté
+      schema:
+        type: array
+        items:
+          $ref: '/static/swagger-components/components.yml#/components/schemas/Anime'
+
+    # Can be referenced as '#/components/responses/LoggedUserActivities' 
+    LoggedUserActivities:
+      description: La liste des activitées de l'utilisateur connecté
+      schema:
+        type: array
+        items:
+          $ref: '/static/swagger-components/components.yml#/components/schemas/Anime'
+
+    # Can be referenced as '#/components/responses/LambdaUserFavorites' 
+    LambdaUserFavorites:
+      description: La liste des favoris d'un 'utilisateur
+      schema:
+        type: array
+        items:
+          $ref: '/static/swagger-components/components.yml#/components/schemas/Anime'

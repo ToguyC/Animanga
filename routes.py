@@ -192,14 +192,28 @@ def help():
 @main_bp.route('/get/favorites', methods=['GET'])
 @login_required
 def get_favorites_for_loged_user():
-    """Récupère tous les favoris de l'utilisateur connecté
+    """
+    Récupère tous les favoris de l'utilisateur connecté
+    ---
+    tags:
+      - favorites
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/LoggedUserFavorites'
     """
     return jsonify({'animes': AnimeController().get_favorite_by_user_id(current_user.id)})
 
 @main_bp.route('/get/favorites/<string:nickname>', methods=['GET'])
 @login_required
 def get_favorites_for_user(nickname = None):
-    """Récupère tous les favoris d'un 'utilisateur
+    """
+    Récupère tous les favoris d'un utilisateur
+    ---
+    tags:
+      - favorites
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/LambdaUserFavorites'
     """
     searched_user = UserController().get_by_nickname(nickname)
     if searched_user is not None:
@@ -226,7 +240,7 @@ def spec():
         description: objet JSON comportant toutes les informations nécessaire à l'affichage des points de sortie de l'API
     """
     swag = swagger(app)
-    swag['info']['version'] = "0.1"
+    swag['info']['version'] = "1.0"
     swag['info']['title'] = "Animanga"
     return jsonify(swag)
 
@@ -264,7 +278,15 @@ def sync():
 @login_required
 def set_favorite():
     """
-    Met à jour le statut de favoris d'un anime pour un utilisateur connecté
+    Met à jour le status de favoris pour un anime de l'utilisateur connecté
+    ---
+    tags:
+      - favorites
+    parameters:
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/idAnime'
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/GenericResponse'
     """
     anime_id = request.get_json()['idAnime']
 
@@ -276,7 +298,17 @@ def set_favorite():
 @main_bp.route('/set/list', methods=['PUT'])
 @login_required
 def set_list():
-    """Met à jour l'association d'un anime avec une liste
+    """
+    Met à jour le status de favoris d'un anime pour l'utilisateur connecté
+    ---
+    tags:
+      - lists
+    parameters:
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/idAnime'
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/idList'
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/GenericResponse'
     """
     id_anime = request.get_json()['idAnime']
     id_list = request.get_json()['idList']
@@ -289,7 +321,16 @@ def set_list():
 @main_bp.route('/delete/defaults', methods=['DELETE'])
 @login_required
 def delete_status():
-    """Supprime l'anime des listes par défaut de l'utilisateur connecté
+    """
+    Supprime l'anime des listes par défaut de l'utilisateur connecté
+    ---
+    tags:
+      - animes
+    parameters:
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/idAnime'
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/GenericResponse'
     """
     anime_id = request.get_json()['idAnime']
 
@@ -301,7 +342,18 @@ def delete_status():
 @main_bp.route('/get/animes', methods=['POST'])
 @login_required
 def get_animes_from_list():
-    """Récupère les animes d'une liste
+    """
+    Récupère les animes d'une liste
+    ---
+    tags:
+      - animes
+    parameters:
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/userNickname'
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/idList'
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/search_terms'
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/AnimeListResponse'
     """
     if request.json.get('nicknameUser') is not None and request.json.get('nicknameUser') != current_user.nickname:
         user_id = UserController().get_by_nickname(request.json.get('nicknameUser')).id
@@ -313,14 +365,32 @@ def get_animes_from_list():
 @main_bp.route('/add/list', methods=['PUT'])
 @login_required
 def add_list():
-    """Ajoute une nouvelle liste à l'utilisateur connecté
+    """
+    Ajoute une nouvelle liste à l'utilisateur connecté
+    ---
+    tags:
+      - lists
+    parameters:
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/newListName'
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/ListResponse'
     """
     return jsonify({ 'list': ListController().add_new_list(request.json.get('newListName'), current_user.id) })
 
 @main_bp.route('/delete/list', methods=['DELETE'])
 @login_required
 def delete_list():
-    """Supprime une liste à l'utilisateur connecté
+    """
+    Supprime une liste à l'utilisateur connecté
+    ---
+    tags:
+      - lists
+    parameters:
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/idList'
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/GenericResponse'
     """
     return jsonify({ 'Status': ListController().delete_by_id(request.json.get('idList'), current_user.id) })
 
@@ -337,13 +407,29 @@ def rename_list():
 @main_bp.route('/set/favorites-order', methods=['PATCH'])
 @login_required
 def set_favorites_order():
-    """Met à jour l'ordre des favoris
+    """
+    Met à jour l'ordre des favoris
+    ---
+    tags:
+      - favorites
+    parameters:
+      - $ref: '/static/swagger-components/components.yml#/components/parameters/idAnimeList'
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/GenericResponse'
     """
     return jsonify({ 'Status': AnimeController().reorder_favorites(current_user.id, request.json.get('ids')) })
 
 @main_bp.route('/get/activities', methods=['GET'])
 @login_required
 def get_activities_for_logged_user():
-    """Récupère tous les activitées de l'utilisateur connecté
+    """
+    Récupère tous les activitées de l'utilisateur connecté
+    ---
+    tags:
+      - activities
+    responses:
+      200:
+        $ref: '/static/swagger-components/components.yml#/components/responses/LoggedUserActivities'
     """
     return jsonify({'activities': ActivitiesController().get_last_24h(current_user.id)})
