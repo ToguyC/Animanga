@@ -58,7 +58,7 @@ class ListController:
                                FROM list
                                JOIN user_has_list ON list.idList = user_has_list.idList
                                WHERE user_has_list.idUser = ?
-                               AND nameList IN ('Complétés', 'En cours', 'Abandonés', 'Planifiés')"""
+                               AND nameList IN ('Complétés', 'En cours', 'Abandonnés', 'Planifiés')"""
 
             results = SqliteController().execute(sql_user_list, values=(user_id,), fetch_mode=SqliteController.FETCH_ALL)
 

@@ -67,7 +67,7 @@ function fetchActivities() {
                     subjectTitle.innerHTML = activity.title;
                     activitySubject.classList.add('activity__subject');
                     activitySubject.appendChild(subjectTitle);
-                    activitySubject.innerHTML += `<br> À été ajouté à : ${activity.list}`;
+                    activitySubject.innerHTML += `<br> A été ajouté à : ${activity.list}`;
                     activityTimestamp.classList.add('activity__timestamp');
                     activityTimestamp.innerHTML = timeEllapsedFromNow(new Date(activity.date));
                     activityImg.src = activity.picture;

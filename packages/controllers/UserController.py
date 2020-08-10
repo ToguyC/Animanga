@@ -173,7 +173,7 @@ class UserController:
             values_list = [
                 'Complétés',
                 'En cours',
-                'Abandonés',
+                'Abandonnés',
                 'Planifiés'
             ]
 

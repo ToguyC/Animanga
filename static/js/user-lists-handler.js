@@ -119,7 +119,7 @@ function listNamesClickEventSetup() {
                 'Complétés',
                 'En cours',
                 'Planifiés',
-                'Abandonés',
+                'Abandonnés',
             ].includes(currentListName.innerHTML)
         ) {
             // Event double clique pour renommer la liste seulement si elle ne fait
